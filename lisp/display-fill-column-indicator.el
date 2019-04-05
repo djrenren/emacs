@@ -24,10 +24,9 @@
 
 ;; Provides a minor mode interface for `display-fill-column-indicator'.
 ;;
-;; Toggle display of line numbers with M-x
-;; display-fill-column-indicator-mode.  To enable line numbering in
-;; all buffers, use M-x global-display-fill-column-indicator-mode.  To
-;; change the default line column
+;; Toggle display of the column indicator with M-x
+;; display-fill-column-indicator-mode.  To enable the indicator in
+;; all buffers, use M-x global-display-fill-column-indicator-mode.
 
 
 ;; NOTE: Customization variables for
@@ -38,7 +37,7 @@
 ;;; Code:
 
 (defgroup display-fill-column-indicator nil
-  "Display line numbers in the buffer."
+  "Display a fill column indicator in th buffer."
   :group 'convenience
   :group 'display)
 
@@ -48,9 +47,9 @@
   "Toggle display fill column indicator.
 This uses `display-fill-column-indicator' internally.
 
-To change the position of the line displayed by default,
+To change the position of the column displayed by default,
 customize `display-fill-column-indicator-column' you can change the
-character for the line setting `display-fill-column-indicator-character'."
+character for the indicator setting `display-fill-column-indicator-character'."
   :lighter nil
   (if display-fill-column-indicator-mode
       (progn
