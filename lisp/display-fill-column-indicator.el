@@ -55,7 +55,10 @@ character for the indicator setting `display-fill-column-indicator-character'."
       (progn
         (setq display-fill-column-indicator t)
         (unless display-fill-column-indicator-character
-          (if (char-displayable-p ?\u2502)
+          (if (and (char-displayable-p ?\u2502)
+                   (or (not (display-graphic-p))
+                       (eq (aref (query-font (car (internal-char-font nil ?\u2502))) 0)
+                           (face-font 'default))))
               (setq display-fill-column-indicator-character ?\u2502)
             (setq display-fill-column-indicator-character ?|))))
     (setq display-fill-column-indicator nil)))
