@@ -13296,6 +13296,7 @@ x_create_terminal (struct x_display_info *dpyinfo)
   terminal->read_socket_hook = XTread_socket;
   terminal->frame_up_to_date_hook = XTframe_up_to_date;
   terminal->buffer_flipping_unblocked_hook = XTbuffer_flipping_unblocked_hook;
+  terminal->defined_color_hook = x_defined_color;
   terminal->mouse_position_hook = XTmouse_position;
   terminal->get_focus_frame = x_get_focus_frame;
   terminal->focus_frame_hook = x_focus_frame;
