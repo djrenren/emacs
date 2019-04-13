@@ -978,7 +978,7 @@ xg_set_icon (struct frame *f, Lisp_Object file)
   bool result = false;
   Lisp_Object found;
 
-  found = x_find_image_file (file);
+  found = image_find_image_file (file);
 
   if (! NILP (found))
     {
@@ -1021,7 +1021,7 @@ xg_set_icon_from_xpm_data (struct frame *f, const char **data)
 #endif /* USE_GTK */
 
 
-/* Functions called only from `x_set_frame_param'
+/* Functions called only from `gui_set_frame_parameters'
    to set individual parameters.
 
    If FRAME_X_WINDOW (f) is 0,
@@ -2056,7 +2056,7 @@ x_set_title (struct frame *f, Lisp_Object name, Lisp_Object old_name)
   x_set_name_internal (f, name);
 }
 
-void
+static void
 x_set_scroll_bar_default_width (struct frame *f)
 {
   int unit = FRAME_COLUMN_WIDTH (f);
@@ -2077,7 +2077,7 @@ x_set_scroll_bar_default_width (struct frame *f)
 #endif
 }
 
-void
+static void
 x_set_scroll_bar_default_height (struct frame *f)
 {
   int height = FRAME_LINE_HEIGHT (f);
@@ -2148,7 +2148,7 @@ x_default_scroll_bar_color_parameter (struct frame *f,
     }
 
   AUTO_FRAME_ARG (arg, prop, tem);
-  x_set_frame_parameters (f, arg);
+  gui_set_frame_parameters (f, arg);
   return tem;
 }
 
@@ -3407,7 +3407,7 @@ x_free_gcs (struct frame *f)
 
 
 /* Handler for signals raised during x_create_frame and
-   x_create_tip_frame.  FRAME is the frame which is partially
+   Fx_create_tip_frame.  FRAME is the frame which is partially
    constructed.  */
 
 static Lisp_Object
@@ -3417,7 +3417,7 @@ unwind_create_frame (Lisp_Object frame)
 
   /* If frame is already dead, nothing to do.  This can happen if the
      display is disconnected after the frame has become official, but
-     before x_create_frame removes the unwind protect.  */
+     before Fx_create_frame removes the unwind protect.  */
   if (!FRAME_LIVE_P (f))
     return Qnil;
 
@@ -3518,11 +3518,11 @@ x_default_font_parameter (struct frame *f, Lisp_Object parms)
       /* Remember the explicit font parameter, so we can re-apply it after
 	 we've applied the `default' face settings.  */
       AUTO_FRAME_ARG (arg, Qfont_parameter, font_param);
-      x_set_frame_parameters (f, arg);
+      gui_set_frame_parameters (f, arg);
     }
 
   /* This call will make X resources override any system font setting.  */
-  x_default_parameter (f, parms, Qfont, font, "font", "Font", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qfont, font, "font", "Font", RES_TYPE_STRING);
 }
 
 
@@ -3768,8 +3768,8 @@ This function is an internal primitive--use `make-frame' instead.  */)
   dpyinfo_refcount = dpyinfo->reference_count;
 #endif /* GLYPH_DEBUG */
 
-  x_default_parameter (f, parms, Qfont_backend, Qnil,
-		       "fontBackend", "FontBackend", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qfont_backend, Qnil,
+                         "fontBackend", "FontBackend", RES_TYPE_STRING);
 
   /* Extract the window parameters from the supplied values
      that are needed to determine window geometry.  */
@@ -3782,8 +3782,8 @@ This function is an internal primitive--use `make-frame' instead.  */)
 
   /* Frame contents get displaced if an embedded X window has a border.  */
   if (! FRAME_X_EMBEDDED_P (f))
-    x_default_parameter (f, parms, Qborder_width, make_fixnum (0),
-			 "borderWidth", "BorderWidth", RES_TYPE_NUMBER);
+    gui_default_parameter (f, parms, Qborder_width, make_fixnum (0),
+                           "borderWidth", "BorderWidth", RES_TYPE_NUMBER);
 
   /* This defaults to 1 in order to match xterm.  We recognize either
      internalBorderWidth or internalBorder (which is what xterm calls
@@ -3798,48 +3798,48 @@ This function is an internal primitive--use `make-frame' instead.  */)
 	parms = Fcons (Fcons (Qinternal_border_width, value),
 		       parms);
     }
-  x_default_parameter (f, parms, Qinternal_border_width,
+  gui_default_parameter (f, parms, Qinternal_border_width,
 #ifdef USE_GTK /* We used to impose 0 in xg_create_frame_widgets.  */
-		       make_fixnum (0),
+                         make_fixnum (0),
 #else
-		       make_fixnum (1),
+                         make_fixnum (1),
 #endif
-		       "internalBorderWidth", "internalBorderWidth",
-		       RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qright_divider_width, make_fixnum (0),
-		       NULL, NULL, RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qbottom_divider_width, make_fixnum (0),
-		       NULL, NULL, RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qvertical_scroll_bars,
+                         "internalBorderWidth", "internalBorderWidth",
+                         RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qright_divider_width, make_fixnum (0),
+                         NULL, NULL, RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qbottom_divider_width, make_fixnum (0),
+                         NULL, NULL, RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qvertical_scroll_bars,
 #if defined (USE_GTK) && defined (USE_TOOLKIT_SCROLL_BARS)
-		       Qright,
+                         Qright,
 #else
-		       Qleft,
+                         Qleft,
 #endif
-		       "verticalScrollBars", "ScrollBars",
-		       RES_TYPE_SYMBOL);
-  x_default_parameter (f, parms, Qhorizontal_scroll_bars, Qnil,
-		       "horizontalScrollBars", "ScrollBars",
-		       RES_TYPE_SYMBOL);
+                         "verticalScrollBars", "ScrollBars",
+                         RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qhorizontal_scroll_bars, Qnil,
+                         "horizontalScrollBars", "ScrollBars",
+                         RES_TYPE_SYMBOL);
   /* Also do the stuff which must be set before the window exists.  */
-  x_default_parameter (f, parms, Qforeground_color, build_string ("black"),
-		       "foreground", "Foreground", RES_TYPE_STRING);
-  x_default_parameter (f, parms, Qbackground_color, build_string ("white"),
-		       "background", "Background", RES_TYPE_STRING);
-  x_default_parameter (f, parms, Qmouse_color, build_string ("black"),
-		       "pointerColor", "Foreground", RES_TYPE_STRING);
-  x_default_parameter (f, parms, Qborder_color, build_string ("black"),
-		       "borderColor", "BorderColor", RES_TYPE_STRING);
-  x_default_parameter (f, parms, Qscreen_gamma, Qnil,
-		       "screenGamma", "ScreenGamma", RES_TYPE_FLOAT);
-  x_default_parameter (f, parms, Qline_spacing, Qnil,
-		       "lineSpacing", "LineSpacing", RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qleft_fringe, Qnil,
-		       "leftFringe", "LeftFringe", RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qright_fringe, Qnil,
-		       "rightFringe", "RightFringe", RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qno_special_glyphs, Qnil,
-		       NULL, NULL, RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qforeground_color, build_string ("black"),
+                         "foreground", "Foreground", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qbackground_color, build_string ("white"),
+                         "background", "Background", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qmouse_color, build_string ("black"),
+                         "pointerColor", "Foreground", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qborder_color, build_string ("black"),
+                         "borderColor", "BorderColor", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qscreen_gamma, Qnil,
+                         "screenGamma", "ScreenGamma", RES_TYPE_FLOAT);
+  gui_default_parameter (f, parms, Qline_spacing, Qnil,
+                         "lineSpacing", "LineSpacing", RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qleft_fringe, Qnil,
+                         "leftFringe", "LeftFringe", RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qright_fringe, Qnil,
+                         "rightFringe", "RightFringe", RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qno_special_glyphs, Qnil,
+                         NULL, NULL, RES_TYPE_BOOLEAN);
 
   x_default_scroll_bar_color_parameter (f, parms, Qscroll_bar_foreground,
 					"scrollBarForeground",
@@ -3848,7 +3848,7 @@ This function is an internal primitive--use `make-frame' instead.  */)
 					"scrollBarBackground",
 					"ScrollBarBackground", false);
 
-  /* Init faces before x_default_parameter is called for the
+  /* Init faces before gui_default_parameter is called for the
      scroll-bar-width parameter because otherwise we end up in
      init_iterator with a null face cache, which should not happen.  */
   init_frame_faces (f);
@@ -3880,30 +3880,31 @@ This function is an internal primitive--use `make-frame' instead.  */)
      here; they are processed specially at startup, and reflected in
      the values of the mode variables.  */
 
-  x_default_parameter (f, parms, Qmenu_bar_lines,
-		       NILP (Vmenu_bar_mode)
-		       ? make_fixnum (0) : make_fixnum (1),
-		       NULL, NULL, RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qtool_bar_lines,
-		       NILP (Vtool_bar_mode)
-		       ? make_fixnum (0) : make_fixnum (1),
-		       NULL, NULL, RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qmenu_bar_lines,
+                         NILP (Vmenu_bar_mode)
+                         ? make_fixnum (0) : make_fixnum (1),
+                         NULL, NULL, RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qtool_bar_lines,
+                         NILP (Vtool_bar_mode)
+                         ? make_fixnum (0) : make_fixnum (1),
+                         NULL, NULL, RES_TYPE_NUMBER);
 
-  x_default_parameter (f, parms, Qbuffer_predicate, Qnil,
-		       "bufferPredicate", "BufferPredicate",
-		       RES_TYPE_SYMBOL);
-  x_default_parameter (f, parms, Qtitle, Qnil,
-		       "title", "Title", RES_TYPE_STRING);
-  x_default_parameter (f, parms, Qwait_for_wm, Qt,
-		       "waitForWM", "WaitForWM", RES_TYPE_BOOLEAN);
-  x_default_parameter (f, parms, Qtool_bar_position,
-                       FRAME_TOOL_BAR_POSITION (f), 0, 0, RES_TYPE_SYMBOL);
-  x_default_parameter (f, parms, Qinhibit_double_buffering, Qnil,
-                       "inhibitDoubleBuffering", "InhibitDoubleBuffering",
-                       RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qbuffer_predicate, Qnil,
+                         "bufferPredicate", "BufferPredicate",
+                         RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qtitle, Qnil,
+                         "title", "Title", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qwait_for_wm, Qt,
+                         "waitForWM", "WaitForWM", RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qtool_bar_position,
+                         FRAME_TOOL_BAR_POSITION (f), 0, 0, RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qinhibit_double_buffering, Qnil,
+                         "inhibitDoubleBuffering", "InhibitDoubleBuffering",
+                         RES_TYPE_BOOLEAN);
 
   /* Compute the size of the X window.  */
-  window_prompting = x_figure_window_size (f, parms, true, &x_width, &x_height);
+  window_prompting = gui_figure_window_size (f, parms, true,
+                                             &x_width, &x_height);
 
   tem = x_get_arg (dpyinfo, parms, Qunsplittable, 0, 0, RES_TYPE_BOOLEAN);
   f->no_split = minibuffer_only || EQ (tem, Qt);
@@ -3927,23 +3928,23 @@ This function is an internal primitive--use `make-frame' instead.  */)
 
   /* We need to do this after creating the X window, so that the
      icon-creation functions can say whose icon they're describing.  */
-  x_default_parameter (f, parms, Qicon_type, Qt,
-		       "bitmapIcon", "BitmapIcon", RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qicon_type, Qt,
+                         "bitmapIcon", "BitmapIcon", RES_TYPE_BOOLEAN);
 
-  x_default_parameter (f, parms, Qauto_raise, Qnil,
-		       "autoRaise", "AutoRaiseLower", RES_TYPE_BOOLEAN);
-  x_default_parameter (f, parms, Qauto_lower, Qnil,
-		       "autoLower", "AutoRaiseLower", RES_TYPE_BOOLEAN);
-  x_default_parameter (f, parms, Qcursor_type, Qbox,
-		       "cursorType", "CursorType", RES_TYPE_SYMBOL);
-  x_default_parameter (f, parms, Qscroll_bar_width, Qnil,
-		       "scrollBarWidth", "ScrollBarWidth",
-		       RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qscroll_bar_height, Qnil,
-		       "scrollBarHeight", "ScrollBarHeight",
-		       RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qalpha, Qnil,
-		       "alpha", "Alpha", RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qauto_raise, Qnil,
+                         "autoRaise", "AutoRaiseLower", RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qauto_lower, Qnil,
+                         "autoLower", "AutoRaiseLower", RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qcursor_type, Qbox,
+                         "cursorType", "CursorType", RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qscroll_bar_width, Qnil,
+                         "scrollBarWidth", "ScrollBarWidth",
+                         RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qscroll_bar_height, Qnil,
+                         "scrollBarHeight", "ScrollBarHeight",
+                         RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qalpha, Qnil,
+                         "alpha", "Alpha", RES_TYPE_NUMBER);
 
   if (!NILP (parent_frame))
     {
@@ -3955,10 +3956,10 @@ This function is an internal primitive--use `make-frame' instead.  */)
       unblock_input ();
     }
 
-  x_default_parameter (f, parms, Qno_focus_on_map, Qnil,
-		       NULL, NULL, RES_TYPE_BOOLEAN);
-  x_default_parameter (f, parms, Qno_accept_focus, Qnil,
-		       NULL, NULL, RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qno_focus_on_map, Qnil,
+                         NULL, NULL, RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qno_accept_focus, Qnil,
+                         NULL, NULL, RES_TYPE_BOOLEAN);
 
 #if defined (USE_X_TOOLKIT) || defined (USE_GTK)
   /* Create the menu bar.  */
@@ -3999,8 +4000,8 @@ This function is an internal primitive--use `make-frame' instead.  */)
   /* Process fullscreen parameter here in the hope that normalizing a
      fullheight/fullwidth frame will produce the size set by the last
      adjust_frame_size call.  */
-  x_default_parameter (f, parms, Qfullscreen, Qnil,
-		       "fullscreen", "Fullscreen", RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qfullscreen, Qnil,
+                         "fullscreen", "Fullscreen", RES_TYPE_SYMBOL);
 
   /* Make the window appear on the frame and enable display, unless
      the caller says not to.  However, with explicit parent, Emacs
@@ -4043,11 +4044,11 @@ This function is an internal primitive--use `make-frame' instead.  */)
   unblock_input ();
 
   /* Works iff frame has been already mapped.  */
-  x_default_parameter (f, parms, Qskip_taskbar, Qnil,
-		       NULL, NULL, RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qskip_taskbar, Qnil,
+                         NULL, NULL, RES_TYPE_BOOLEAN);
   /* The `z-group' parameter works only for visible frames.  */
-  x_default_parameter (f, parms, Qz_group, Qnil,
-		       NULL, NULL, RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qz_group, Qnil,
+                         NULL, NULL, RES_TYPE_SYMBOL);
 
   /* Initialize `default-minibuffer-frame' in case this is the first
      frame on this terminal.  */
@@ -4067,60 +4068,6 @@ This function is an internal primitive--use `make-frame' instead.  */)
   Vwindow_list = Qnil;
 
  return unbind_to (count, frame);
-}
-
-
-/* FRAME is used only to get a handle on the X display.  We don't pass the
-   display info directly because we're called from frame.c, which doesn't
-   know about that structure.  */
-
-Lisp_Object
-x_get_focus_frame (struct frame *frame)
-{
-  struct x_display_info *dpyinfo = FRAME_DISPLAY_INFO (frame);
-  Lisp_Object xfocus;
-  if (! dpyinfo->x_focus_frame)
-    return Qnil;
-
-  XSETFRAME (xfocus, dpyinfo->x_focus_frame);
-  return xfocus;
-}
-
-
-/* In certain situations, when the window manager follows a
-   click-to-focus policy, there seems to be no way around calling
-   XSetInputFocus to give another frame the input focus .
-
-   In an ideal world, XSetInputFocus should generally be avoided so
-   that applications don't interfere with the window manager's focus
-   policy.  But I think it's okay to use when it's clearly done
-   following a user-command.  */
-
-void
-x_focus_frame (struct frame *f, bool noactivate)
-{
-  Display *dpy = FRAME_X_DISPLAY (f);
-
-  block_input ();
-  x_catch_errors (dpy);
-
-  if (FRAME_X_EMBEDDED_P (f))
-    {
-      /* For Xembedded frames, normally the embedder forwards key
-	 events.  See XEmbed Protocol Specification at
-	 http://freedesktop.org/wiki/Specifications/xembed-spec  */
-      xembed_request_focus (f);
-    }
-  else
-    {
-      XSetInputFocus (FRAME_X_DISPLAY (f), FRAME_X_WINDOW (f),
-		      RevertToParent, CurrentTime);
-      if (!noactivate)
-	x_ewmh_activate_frame (f);
-    }
-
-  x_uncatch_errors ();
-  unblock_input ();
 }
 
 
@@ -6122,7 +6069,7 @@ unwind_create_tip_frame (Lisp_Object frame)
    PARMS is a list of frame parameters.  TEXT is the string to
    display in the tip frame.  Value is the frame.
 
-   Note that functions called here, esp. x_default_parameter can
+   Note that functions called here, esp. gui_default_parameter can
    signal errors, for instance when a specified color name is
    undefined.  We have to make sure that we're in a consistent state
    when this happens.  */
@@ -6245,15 +6192,15 @@ x_create_tip_frame (struct x_display_info *dpyinfo, Lisp_Object parms)
   dpyinfo_refcount = dpyinfo->reference_count;
 #endif /* GLYPH_DEBUG */
 
-  x_default_parameter (f, parms, Qfont_backend, Qnil,
-		       "fontBackend", "FontBackend", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qfont_backend, Qnil,
+                         "fontBackend", "FontBackend", RES_TYPE_STRING);
 
   /* Extract the window parameters from the supplied values that are
      needed to determine window geometry.  */
   x_default_font_parameter (f, parms);
 
-  x_default_parameter (f, parms, Qborder_width, make_fixnum (0),
-		       "borderWidth", "BorderWidth", RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qborder_width, make_fixnum (0),
+                         "borderWidth", "BorderWidth", RES_TYPE_NUMBER);
 
   /* This defaults to 2 in order to match xterm.  We recognize either
      internalBorderWidth or internalBorder (which is what xterm calls
@@ -6269,36 +6216,36 @@ x_create_tip_frame (struct x_display_info *dpyinfo, Lisp_Object parms)
 		       parms);
     }
 
-  x_default_parameter (f, parms, Qinternal_border_width, make_fixnum (1),
-		       "internalBorderWidth", "internalBorderWidth",
-		       RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qright_divider_width, make_fixnum (0),
-		       NULL, NULL, RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qbottom_divider_width, make_fixnum (0),
-		       NULL, NULL, RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qinternal_border_width, make_fixnum (1),
+                         "internalBorderWidth", "internalBorderWidth",
+                         RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qright_divider_width, make_fixnum (0),
+                         NULL, NULL, RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qbottom_divider_width, make_fixnum (0),
+                         NULL, NULL, RES_TYPE_NUMBER);
 
   /* Also do the stuff which must be set before the window exists.  */
-  x_default_parameter (f, parms, Qforeground_color, build_string ("black"),
-		       "foreground", "Foreground", RES_TYPE_STRING);
-  x_default_parameter (f, parms, Qbackground_color, build_string ("white"),
-		       "background", "Background", RES_TYPE_STRING);
-  x_default_parameter (f, parms, Qmouse_color, build_string ("black"),
-		       "pointerColor", "Foreground", RES_TYPE_STRING);
-  x_default_parameter (f, parms, Qcursor_color, build_string ("black"),
-		       "cursorColor", "Foreground", RES_TYPE_STRING);
-  x_default_parameter (f, parms, Qborder_color, build_string ("black"),
-		       "borderColor", "BorderColor", RES_TYPE_STRING);
-  x_default_parameter (f, parms, Qno_special_glyphs, Qnil,
-		       NULL, NULL, RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qforeground_color, build_string ("black"),
+                         "foreground", "Foreground", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qbackground_color, build_string ("white"),
+                         "background", "Background", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qmouse_color, build_string ("black"),
+                         "pointerColor", "Foreground", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qcursor_color, build_string ("black"),
+                         "cursorColor", "Foreground", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qborder_color, build_string ("black"),
+                         "borderColor", "BorderColor", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qno_special_glyphs, Qnil,
+                         NULL, NULL, RES_TYPE_BOOLEAN);
 
-  /* Init faces before x_default_parameter is called for the
+  /* Init faces before gui_default_parameter is called for the
      scroll-bar-width parameter because otherwise we end up in
      init_iterator with a null face cache, which should not happen.  */
   init_frame_faces (f);
 
   f->output_data.x->parent_desc = FRAME_DISPLAY_INFO (f)->root_window;
 
-  x_figure_window_size (f, parms, false, &x_width, &x_height);
+  gui_figure_window_size (f, parms, false, &x_width, &x_height);
 
   {
     XSetWindowAttributes attrs;
@@ -6341,14 +6288,14 @@ x_create_tip_frame (struct x_display_info *dpyinfo, Lisp_Object parms)
 
   x_make_gc (f);
 
-  x_default_parameter (f, parms, Qauto_raise, Qnil,
-		       "autoRaise", "AutoRaiseLower", RES_TYPE_BOOLEAN);
-  x_default_parameter (f, parms, Qauto_lower, Qnil,
-		       "autoLower", "AutoRaiseLower", RES_TYPE_BOOLEAN);
-  x_default_parameter (f, parms, Qcursor_type, Qbox,
-		       "cursorType", "CursorType", RES_TYPE_SYMBOL);
-  x_default_parameter (f, parms, Qalpha, Qnil,
-		       "alpha", "Alpha", RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qauto_raise, Qnil,
+                         "autoRaise", "AutoRaiseLower", RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qauto_lower, Qnil,
+                         "autoLower", "AutoRaiseLower", RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qcursor_type, Qbox,
+                         "cursorType", "CursorType", RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qalpha, Qnil,
+                         "alpha", "Alpha", RES_TYPE_NUMBER);
 
   /* Dimensions, especially FRAME_LINES (f), must be done via change_frame_size.
      Change will not be effected unless different from the current
@@ -7605,41 +7552,41 @@ visible.  */)
 
 frame_parm_handler x_frame_parm_handlers[] =
 {
-  x_set_autoraise,
-  x_set_autolower,
+  gui_set_autoraise,
+  gui_set_autolower,
   x_set_background_color,
   x_set_border_color,
-  x_set_border_width,
+  gui_set_border_width,
   x_set_cursor_color,
   x_set_cursor_type,
-  x_set_font,
+  gui_set_font,
   x_set_foreground_color,
   x_set_icon_name,
   x_set_icon_type,
   x_set_internal_border_width,
-  x_set_right_divider_width,
-  x_set_bottom_divider_width,
+  gui_set_right_divider_width,
+  gui_set_bottom_divider_width,
   x_set_menu_bar_lines,
   x_set_mouse_color,
   x_explicitly_set_name,
-  x_set_scroll_bar_width,
-  x_set_scroll_bar_height,
+  gui_set_scroll_bar_width,
+  gui_set_scroll_bar_height,
   x_set_title,
-  x_set_unsplittable,
-  x_set_vertical_scroll_bars,
-  x_set_horizontal_scroll_bars,
-  x_set_visibility,
+  gui_set_unsplittable,
+  gui_set_vertical_scroll_bars,
+  gui_set_horizontal_scroll_bars,
+  gui_set_visibility,
   x_set_tool_bar_lines,
   x_set_scroll_bar_foreground,
   x_set_scroll_bar_background,
-  x_set_screen_gamma,
-  x_set_line_spacing,
-  x_set_left_fringe,
-  x_set_right_fringe,
+  gui_set_screen_gamma,
+  gui_set_line_spacing,
+  gui_set_left_fringe,
+  gui_set_right_fringe,
   x_set_wait_for_wm,
-  x_set_fullscreen,
-  x_set_font_backend,
-  x_set_alpha,
+  gui_set_fullscreen,
+  gui_set_font_backend,
+  gui_set_alpha,
   x_set_sticky,
   x_set_tool_bar_position,
   x_set_inhibit_double_buffering,
@@ -7650,7 +7597,7 @@ frame_parm_handler x_frame_parm_handlers[] =
   x_set_no_accept_focus,
   x_set_z_group,
   x_set_override_redirect,
-  x_set_no_special_glyphs,
+  gui_set_no_special_glyphs,
 };
 
 void

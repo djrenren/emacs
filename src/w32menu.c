@@ -1469,7 +1469,7 @@ w32_menu_display_help (HWND owner, HMENU menu, UINT item, UINT flags)
 {
   if (get_menu_item_info)
     {
-      struct frame *f = x_window_to_frame (&one_w32_display_info, owner);
+      struct frame *f = w32_window_to_frame (&one_w32_display_info, owner);
       Lisp_Object frame, help;
 
       /* No help echo on owner-draw menu items, or when the keyboard

@@ -6510,7 +6510,7 @@ modify_event_symbol (ptrdiff_t symbol_num, int modifiers, Lisp_Object symbol_kin
 #ifdef HAVE_WINDOW_SYSTEM
       if (NILP (value))
 	{
-	  char *name = x_get_keysym_name (symbol_num);
+	  char *name = get_keysym_name (symbol_num);
 	  if (name)
 	    value = intern (name);
 	}

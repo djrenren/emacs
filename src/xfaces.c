@@ -777,13 +777,13 @@ load_pixmap (struct frame *f, Lisp_Object name)
       h = XFIXNUM (Fcar (Fcdr (name)));
       bits = Fcar (Fcdr (Fcdr (name)));
 
-      bitmap_id = x_create_bitmap_from_data (f, SSDATA (bits),
-					     w, h);
+      bitmap_id = gui_create_bitmap_from_data (f, SSDATA (bits),
+                                               w, h);
     }
   else
     {
       /* It must be a string -- a file name.  */
-      bitmap_id = x_create_bitmap_from_file (f, name);
+      bitmap_id = gui_create_bitmap_from_file (f, name);
     }
   unblock_input ();
 
@@ -5458,7 +5458,7 @@ realize_default_face (struct frame *f)
 	 acceptable as a font for the default face (perhaps because
 	 auto-scaled fonts are rejected), so we must adjust the frame
 	 font.  */
-      x_set_font (f, LFACE_FONT (lface), Qnil);
+      gui_set_font (f, LFACE_FONT (lface), Qnil);
     }
 #endif
   return true;

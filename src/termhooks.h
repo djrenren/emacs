@@ -512,6 +512,12 @@ struct terminal
                                Lisp_Object *y,
                                Time *);
 
+  /* This hook is called to get the focus frame.  */
+  Lisp_Object (*get_focus_frame) (struct frame *f);
+
+  /* This hook is called to shift frame focus.  */
+  void (*focus_frame_hook) (struct frame *f, bool noactivate);
+
   /* When a frame's focus redirection is changed, this hook tells the
      window system code to re-decide where to put the highlight.  Under
      X, this means that Emacs lies about where the focus is.  */
@@ -534,6 +540,19 @@ struct terminal
      may do something OS dependent, like extended window manager hints on X11.  */
   void (*fullscreen_hook) (struct frame *f);
 
+  /* This hook is called to iconify the frame.  */
+  void (*iconify_frame_hook) (struct frame *f);
+
+  /* This hook is called to set the frame's transparency.  */
+  void (*set_frame_alpha_hook) (struct frame *f);
+
+  /* This hook is called to set a new font for the frame.  */
+  Lisp_Object (*set_new_font_hook) (struct frame *f, Lisp_Object font_object,
+                                    int fontset);
+
+  void (*implicit_set_name_hook) (struct frame *f, Lisp_Object arg,
+                                  Lisp_Object oldval);
+
   /* This hook is called to display menus.  */
   Lisp_Object (*menu_show_hook) (struct frame *f, int x, int y, int menuflags,
 				 Lisp_Object title, const char **error_name);
@@ -541,6 +560,11 @@ struct terminal
   /* This hook is called to display popup dialog.  */
   Lisp_Object (*popup_dialog_hook) (struct frame *f, Lisp_Object header,
 				    Lisp_Object contents);
+
+#ifndef HAVE_EXT_TOOL_BAR
+  /* This hook is called to change the frame's (internal) tool-bar.  */
+  void (*change_tool_bar_height_hook) (struct frame *f, int height);
+#endif
 
   /* Scroll bar hooks.  */
 
@@ -583,6 +607,11 @@ struct terminal
 					  int portion, int whole,
 					  int position);
 
+  /* Set the default scroll bar width on FRAME.  */
+  void (*x_set_scroll_bar_default_width) (struct frame *frame);
+
+  /* Set the default scroll bar height on FRAME.  */
+  void (*x_set_scroll_bar_default_height) (struct frame *frame);
 
   /* The following three hooks are used when we're doing a thorough
      redisplay of the frame.  We don't explicitly know which scroll bars

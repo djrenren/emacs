@@ -4683,7 +4683,7 @@ resize_frame_windows (struct frame *f, int size, bool horflag, bool pixelwise)
   int unit = horflag ? FRAME_COLUMN_WIDTH (f) : FRAME_LINE_HEIGHT (f);
 
   /* Don't let the size drop below one unit.  This is more comforting
-     when we are called from x_set_tool_bar_lines since the latter may
+     when we are called from *_set_tool_bar_lines since the latter may
      have implicitly given us a zero or negative height.  */
   if (pixelwise)
     {

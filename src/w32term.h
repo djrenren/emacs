@@ -227,7 +227,14 @@ extern struct w32_display_info one_w32_display_info;
 extern HMENU current_popup_menu;
 extern int menubar_in_use;
 
-extern struct frame *x_window_to_frame (struct w32_display_info *, HWND);
+extern struct frame *w32_window_to_frame (struct w32_display_info *, HWND);
+
+extern void w32_real_positions (struct frame *f, int *xptr, int *yptr);
+
+extern void w32_change_tool_bar_height (struct frame *, int)
+extern void w32_implicitly_set_name (struct frame *, Lisp_Object, Lisp_Object);
+extern void w32_set_scroll_bar_default_width (struct frame *);
+extern void w32_set_scroll_bar_default_height (struct frame *);
 
 struct w32_display_info *x_display_info_for_name (Lisp_Object);
 
@@ -237,17 +244,16 @@ extern struct w32_display_info *w32_term_init (Lisp_Object,
 					       char *, char *);
 extern int w32_defined_color (struct frame *f, const char *color,
                               XColor *color_def, bool alloc_p);
-extern int x_display_pixel_height (struct w32_display_info *);
-extern int x_display_pixel_width (struct w32_display_info *);
-extern void x_set_menu_bar_lines (struct frame *, Lisp_Object, Lisp_Object);
-extern void x_set_tool_bar_lines (struct frame *f,
-                                  Lisp_Object value,
-                                  Lisp_Object oldval);
-extern void x_set_internal_border_width (struct frame *f,
-					 Lisp_Object value,
-					 Lisp_Object oldval);
+extern int w32_display_pixel_height (struct w32_display_info *);
+extern int w32_display_pixel_width (struct w32_display_info *);
 extern void initialize_frame_menubar (struct frame *);
 extern void w32_dialog_in_progress (Lisp_Object in_progress);
+
+extern void w32_make_frame_visible (struct frame *f)
+extern void w32_make_frame_invisible (struct frame *f)
+extern void w32_iconify_frame (struct frame *f);
+extern void w32_free_frame_resources (struct frame *);
+extern void w32_wm_set_size_hint (struct frame *, long, bool);
 
 /* w32inevt.c */
 extern int w32_kbd_patch_key (KEY_EVENT_RECORD *event, int cpId);
@@ -715,9 +721,8 @@ extern void complete_deferred_msg (HWND hwnd, UINT msg, LRESULT result);
 extern BOOL parse_button (int, int, int *, int *);
 
 extern void w32_sys_ring_bell (struct frame *f);
-extern void x_delete_display (struct w32_display_info *dpyinfo);
-extern void x_clear_under_internal_border (struct frame *f);
-extern void x_query_color (struct frame *, XColor *);
+extern void w32_query_color (struct frame *, XColor *);
+extern void w32_delete_display (struct w32_display_info *dpyinfo);
 
 #define FILE_NOTIFICATIONS_SIZE 16384
 /* Notifications come in sets.  We use a doubly linked list with a

@@ -233,7 +233,7 @@ interpret_services_menu (NSMenu *menu, Lisp_Object prefix, Lisp_Object old)
 
 
 static void
-x_set_foreground_color (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
+ns_set_foreground_color (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 {
   NSColor *col;
   EmacsCGFloat r, g, b, alpha;
@@ -269,7 +269,7 @@ x_set_foreground_color (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 
 
 static void
-x_set_background_color (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
+ns_set_background_color (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 {
   struct face *face;
   NSColor *col;
@@ -325,7 +325,7 @@ x_set_background_color (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 
 
 static void
-x_set_cursor_color (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
+ns_set_cursor_color (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 {
   NSColor *col;
 
@@ -351,10 +351,10 @@ x_set_cursor_color (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 
 
 static void
-x_set_icon_name (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
+ns_set_icon_name (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 {
   NSView *view = FRAME_NS_VIEW (f);
-  NSTRACE ("x_set_icon_name");
+  NSTRACE ("ns_set_icon_name");
 
   /* See if it's changed.  */
   if (STRINGP (arg))
@@ -508,9 +508,9 @@ ns_set_represented_filename (struct frame *f)
    specified a name for the frame; the name will override any set by the
    redisplay code.  */
 static void
-x_explicitly_set_name (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
+ns_explicitly_set_name (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 {
-  NSTRACE ("x_explicitly_set_name");
+  NSTRACE ("ns_explicitly_set_name");
   ns_set_name (f, arg, 1);
 }
 
@@ -519,9 +519,9 @@ x_explicitly_set_name (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
    name; names set this way will never override names set by the user's
    lisp code.  */
 void
-x_implicitly_set_name (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
+ns_implicitly_set_name (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 {
-  NSTRACE ("x_implicitly_set_name");
+  NSTRACE ("ns_implicitly_set_name");
 
   if (ns_use_proxy_icon)
     ns_set_represented_filename (f);
@@ -534,9 +534,9 @@ x_implicitly_set_name (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
    If NAME is nil, use the frame name as the title.  */
 
 static void
-x_set_title (struct frame *f, Lisp_Object name, Lisp_Object old_name)
+ns_set_title (struct frame *f, Lisp_Object name, Lisp_Object old_name)
 {
-  NSTRACE ("x_set_title");
+  NSTRACE ("ns_set_title");
   /* Don't change the title if it's already NAME.  */
   if (EQ (name, f->title))
     return;
@@ -582,7 +582,7 @@ ns_set_doc_edited (void)
 
 
 static void
-x_set_menu_bar_lines (struct frame *f, Lisp_Object value, Lisp_Object oldval)
+ns_set_menu_bar_lines (struct frame *f, Lisp_Object value, Lisp_Object oldval)
 {
   int nlines;
   if (FRAME_MINIBUF_ONLY_P (f))
@@ -612,7 +612,7 @@ x_set_menu_bar_lines (struct frame *f, Lisp_Object value, Lisp_Object oldval)
 
 /* toolbar support */
 static void
-x_set_tool_bar_lines (struct frame *f, Lisp_Object value, Lisp_Object oldval)
+ns_set_tool_bar_lines (struct frame *f, Lisp_Object value, Lisp_Object oldval)
 {
   /* Currently, when the tool bar changes state, the frame is resized.
 
@@ -621,7 +621,7 @@ x_set_tool_bar_lines (struct frame *f, Lisp_Object value, Lisp_Object oldval)
      `frame-inhibit-implied-resize'.  */
   int nlines;
 
-  NSTRACE ("x_set_tool_bar_lines");
+  NSTRACE ("ns_set_tool_bar_lines");
 
   if (FRAME_MINIBUF_ONLY_P (f))
     return;
@@ -680,7 +680,7 @@ x_set_tool_bar_lines (struct frame *f, Lisp_Object value, Lisp_Object oldval)
 
 
 static void
-x_set_internal_border_width (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
+ns_set_internal_border_width (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 {
   int old_width = FRAME_INTERNAL_BORDER_WIDTH (f);
 
@@ -771,13 +771,13 @@ ns_implicitly_set_icon_type (struct frame *f)
 
 
 static void
-x_set_icon_type (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
+ns_set_icon_type (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 {
   EmacsView *view = FRAME_NS_VIEW (f);
   id image = nil;
   BOOL setMini = YES;
 
-  NSTRACE ("x_set_icon_type");
+  NSTRACE ("ns_set_icon_type");
 
   if (!NILP (arg) && SYMBOLP (arg))
     {
@@ -811,7 +811,7 @@ x_set_icon_type (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 
 /* This is the same as the xfns.c definition.  */
 static void
-x_set_cursor_type (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
+ns_set_cursor_type (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 {
   set_frame_cursor_types (f, arg);
 }
@@ -819,7 +819,7 @@ x_set_cursor_type (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 /* called to set mouse pointer color, but all other terms use it to
    initialize pointer types (and don't set the color ;) */
 static void
-x_set_mouse_color (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
+ns_set_mouse_color (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 {
   /* Don't think we can do this on Nextstep.  */
 }
@@ -864,7 +864,7 @@ ns_appkit_version_int (void)
 
 
 static void
-x_icon (struct frame *f, Lisp_Object parms)
+ns_icon (struct frame *f, Lisp_Object parms)
 /* --------------------------------------------------------------------------
    Strangely-named function to set icon position parameters in frame.
    This is irrelevant under macOS, but might be needed under GNUstep,
@@ -897,56 +897,56 @@ x_icon (struct frame *f, Lisp_Object parms)
    implemented.  */
 frame_parm_handler ns_frame_parm_handlers[] =
 {
-  x_set_autoraise, /* generic OK */
-  x_set_autolower, /* generic OK */
-  x_set_background_color,
+  gui_set_autoraise, /* generic OK */
+  gui_set_autolower, /* generic OK */
+  ns_set_background_color,
   0, /* x_set_border_color,  may be impossible under Nextstep */
   0, /* x_set_border_width,  may be impossible under Nextstep */
-  x_set_cursor_color,
-  x_set_cursor_type,
-  x_set_font, /* generic OK */
-  x_set_foreground_color,
-  x_set_icon_name,
-  x_set_icon_type,
-  x_set_internal_border_width, /* generic OK */
-  x_set_right_divider_width,
-  x_set_bottom_divider_width,
-  x_set_menu_bar_lines,
-  x_set_mouse_color,
-  x_explicitly_set_name,
-  x_set_scroll_bar_width, /* generic OK */
-  x_set_scroll_bar_height, /* generic OK */
-  x_set_title,
-  x_set_unsplittable, /* generic OK */
-  x_set_vertical_scroll_bars, /* generic OK */
-  x_set_horizontal_scroll_bars, /* generic OK */
-  x_set_visibility, /* generic OK */
-  x_set_tool_bar_lines,
+  ns_set_cursor_color,
+  ns_set_cursor_type,
+  gui_set_font, /* generic OK */
+  ns_set_foreground_color,
+  ns_set_icon_name,
+  ns_set_icon_type,
+  ns_set_internal_border_width,
+  gui_set_right_divider_width, /* generic OK */
+  gui_set_bottom_divider_width, /* generic OK */
+  ns_set_menu_bar_lines,
+  ns_set_mouse_color,
+  ns_explicitly_set_name,
+  gui_set_scroll_bar_width, /* generic OK */
+  gui_set_scroll_bar_height, /* generic OK */
+  ns_set_title,
+  gui_set_unsplittable, /* generic OK */
+  gui_set_vertical_scroll_bars, /* generic OK */
+  gui_set_horizontal_scroll_bars, /* generic OK */
+  gui_set_visibility, /* generic OK */
+  ns_set_tool_bar_lines,
   0, /* x_set_scroll_bar_foreground, will ignore (not possible on NS) */
   0, /* x_set_scroll_bar_background,  will ignore (not possible on NS) */
-  x_set_screen_gamma, /* generic OK */
-  x_set_line_spacing, /* generic OK, sets f->extra_line_spacing to int */
-  x_set_left_fringe, /* generic OK */
-  x_set_right_fringe, /* generic OK */
+  gui_set_screen_gamma, /* generic OK */
+  gui_set_line_spacing, /* generic OK, sets f->extra_line_spacing to int */
+  gui_set_left_fringe, /* generic OK */
+  gui_set_right_fringe, /* generic OK */
   0, /* x_set_wait_for_wm, will ignore */
-  x_set_fullscreen, /* generic OK */
-  x_set_font_backend, /* generic OK */
-  x_set_alpha,
+  gui_set_fullscreen, /* generic OK */
+  gui_set_font_backend, /* generic OK */
+  gui_set_alpha,
   0, /* x_set_sticky */
   0, /* x_set_tool_bar_position */
   0, /* x_set_inhibit_double_buffering */
 #ifdef NS_IMPL_COCOA
-  x_set_undecorated,
+  ns_set_undecorated,
 #else
-  0, /* x_set_undecorated */
+  0, /* ns_set_undecorated */
 #endif
-  x_set_parent_frame,
+  ns_set_parent_frame,
   0, /* x_set_skip_taskbar */
-  x_set_no_focus_on_map,
-  x_set_no_accept_focus,
-  x_set_z_group, /* x_set_z_group */
+  ns_set_no_focus_on_map,
+  ns_set_no_accept_focus,
+  ns_set_z_group,
   0, /* x_set_override_redirect */
-  x_set_no_special_glyphs,
+  gui_set_no_special_glyphs,
 #ifdef NS_IMPL_COCOA
   ns_set_appearance,
   ns_set_transparent_titlebar,
@@ -979,14 +979,14 @@ unwind_create_frame (Lisp_Object frame)
 	 private shadow variable, it means we are unwinding a frame
 	 for which we didn't yet call init_frame_faces, where the
 	 refcount is incremented.  Therefore, we increment it here, so
-	 that free_frame_faces, called in x_free_frame_resources
+	 that free_frame_faces, called in ns_free_frame_resources
 	 below, will not mistakenly decrement the counter that was not
 	 incremented yet to account for this new frame.  */
       if (FRAME_IMAGE_CACHE (f) != NULL
 	  && FRAME_IMAGE_CACHE (f)->refcount == image_cache_refcount)
 	FRAME_IMAGE_CACHE (f)->refcount++;
 
-      x_free_frame_resources (f);
+      ns_free_frame_resources (f);
       free_glyphs (f);
 
 #if defined GLYPH_DEBUG && defined ENABLE_CHECKING
@@ -1162,35 +1162,35 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
   image_cache_refcount =
     FRAME_IMAGE_CACHE (f) ? FRAME_IMAGE_CACHE (f)->refcount : 0;
 
-  x_default_parameter (f, parms, Qfont_backend, Qnil,
-			"fontBackend", "FontBackend", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qfont_backend, Qnil,
+                         "fontBackend", "FontBackend", RES_TYPE_STRING);
 
   {
     /* use for default font name */
     id font = [NSFont userFixedPitchFontOfSize: -1.0]; /* default */
-    x_default_parameter (f, parms, Qfontsize,
-                                    make_fixnum (0 /* (int)[font pointSize] */),
-                                    "fontSize", "FontSize", RES_TYPE_NUMBER);
+    gui_default_parameter (f, parms, Qfontsize,
+                           make_fixnum (0 /* (int)[font pointSize] */),
+                           "fontSize", "FontSize", RES_TYPE_NUMBER);
     // Remove ' Regular', not handled by backends.
     char *fontname = xstrdup ([[font displayName] UTF8String]);
     int len = strlen (fontname);
     if (len > 8 && strcmp (fontname + len - 8, " Regular") == 0)
       fontname[len-8] = '\0';
-    x_default_parameter (f, parms, Qfont,
-                                 build_string (fontname),
-                                 "font", "Font", RES_TYPE_STRING);
+    gui_default_parameter (f, parms, Qfont,
+                           build_string (fontname),
+                           "font", "Font", RES_TYPE_STRING);
     xfree (fontname);
   }
   unblock_input ();
 
-  x_default_parameter (f, parms, Qborder_width, make_fixnum (0),
-		       "borderwidth", "BorderWidth", RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qinternal_border_width, make_fixnum (2),
-                      "internalBorderWidth", "InternalBorderWidth",
-                      RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qright_divider_width, make_fixnum (0),
+  gui_default_parameter (f, parms, Qborder_width, make_fixnum (0),
+                         "borderwidth", "BorderWidth", RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qinternal_border_width, make_fixnum (2),
+                         "internalBorderWidth", "InternalBorderWidth",
+                         RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qright_divider_width, make_fixnum (0),
 		       NULL, NULL, RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qbottom_divider_width, make_fixnum (0),
+  gui_default_parameter (f, parms, Qbottom_divider_width, make_fixnum (0),
 		       NULL, NULL, RES_TYPE_NUMBER);
 
   /* default vertical scrollbars on right on Mac */
@@ -1201,25 +1201,25 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
 #else
           = Qright;
 #endif
-      x_default_parameter (f, parms, Qvertical_scroll_bars, spos,
-			   "verticalScrollBars", "VerticalScrollBars",
-			   RES_TYPE_SYMBOL);
+      gui_default_parameter (f, parms, Qvertical_scroll_bars, spos,
+                             "verticalScrollBars", "VerticalScrollBars",
+                             RES_TYPE_SYMBOL);
   }
-  x_default_parameter (f, parms, Qhorizontal_scroll_bars, Qnil,
-		       "horizontalScrollBars", "HorizontalScrollBars",
-		       RES_TYPE_SYMBOL);
-  x_default_parameter (f, parms, Qforeground_color, build_string ("Black"),
-                      "foreground", "Foreground", RES_TYPE_STRING);
-  x_default_parameter (f, parms, Qbackground_color, build_string ("White"),
-                      "background", "Background", RES_TYPE_STRING);
-  x_default_parameter (f, parms, Qline_spacing, Qnil,
-		       "lineSpacing", "LineSpacing", RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qleft_fringe, Qnil,
-		       "leftFringe", "LeftFringe", RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qright_fringe, Qnil,
-		       "rightFringe", "RightFringe", RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qno_special_glyphs, Qnil,
-		       NULL, NULL, RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qhorizontal_scroll_bars, Qnil,
+                         "horizontalScrollBars", "HorizontalScrollBars",
+                         RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qforeground_color, build_string ("Black"),
+                         "foreground", "Foreground", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qbackground_color, build_string ("White"),
+                         "background", "Background", RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qline_spacing, Qnil,
+                         "lineSpacing", "LineSpacing", RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qleft_fringe, Qnil,
+                         "leftFringe", "LeftFringe", RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qright_fringe, Qnil,
+                         "rightFringe", "RightFringe", RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qno_special_glyphs, Qnil,
+                         NULL, NULL, RES_TYPE_BOOLEAN);
 
   init_frame_faces (f);
 
@@ -1263,31 +1263,32 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
   fset_parent_frame (f, parent_frame);
   store_frame_param (f, Qparent_frame, parent_frame);
 
-  x_default_parameter (f, parms, Qz_group, Qnil, NULL, NULL, RES_TYPE_SYMBOL);
-  x_default_parameter (f, parms, Qno_focus_on_map, Qnil,
-		       NULL, NULL, RES_TYPE_BOOLEAN);
-  x_default_parameter (f, parms, Qno_accept_focus, Qnil,
-                       NULL, NULL, RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qz_group, Qnil, NULL, NULL, RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qno_focus_on_map, Qnil,
+                         NULL, NULL, RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qno_accept_focus, Qnil,
+                         NULL, NULL, RES_TYPE_BOOLEAN);
 
   /* The resources controlling the menu-bar and tool-bar are
      processed specially at startup, and reflected in the mode
      variables; ignore them here.  */
-  x_default_parameter (f, parms, Qmenu_bar_lines,
-		       NILP (Vmenu_bar_mode)
-		       ? make_fixnum (0) : make_fixnum (1),
-		       NULL, NULL, RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qtool_bar_lines,
-		       NILP (Vtool_bar_mode)
-		       ? make_fixnum (0) : make_fixnum (1),
-		       NULL, NULL, RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qmenu_bar_lines,
+                         NILP (Vmenu_bar_mode)
+                         ? make_fixnum (0) : make_fixnum (1),
+                         NULL, NULL, RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qtool_bar_lines,
+                         NILP (Vtool_bar_mode)
+                         ? make_fixnum (0) : make_fixnum (1),
+                         NULL, NULL, RES_TYPE_NUMBER);
 
-  x_default_parameter (f, parms, Qbuffer_predicate, Qnil, "bufferPredicate",
-                       "BufferPredicate", RES_TYPE_SYMBOL);
-  x_default_parameter (f, parms, Qtitle, Qnil, "title", "Title",
-                       RES_TYPE_STRING);
+  gui_default_parameter (f, parms, Qbuffer_predicate, Qnil, "bufferPredicate",
+                         "BufferPredicate", RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qtitle, Qnil, "title", "Title",
+                         RES_TYPE_STRING);
 
   parms = get_geometry_from_preferences (dpyinfo, parms);
-  window_prompting = x_figure_window_size (f, parms, true, &x_width, &x_height);
+  window_prompting = gui_figure_window_size (f, parms, true,
+                                             &x_width, &x_height);
 
   tem = x_get_arg (dpyinfo, parms, Qunsplittable, 0, 0, RES_TYPE_BOOLEAN);
   f->no_split = minibuffer_only || (!EQ (tem, Qunbound) && !NILP (tem));
@@ -1320,7 +1321,7 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
 
   [[EmacsView alloc] initFrameFromEmacs: f];
 
-  x_icon (f, parms);
+  ns_icon (f, parms);
 
   /* ns_display_info does not have a reference_count.  */
   f->terminal->reference_count++;
@@ -1330,25 +1331,25 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
      won't work.  */
   Vframe_list = Fcons (frame, Vframe_list);
 
-  x_default_parameter (f, parms, Qicon_type, Qnil,
-                       "bitmapIcon", "BitmapIcon", RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qicon_type, Qnil,
+                         "bitmapIcon", "BitmapIcon", RES_TYPE_SYMBOL);
 
-  x_default_parameter (f, parms, Qauto_raise, Qnil,
-                       "autoRaise", "AutoRaiseLower", RES_TYPE_BOOLEAN);
-  x_default_parameter (f, parms, Qauto_lower, Qnil,
-                       "autoLower", "AutoLower", RES_TYPE_BOOLEAN);
-  x_default_parameter (f, parms, Qcursor_type, Qbox,
-                       "cursorType", "CursorType", RES_TYPE_SYMBOL);
-  x_default_parameter (f, parms, Qscroll_bar_width, Qnil,
-                       "scrollBarWidth", "ScrollBarWidth",
-                       RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qscroll_bar_height, Qnil,
-                       "scrollBarHeight", "ScrollBarHeight",
-                       RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qalpha, Qnil,
-                       "alpha", "Alpha", RES_TYPE_NUMBER);
-  x_default_parameter (f, parms, Qfullscreen, Qnil,
-                       "fullscreen", "Fullscreen", RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qauto_raise, Qnil,
+                         "autoRaise", "AutoRaiseLower", RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qauto_lower, Qnil,
+                         "autoLower", "AutoLower", RES_TYPE_BOOLEAN);
+  gui_default_parameter (f, parms, Qcursor_type, Qbox,
+                         "cursorType", "CursorType", RES_TYPE_SYMBOL);
+  gui_default_parameter (f, parms, Qscroll_bar_width, Qnil,
+                         "scrollBarWidth", "ScrollBarWidth",
+                         RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qscroll_bar_height, Qnil,
+                         "scrollBarHeight", "ScrollBarHeight",
+                         RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qalpha, Qnil,
+                         "alpha", "Alpha", RES_TYPE_NUMBER);
+  gui_default_parameter (f, parms, Qfullscreen, Qnil,
+                         "fullscreen", "Fullscreen", RES_TYPE_SYMBOL);
 
   /* Allow x_set_window_size, now.  */
   f->can_x_set_window_size = true;
@@ -1371,7 +1372,7 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
 	visibility = Qt;
 
       if (EQ (visibility, Qicon))
-	x_iconify_frame (f);
+	ns_iconify_frame (f);
       else if (! NILP (visibility))
 	{
 	  x_make_frame_visible (f);
@@ -1395,28 +1396,13 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
       fset_param_alist (f, Fcons (XCAR (tem), f->param_alist));
 
   if (window_prompting & USPosition)
-    x_set_offset (f, f->left_pos, f->top_pos, 1);
+    ns_set_offset (f, f->left_pos, f->top_pos, 1);
 
   /* Make sure windows on this frame appear in calls to next-window
      and similar functions.  */
   Vwindow_list = Qnil;
 
   return unbind_to (count, frame);
-}
-
-void
-x_focus_frame (struct frame *f, bool noactivate)
-{
-  struct ns_display_info *dpyinfo = FRAME_DISPLAY_INFO (f);
-
-  if (dpyinfo->x_focus_frame != f)
-    {
-      EmacsView *view = FRAME_NS_VIEW (f);
-      block_input ();
-      [NSApp activateIgnoringOtherApps: YES];
-      [[view window] makeKeyAndOrderFront: view];
-      unblock_input ();
-    }
 }
 
 static BOOL
@@ -1790,7 +1776,7 @@ DEFUN ("x-display-mm-height", Fx_display_mm_height, Sx_display_mm_height, 0, 1, 
 {
   struct ns_display_info *dpyinfo = check_ns_display_info (terminal);
 
-  return make_fixnum (x_display_pixel_height (dpyinfo) / (92.0/25.4));
+  return make_fixnum (ns_display_pixel_height (dpyinfo) / (92.0/25.4));
 }
 
 
@@ -1800,7 +1786,7 @@ DEFUN ("x-display-mm-width", Fx_display_mm_width, Sx_display_mm_width, 0, 1, 0,
 {
   struct ns_display_info *dpyinfo = check_ns_display_info (terminal);
 
-  return make_fixnum (x_display_pixel_width (dpyinfo) / (92.0/25.4));
+  return make_fixnum (ns_display_pixel_width (dpyinfo) / (92.0/25.4));
 }
 
 
@@ -2230,7 +2216,7 @@ check_x_display_info (Lisp_Object frame)
 
 
 void
-x_set_scroll_bar_default_width (struct frame *f)
+ns_set_scroll_bar_default_width (struct frame *f)
 {
   int wid = FRAME_COLUMN_WIDTH (f);
   FRAME_CONFIG_SCROLL_BAR_WIDTH (f) = NS_SCROLL_BAR_WIDTH_DEFAULT;
@@ -2239,7 +2225,7 @@ x_set_scroll_bar_default_width (struct frame *f)
 }
 
 void
-x_set_scroll_bar_default_height (struct frame *f)
+ns_set_scroll_bar_default_height (struct frame *f)
 {
   int height = FRAME_LINE_HEIGHT (f);
   FRAME_CONFIG_SCROLL_BAR_HEIGHT (f) = NS_SCROLL_BAR_WIDTH_DEFAULT;
@@ -2265,20 +2251,6 @@ x_get_string_resource (XrmDatabase rdb, const char *name, const char *class)
 		   : !c_strncasecmp (res, "YES", 3) ? "true"
 		   : !c_strncasecmp (res, "NO", 2) ? "false"
 		   : res);
-}
-
-
-Lisp_Object
-x_get_focus_frame (struct frame *frame)
-{
-  struct ns_display_info *dpyinfo = FRAME_DISPLAY_INFO (frame);
-  Lisp_Object nsfocus;
-
-  if (!dpyinfo->x_focus_frame)
-    return Qnil;
-
-  XSETFRAME (nsfocus, dpyinfo->x_focus_frame);
-  return nsfocus;
 }
 
 /* ==========================================================================
@@ -2361,7 +2333,7 @@ DEFUN ("x-display-pixel-width", Fx_display_pixel_width, Sx_display_pixel_width,
 {
   struct ns_display_info *dpyinfo = check_ns_display_info (terminal);
 
-  return make_fixnum (x_display_pixel_width (dpyinfo));
+  return make_fixnum (ns_display_pixel_width (dpyinfo));
 }
 
 
@@ -2372,7 +2344,7 @@ DEFUN ("x-display-pixel-height", Fx_display_pixel_height,
 {
   struct ns_display_info *dpyinfo = check_ns_display_info (terminal);
 
-  return make_fixnum (x_display_pixel_height (dpyinfo));
+  return make_fixnum (ns_display_pixel_height (dpyinfo));
 }
 
 #ifdef NS_IMPL_COCOA
@@ -2659,7 +2631,7 @@ compute_tip_xy (struct frame *f,
     {
       /* Absolute coordinates.  */
       pt.x = FIXNUMP (left) ? XFIXNUM (left) : XFIXNUM (right);
-      pt.y = (x_display_pixel_height (FRAME_DISPLAY_INFO (f))
+      pt.y = (ns_display_pixel_height (FRAME_DISPLAY_INFO (f))
 	      - (FIXNUMP (top) ? XFIXNUM (top) : XFIXNUM (bottom))
 	      - height);
     }

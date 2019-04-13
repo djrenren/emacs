@@ -1103,8 +1103,12 @@ extern bool x_had_errors_p (Display *);
 extern void x_uncatch_errors (void);
 extern void x_uncatch_errors_after_check (void);
 extern void x_clear_errors (Display *);
-extern void xembed_request_focus (struct frame *);
-extern void x_ewmh_activate_frame (struct frame *);
+extern void x_make_frame_visible (struct frame *f)
+extern void x_make_frame_invisible (struct frame *f)
+extern void x_iconify_frame (struct frame *f);
+extern void x_free_frame_resources (struct frame *);
+extern void x_wm_set_size_hint (struct frame *, long, bool);
+
 extern void x_delete_terminal (struct terminal *terminal);
 extern unsigned long x_copy_color (struct frame *, unsigned long);
 #ifdef USE_X_TOOLKIT
@@ -1117,7 +1121,7 @@ extern bool x_alloc_lighter_color_for_widget (Widget, Display *, Colormap,
 					      double, int);
 #endif
 extern bool x_alloc_nearest_color (struct frame *, Colormap, XColor *);
-extern void x_query_color (struct frame *f, XColor *);
+extern void x_query_colors (struct frame *f, XColor *, int);
 extern void x_clear_area (struct frame *f, int, int, int, int);
 #if !defined USE_X_TOOLKIT && !defined USE_GTK
 extern void x_mouse_leave (struct x_display_info *);
@@ -1193,6 +1197,13 @@ extern void x_clear_under_internal_border (struct frame *f);
 
 extern void tear_down_x_back_buffer (struct frame *f);
 extern void initial_set_up_x_back_buffer (struct frame *f);
+
+/* Defined in xfns.c.  */
+extern void x_real_positions (struct frame *, int *, int *);
+extern void x_change_tool_bar_height (struct frame *, int)
+extern void x_implicitly_set_name (struct frame *, Lisp_Object, Lisp_Object);
+extern void x_set_scroll_bar_default_width (struct frame *);
+extern void x_set_scroll_bar_default_height (struct frame *);
 
 /* Defined in xselect.c.  */
 

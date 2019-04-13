@@ -881,8 +881,8 @@ struct ns_display_info
      mouse-face.  */
   Mouse_HLInfo mouse_highlight;
 
-  struct frame *x_highlight_frame;
-  struct frame *x_focus_frame;
+  struct frame *ns_highlight_frame;
+  struct frame *ns_focus_frame;
 
   /* The frame where the mouse was last time we reported a mouse event.  */
   struct frame *last_mouse_frame;
@@ -1122,6 +1122,9 @@ extern Lisp_Object ns_list_fonts (struct frame *f, Lisp_Object pattern,
                                   int size, int maxnames);
 extern void ns_clear_frame (struct frame *f);
 
+extern void ns_set_offset (struct frame *f, int xoff, int yoff,
+                           int change_grav);
+
 extern const char *ns_xlfd_to_fontname (const char *xlfd);
 
 extern Lisp_Object ns_map_event_to_object (void);
@@ -1151,6 +1154,12 @@ extern void ns_check_menu_open (NSMenu *menu);
 extern void ns_check_pending_open_menu (void);
 #endif
 
+/* Implemented in nsfns, published in nsterm.  */
+extern void ns_implicitly_set_name (struct frame *f, Lisp_Object arg,
+                                    Lisp_Object oldval);
+extern void ns_set_scroll_bar_default_width (struct frame *f);
+extern void ns_set_scroll_bar_default_height (struct frame *f);
+
 /* C access to ObjC functionality */
 extern void  ns_release_object (void *obj);
 extern void  ns_retain_object (void *obj);
@@ -1171,6 +1180,8 @@ extern Lisp_Object find_and_return_menu_selection (struct frame *f,
                                                    void *client_data);
 extern Lisp_Object ns_popup_dialog (struct frame *, Lisp_Object header,
                                     Lisp_Object contents);
+
+extern void ns_free_frame_resources (struct frame *);
 
 #define NSAPP_DATA2_RUNASSCRIPT 10
 extern void ns_run_ascript (void);
@@ -1201,22 +1212,23 @@ extern unsigned long ns_get_pixel (void *img, int x, int y);
 extern void ns_put_pixel (void *img, int x, int y, unsigned long argb);
 extern void ns_set_alpha (void *img, int x, int y, unsigned char a);
 
-extern int x_display_pixel_height (struct ns_display_info *);
-extern int x_display_pixel_width (struct ns_display_info *);
+extern int ns_display_pixel_height (struct ns_display_info *);
+extern int ns_display_pixel_width (struct ns_display_info *);
 
 /* This in nsterm.m */
 extern float ns_antialias_threshold;
-extern void x_destroy_window (struct frame *f);
-extern void x_set_undecorated (struct frame *f, Lisp_Object new_value,
-                               Lisp_Object old_value);
-extern void x_set_parent_frame (struct frame *f, Lisp_Object new_value,
+extern void ns_make_frame_visible (struct frame *f)
+extern void ns_iconify_frame (struct frame *f);
+extern void ns_set_undecorated (struct frame *f, Lisp_Object new_value,
                                 Lisp_Object old_value);
-extern void x_set_no_focus_on_map (struct frame *f, Lisp_Object new_value,
-                                   Lisp_Object old_value);
-extern void x_set_no_accept_focus (struct frame *f, Lisp_Object new_value,
-                                   Lisp_Object old_value);
-extern void x_set_z_group (struct frame *f, Lisp_Object new_value,
-                           Lisp_Object old_value);
+extern void ns_set_parent_frame (struct frame *f, Lisp_Object new_value,
+                                 Lisp_Object old_value);
+extern void ns_set_no_focus_on_map (struct frame *f, Lisp_Object new_value,
+                                    Lisp_Object old_value);
+extern void ns_set_no_accept_focus (struct frame *f, Lisp_Object new_value,
+                                    Lisp_Object old_value);
+extern void ns_set_z_group (struct frame *f, Lisp_Object new_value,
+                            Lisp_Object old_value);
 #ifdef NS_IMPL_COCOA
 extern void ns_set_appearance (struct frame *f, Lisp_Object new_value,
                                Lisp_Object old_value);

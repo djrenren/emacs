@@ -11592,9 +11592,8 @@ clear_garbaged_frames (void)
 	      else
 		clear_current_matrices (f);
 
-#if defined (HAVE_WINDOW_SYSTEM) && !defined (HAVE_NS)
-	      x_clear_under_internal_border (f);
-#endif /* HAVE_WINDOW_SYSTEM && !HAVE_NS */
+              if (FRAME_RIF (f)->clear_under_internal_border)
+                FRAME_RIF (f)->clear_under_internal_border (f);
 
 	      fset_redisplay (f);
 	      f->garbaged = false;
@@ -11664,9 +11663,8 @@ echo_area_display (bool update_frame_p)
 	    {
 	      n = redisplay_mode_lines (FRAME_ROOT_WINDOW (f), false);
 
-#if defined (HAVE_WINDOW_SYSTEM) && !defined (HAVE_NS)
-	      x_clear_under_internal_border (f);
-#endif /* HAVE_WINDOW_SYSTEM && !HAVE_NS */
+              if (FRAME_RIF (f)->clear_under_internal_border)
+                FRAME_RIF (f)->clear_under_internal_border (f);
 
 	    }
 
@@ -12074,7 +12072,9 @@ gui_consider_frame_title (Lisp_Object frame)
       if (! STRINGP (f->name)
 	  || SBYTES (f->name) != len
 	  || memcmp (title, SDATA (f->name), len) != 0)
-	x_implicitly_set_name (f, make_string (title, len), Qnil);
+	FRAME_TERMINAL (f)->implicit_set_name_hook (f,
+                                                    make_string (title, len),
+                                                    Qnil);
     }
 }
 
@@ -12848,7 +12848,7 @@ redisplay_tool_bar (struct frame *f)
 
       if (new_height != WINDOW_PIXEL_HEIGHT (w))
 	{
-	  x_change_tool_bar_height (f, new_height);
+	  FRAME_TERMINAL (f)->change_tool_bar_height_hook (f, new_height);
 	  frame_default_tool_bar_height = new_height;
 	  /* Always do that now.  */
 	  clear_glyph_matrix (w->desired_matrix);
@@ -12943,7 +12943,7 @@ redisplay_tool_bar (struct frame *f)
 
 	  if (change_height_p)
 	    {
-	      x_change_tool_bar_height (f, new_height);
+	      FRAME_TERMINAL (f)->change_tool_bar_height_hook (f, new_height);
 	      frame_default_tool_bar_height = new_height;
 	      clear_glyph_matrix (w->desired_matrix);
 	      f->n_tool_bar_rows = nrows;
@@ -14485,9 +14485,8 @@ redisplay_internal (void)
 		      && garbaged_frame_retries++ < MAX_GARBAGED_FRAME_RETRIES)
                     goto retry;
 
-#if defined (HAVE_WINDOW_SYSTEM) && !defined (HAVE_NS)
-		  x_clear_under_internal_border (f);
-#endif /* HAVE_WINDOW_SYSTEM && !HAVE_NS */
+                  if (FRAME_RIF (f)->clear_under_internal_border)
+                    FRAME_RIF (f)->clear_under_internal_border (f);
 
 		  /* Prevent various kinds of signals during display
 		     update.  stdio is not robust about handling
