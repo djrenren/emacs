@@ -692,7 +692,7 @@ ns_set_internal_border_width (struct frame *f, Lisp_Object arg, Lisp_Object oldv
   if (FRAME_INTERNAL_BORDER_WIDTH (f) == old_width)
     return;
 
-  if (FRAME_X_WINDOW (f) != 0)
+  if (FRAME_NATIVE_WINDOW (f) != 0)
     adjust_frame_size (f, -1, -1, 3, 0, Qinternal_border_width);
 
   SET_FRAME_GARBAGED (f);
@@ -879,8 +879,10 @@ ns_icon (struct frame *f, Lisp_Object parms)
   f->output_data.ns->icon_left = -1;
 
   /* Set the position of the icon.  */
-  icon_x = x_get_arg (dpyinfo, parms, Qicon_left, 0, 0, RES_TYPE_NUMBER);
-  icon_y = x_get_arg (dpyinfo, parms, Qicon_top, 0, 0,  RES_TYPE_NUMBER);
+  icon_x = gui_display_get_arg (dpyinfo, parms, Qicon_left, 0, 0,
+                                RES_TYPE_NUMBER);
+  icon_y = gui_display_get_arg (dpyinfo, parms, Qicon_top, 0, 0,
+                                RES_TYPE_NUMBER);
   if (!EQ (icon_x, Qunbound) && !EQ (icon_y, Qunbound))
     {
       CHECK_FIXNUM (icon_x);
@@ -1022,8 +1024,8 @@ get_geometry_from_preferences (struct ns_display_info *dpyinfo,
       if (NILP (Fassq (r[i].tem, parms)))
         {
           Lisp_Object value
-            = x_get_arg (dpyinfo, parms, r[i].tem, r[i].val, r[i].cls,
-                         RES_TYPE_NUMBER);
+            = gui_display_get_arg (dpyinfo, parms, r[i].tem, r[i].val, r[i].cls,
+                                   RES_TYPE_NUMBER);
           if (! EQ (value, Qunbound))
             parms = Fcons (Fcons (r[i].tem, value), parms);
         }
@@ -1056,14 +1058,15 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
   static int desc_ctr = 1;
   int x_width = 0, x_height = 0;
 
-  /* x_get_arg modifies parms.  */
+  /* gui_display_get_arg modifies parms.  */
   parms = Fcopy_alist (parms);
 
   /* Use this general default value to start with
      until we know if this frame has a specified name.  */
   Vx_resource_name = Vinvocation_name;
 
-  display = x_get_arg (dpyinfo, parms, Qterminal, 0, 0, RES_TYPE_STRING);
+  display = gui_display_get_arg (dpyinfo, parms, Qterminal, 0, 0,
+                                 RES_TYPE_STRING);
   if (EQ (display, Qunbound))
     display = Qnil;
   dpyinfo = check_ns_display_info (display);
@@ -1072,7 +1075,8 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
   if (!dpyinfo->terminal->name)
     error ("Terminal is not live, can't create new frames on it");
 
-  name = x_get_arg (dpyinfo, parms, Qname, 0, 0, RES_TYPE_STRING);
+  name = gui_display_get_arg (dpyinfo, parms, Qname, 0, 0,
+                              RES_TYPE_STRING);
   if (!STRINGP (name)
       && ! EQ (name, Qunbound)
       && ! NILP (name))
@@ -1081,7 +1085,8 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
   if (STRINGP (name))
     Vx_resource_name = name;
 
-  parent = x_get_arg (dpyinfo, parms, Qparent_id, 0, 0, RES_TYPE_NUMBER);
+  parent = gui_display_get_arg (dpyinfo, parms, Qparent_id, 0, 0,
+                                RES_TYPE_NUMBER);
   if (EQ (parent, Qunbound))
     parent = Qnil;
   if (! NILP (parent))
@@ -1091,8 +1096,9 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
   /* No need to protect DISPLAY because that's not used after passing
      it to make_frame_without_minibuffer.  */
   frame = Qnil;
-  tem = x_get_arg (dpyinfo, parms, Qminibuffer, "minibuffer", "Minibuffer",
-                  RES_TYPE_SYMBOL);
+  tem = gui_display_get_arg (dpyinfo, parms, Qminibuffer,
+                             "minibuffer", "Minibuffer",
+                             RES_TYPE_SYMBOL);
   if (EQ (tem, Qnone) || NILP (tem))
       f = make_frame_without_minibuffer (Qnil, kb, display);
   else if (EQ (tem, Qonly))
@@ -1114,9 +1120,9 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
 
   FRAME_FONTSET (f) = -1;
 
-  fset_icon_name (f, x_get_arg (dpyinfo, parms, Qicon_name,
-				"iconName", "Title",
-				RES_TYPE_STRING));
+  fset_icon_name (f, gui_display_get_arg (dpyinfo, parms, Qicon_name,
+                                          "iconName", "Title",
+                                          RES_TYPE_STRING));
   if (! STRINGP (f->icon_name))
     fset_icon_name (f, Qnil);
 
@@ -1224,34 +1230,38 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
   init_frame_faces (f);
 
   /* Read comment about this code in corresponding place in xfns.c.  */
-  tem = x_get_arg (dpyinfo, parms, Qmin_width, NULL, NULL, RES_TYPE_NUMBER);
+  tem = gui_display_get_arg (dpyinfo, parms, Qmin_width, NULL, NULL,
+                             RES_TYPE_NUMBER);
   if (FIXNUMP (tem))
     store_frame_param (f, Qmin_width, tem);
-  tem = x_get_arg (dpyinfo, parms, Qmin_height, NULL, NULL, RES_TYPE_NUMBER);
+  tem = gui_display_get_arg (dpyinfo, parms, Qmin_height, NULL, NULL,
+                             RES_TYPE_NUMBER);
   if (FIXNUMP (tem))
     store_frame_param (f, Qmin_height, tem);
   adjust_frame_size (f, FRAME_COLS (f) * FRAME_COLUMN_WIDTH (f),
 		     FRAME_LINES (f) * FRAME_LINE_HEIGHT (f), 5, 1,
-		     Qx_create_frame_1);
+		     Qgui_create_frame_1);
 
-  tem = x_get_arg (dpyinfo, parms, Qundecorated, NULL, NULL, RES_TYPE_BOOLEAN);
+  tem = gui_display_get_arg (dpyinfo, parms, Qundecorated, NULL, NULL,
+                             RES_TYPE_BOOLEAN);
   FRAME_UNDECORATED (f) = !NILP (tem) && !EQ (tem, Qunbound);
   store_frame_param (f, Qundecorated, FRAME_UNDECORATED (f) ? Qt : Qnil);
 
 #ifdef NS_IMPL_COCOA
-  tem = x_get_arg (dpyinfo, parms, Qns_appearance, NULL, NULL, RES_TYPE_SYMBOL);
+  tem = gui_display_get_arg (dpyinfo, parms, Qns_appearance, NULL, NULL,
+                             RES_TYPE_SYMBOL);
   FRAME_NS_APPEARANCE (f) = EQ (tem, Qdark)
     ? ns_appearance_vibrant_dark : ns_appearance_aqua;
   store_frame_param (f, Qns_appearance, tem);
 
-  tem = x_get_arg (dpyinfo, parms, Qns_transparent_titlebar,
-                   NULL, NULL, RES_TYPE_BOOLEAN);
+  tem = gui_display_get_arg (dpyinfo, parms, Qns_transparent_titlebar,
+                             NULL, NULL, RES_TYPE_BOOLEAN);
   FRAME_NS_TRANSPARENT_TITLEBAR (f) = !NILP (tem) && !EQ (tem, Qunbound);
   store_frame_param (f, Qns_transparent_titlebar, tem);
 #endif
 
-  parent_frame = x_get_arg (dpyinfo, parms, Qparent_frame, NULL, NULL,
-			    RES_TYPE_SYMBOL);
+  parent_frame = gui_display_get_arg (dpyinfo, parms, Qparent_frame, NULL, NULL,
+                                      RES_TYPE_SYMBOL);
   /* Accept parent-frame iff parent-id was not specified.  */
   if (!NILP (parent)
       || EQ (parent_frame, Qunbound)
@@ -1290,7 +1300,8 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
   window_prompting = gui_figure_window_size (f, parms, true,
                                              &x_width, &x_height);
 
-  tem = x_get_arg (dpyinfo, parms, Qunsplittable, 0, 0, RES_TYPE_BOOLEAN);
+  tem = gui_display_get_arg (dpyinfo, parms, Qunsplittable, 0, 0,
+                             RES_TYPE_BOOLEAN);
   f->no_split = minibuffer_only || (!EQ (tem, Qunbound) && !NILP (tem));
 
   /* NOTE: on other terms, this is done in set_mouse_color, however this
@@ -1351,8 +1362,8 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
   gui_default_parameter (f, parms, Qfullscreen, Qnil,
                          "fullscreen", "Fullscreen", RES_TYPE_SYMBOL);
 
-  /* Allow x_set_window_size, now.  */
-  f->can_x_set_window_size = true;
+  /* Allow set_window_size_hook, now.  */
+  f->can_set_window_size = true;
 
   if (x_width > 0)
     SET_FRAME_WIDTH (f, x_width);
@@ -1360,14 +1371,14 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
     SET_FRAME_HEIGHT (f, x_height);
 
   adjust_frame_size (f, FRAME_TEXT_WIDTH (f), FRAME_TEXT_HEIGHT (f), 0, 1,
-		     Qx_create_frame_2);
+		     Qgui_create_frame_2);
 
   if (! f->output_data.ns->explicit_parent)
     {
       Lisp_Object visibility;
 
-      visibility = x_get_arg (dpyinfo, parms, Qvisibility, 0, 0,
-                              RES_TYPE_SYMBOL);
+      visibility = gui_display_get_arg (dpyinfo, parms, Qvisibility, 0, 0,
+                                        RES_TYPE_SYMBOL);
       if (EQ (visibility, Qunbound))
 	visibility = Qt;
 
@@ -1389,8 +1400,9 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
           || !FRAME_LIVE_P (XFRAME (KVAR (kb, Vdefault_minibuffer_frame)))))
     kset_default_minibuffer_frame (kb, frame);
 
-  /* All remaining specified parameters, which have not been "used"
-     by x_get_arg and friends, now go in the misc. alist of the frame.  */
+  /* All remaining specified parameters, which have not been "used" by
+     gui_display_get_arg and friends, now go in the misc. alist of the
+     frame.  */
   for (tem = parms; CONSP (tem); tem = XCDR (tem))
     if (CONSP (XCAR (tem)) && !NILP (XCAR (XCAR (tem))))
       fset_param_alist (f, Fcons (XCAR (tem), f->param_alist));
@@ -2234,8 +2246,8 @@ ns_set_scroll_bar_default_height (struct frame *f)
 }
 
 /* Terms implement this instead of x-get-resource directly.  */
-char *
-x_get_string_resource (XrmDatabase rdb, const char *name, const char *class)
+const char *
+ns_get_string_resource (void *_rdb, const char *name, const char *class)
 {
   /* remove appname prefix; TODO: allow for !="Emacs" */
   const char *res, *toCheck = class + (!strncmp (class, "Emacs.", 6) ? 6 : 0);
@@ -2247,10 +2259,10 @@ x_get_string_resource (XrmDatabase rdb, const char *name, const char *class)
     return NULL;
 
   res = ns_get_defaults_value (toCheck);
-  return (char *) (!res ? NULL
-		   : !c_strncasecmp (res, "YES", 3) ? "true"
-		   : !c_strncasecmp (res, "NO", 2) ? "false"
-		   : res);
+  return (const char *) (!res ? NULL
+                         : !c_strncasecmp (res, "YES", 3) ? "true"
+                         : !c_strncasecmp (res, "NO", 2) ? "false"
+                         : res);
 }
 
 /* ==========================================================================
@@ -2720,11 +2732,13 @@ DEFUN ("x-show-tip", Fx_show_tip, Sx_show_tip, 1, 6, 0,
   else
     Fx_hide_tip ();
 
-  t = x_get_arg (NULL, parms, Qbackground_color, NULL, NULL, RES_TYPE_STRING);
+  t = gui_display_get_arg (NULL, parms, Qbackground_color, NULL, NULL,
+                           RES_TYPE_STRING);
   if (ns_lisp_to_color (t, &color) == 0)
     [ns_tooltip setBackgroundColor: color];
 
-  t = x_get_arg (NULL, parms, Qforeground_color, NULL, NULL, RES_TYPE_STRING);
+  t = gui_display_get_arg (NULL, parms, Qforeground_color, NULL, NULL,
+                           RES_TYPE_STRING);
   if (ns_lisp_to_color (t, &color) == 0)
     [ns_tooltip setForegroundColor: color];
 

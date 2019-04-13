@@ -153,7 +153,7 @@ w32_popup_dialog (struct frame *f, Lisp_Object header, Lisp_Object contents)
    This way we can safely execute Lisp code.  */
 
 void
-x_activate_menubar (struct frame *f)
+w32_activate_menubar (struct frame *f)
 {
   set_frame_menubar (f, false, true);
 

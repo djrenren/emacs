@@ -3444,7 +3444,7 @@ w32_note_mouse_movement (struct frame *frame, MSG *msg)
   int mouse_y = HIWORD (msg->lParam);
   RECT *r;
 
-  if (!FRAME_X_OUTPUT (frame))
+  if (!FRAME_OUTPUT_DATA (frame))
     return 0;
 
   dpyinfo = FRAME_DISPLAY_INFO (frame);
@@ -5995,8 +5995,8 @@ w32_draw_window_cursor (struct window *w, struct glyph_row *glyph_row,
 
 /* Icons.  */
 
-bool
-x_bitmap_icon (struct frame *f, Lisp_Object icon)
+static bool
+w32_bitmap_icon (struct frame *f, Lisp_Object icon)
 {
   HANDLE main_icon;
   HANDLE small_icon = NULL;
@@ -6116,7 +6116,7 @@ w32_new_font (struct frame *f, Lisp_Object font_object, int fontset)
     }
 
   /* Now make the frame display the given font.  */
-  if (FRAME_X_WINDOW (f) != 0)
+  if (FRAME_NATIVE_WINDOW (f) != 0)
     {
       /* Don't change the size of a tip frame; there's no point in
 	 doing it because it's done in Fx_show_tip, and it leads to
@@ -6407,13 +6407,13 @@ w32fullscreen_hook (struct frame *f)
     f->want_fullscreen |= FULLSCREEN_WAIT;
 }
 
-/* Call this to change the size of frame F's x-window.
+/* Call this to change the size of frame F's native window.
    If CHANGE_GRAVITY, change to top-left-corner window gravity
    for this size change and subsequent size changes.
    Otherwise we leave the window gravity unchanged.  */
 
-void
-x_set_window_size (struct frame *f, bool change_gravity,
+static void
+w32_set_window_size (struct frame *f, bool change_gravity,
 		   int width, int height, bool pixelwise)
 {
   int pixelwidth, pixelheight;
@@ -6499,7 +6499,7 @@ x_set_window_size (struct frame *f, bool change_gravity,
   if (pixelwidth > 0 || pixelheight > 0)
     {
       frame_size_history_add
-	(f, Qx_set_window_size_1, width, height,
+	(f, Qgui_set_window_size_1, width, height,
 	 list2 (Fcons (make_fixnum (pixelwidth),
 		       make_fixnum (pixelheight)),
 		Fcons (make_fixnum (rect.right - rect.left),
@@ -6964,7 +6964,7 @@ w32_show_hourglass (struct frame *f)
 {
   if (!menubar_in_use && !current_popup_menu)
     {
-      struct w32_output *w32 = FRAME_X_OUTPUT (f);
+      struct w32_output *w32 = FRAME_OUTPUT_DATA (f);
 
       w32->hourglass_p = 1;
       SetCursor (w32->hourglass_cursor);
@@ -6976,7 +6976,7 @@ w32_show_hourglass (struct frame *f)
 static void
 w32_hide_hourglass (struct frame *f)
 {
-  struct w32_output *w32 = FRAME_X_OUTPUT (f);
+  struct w32_output *w32 = FRAME_OUTPUT_DATA (f);
 
   w32->hourglass_p = 0;
   if (f->pointer_invisible)
@@ -7167,10 +7167,14 @@ w32_create_terminal (struct w32_display_info *dpyinfo)
   terminal->frame_visible_invisible_hook = w32_make_frame_visible_invisible;
   terminal->fullscreen_hook = w32fullscreen_hook;
   terminal->iconify_frame_hook = w32_iconify_frame;
+  terminal->set_window_size_hook = w32_set_window_size;
+  terminal->set_frame_offset_hook = w32_set_offset;
   terminal->set_frame_alpha_hook = w32_set_frame_alpha;
   terminal->set_new_font_hook = w32_new_font;
+  terminal->set_bitmap_icon_hook = w32_bitmap_icon;
   terminal->implicit_set_name_hook = w32_implicitly_set_name;
   terminal->menu_show_hook = w32_menu_show;
+  terminal->activate_menubar_hook = w32_activate_menubar;
   terminal->popup_dialog_hook = w32_popup_dialog;
   terminal->change_tool_bar_height_hook = w32_change_tool_bar_height;
   terminal->set_vertical_scroll_bar_hook = w32_set_vertical_scroll_bar;
@@ -7180,6 +7184,7 @@ w32_create_terminal (struct w32_display_info *dpyinfo)
   terminal->condemn_scroll_bars_hook = w32_condemn_scroll_bars;
   terminal->redeem_scroll_bar_hook = w32_redeem_scroll_bar;
   terminal->judge_scroll_bars_hook = w32_judge_scroll_bars;
+  terminal->get_string_resource_hook = w32_get_string_resource;
   terminal->delete_frame_hook = w32_destroy_window;
   terminal->delete_terminal_hook = w32_delete_terminal;
   /* Other hooks are NULL by default.  */
@@ -7237,7 +7242,7 @@ w32_term_init (Lisp_Object display_name, char *xrm_option, char *resource_name)
   /* Set the name of the terminal. */
   terminal->name = xlispstrdup (display_name);
 
-  dpyinfo->xrdb = xrm_option ? w32_make_rdb (xrm_option) : NULL;
+  dpyinfo->rdb = xrm_option ? w32_make_rdb (xrm_option) : NULL;
 
   /* Put this display on the chain.  */
   dpyinfo->next = x_display_list;

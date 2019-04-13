@@ -397,9 +397,9 @@ struct frame
      in pixels.  */
   bool_bf new_pixelwise : 1;
 
-  /* True means x_set_window_size requests can be processed for this
-     frame.  */
-  bool_bf can_x_set_window_size : 1;
+  /* True means set_window_size_hook requests can be processed for
+     this frame.  */
+  bool_bf can_set_window_size : 1;
 
   /* Set to true after this frame was made by `make-frame'.  */
   bool_bf after_make_frame : 1;
@@ -542,6 +542,10 @@ struct frame
     intptr_t nothing;
   }
   output_data;
+
+  /* Interface for accessing frame data generic constructs that are
+     device-dependent.  */
+  struct frame_output_interface *foif;
 
   /* List of font-drivers available on the frame.  */
   struct font_driver_list *font_driver_list;
@@ -786,8 +790,8 @@ default_pixels_per_inch_y (void)
 #define FRAME_NS_P(f) ((f)->output_method == output_ns)
 #endif
 
-/* FRAME_WINDOW_P tests whether the frame is a window, and is
-   defined to be the predicate for the window system being used.  */
+/* FRAME_WINDOW_P tests whether the frame is a graphical window system
+   frame.  */
 
 #ifdef HAVE_X_WINDOWS
 #define FRAME_WINDOW_P(f) FRAME_X_P (f)
@@ -1573,15 +1577,14 @@ extern void gui_set_no_special_glyphs (struct frame *, Lisp_Object, Lisp_Object)
 
 extern void validate_x_resource_name (void);
 
-extern Lisp_Object display_x_get_resource (Display_Info *,
-					   Lisp_Object attribute,
-					   Lisp_Object class,
-					   Lisp_Object component,
-					   Lisp_Object subclass);
+extern Lisp_Object gui_display_get_resource (Display_Info *,
+                                             Lisp_Object attribute,
+                                             Lisp_Object class,
+                                             Lisp_Object component,
+                                             Lisp_Object subclass);
 
 extern void set_frame_menubar (struct frame *f, bool first_time, bool deep_p);
 extern void frame_set_mouse_pixel_position (struct frame *f, int pix_x, int pix_y);
-extern void x_activate_menubar (struct frame *);
 extern void free_frame_menubar (struct frame *);
 extern bool frame_ancestor_p (struct frame *af, struct frame *df);
 extern enum internal_border_part frame_internal_border_part (struct frame *f, int x, int y);
@@ -1596,8 +1599,6 @@ extern void x_sync (struct frame *);
 
 #ifndef HAVE_NS
 
-extern bool x_bitmap_icon (struct frame *, Lisp_Object);
-
 /* Set F's bitmap icon, if specified among F's parameters.  */
 
 INLINE void
@@ -1606,7 +1607,7 @@ gui_set_bitmap_icon (struct frame *f)
   Lisp_Object obj = assq_no_quit (Qicon_type, f->param_alist);
 
   if (CONSP (obj) && !NILP (XCDR (obj)))
-    x_bitmap_icon (f, XCDR (obj));
+    FRAME_TERMINAL (f)->set_bitmap_icon_hook (f, XCDR (obj));
 }
 
 #endif /* !HAVE_NS */

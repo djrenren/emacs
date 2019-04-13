@@ -3434,7 +3434,7 @@ run_window_configuration_change_hook (struct frame *f)
   XSETFRAME (frame, f);
 
   if (NILP (Vrun_hooks)
-      || !f->can_x_set_window_size
+      || !f->can_set_window_size
       || !f->after_make_frame)
     return;
 
@@ -3763,7 +3763,7 @@ run_window_change_functions (void)
       ptrdiff_t number_of_windows;
 
       if (!FRAME_LIVE_P (f)
-	  || !f->can_x_set_window_size
+	  || !f->can_set_window_size
 	  || !f->after_make_frame
 	  || FRAME_TOOLTIP_P (f)
 	  || !(frame_window_change
@@ -6867,8 +6867,8 @@ the return value is nil.  Otherwise the value is t.  */)
 	    call1 (Qrecord_window_buffer, window);
 	}
 
-      /* Disallow x_set_window_size, temporarily.  */
-      f->can_x_set_window_size = false;
+      /* Disallow set_window_size_hook, temporarily.  */
+      f->can_set_window_size = false;
       /* The mouse highlighting code could get screwed up
 	 if it runs during this.  */
       block_input ();
@@ -7072,9 +7072,9 @@ the return value is nil.  Otherwise the value is t.  */)
 	if (NILP (leaf_windows[i]->contents))
 	  free_window_matrices (leaf_windows[i]);
 
-      /* Allow x_set_window_size again and apply frame size changes if
-	 needed.  */
-      f->can_x_set_window_size = true;
+      /* Allow set_window_size_hook again and apply frame size changes
+	 if needed.  */
+      f->can_set_window_size = true;
       adjust_frame_size (f, -1, -1, 1, false, Qset_window_configuration);
 
       adjust_frame_glyphs (f);

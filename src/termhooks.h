@@ -535,6 +535,10 @@ struct terminal
      windows.  */
   void (*frame_raise_lower_hook) (struct frame *f, bool raise_flag);
 
+  /* This hook is called to make the frame F visible if VISIBLE is
+     true, or invisible otherwise. */
+  void (*frame_visible_invisible_hook) (struct frame *f, bool visible);
+
   /* If the value of the frame parameter changed, this hook is called.
      For example, if going from fullscreen to not fullscreen this hook
      may do something OS dependent, like extended window manager hints on X11.  */
@@ -543,6 +547,22 @@ struct terminal
   /* This hook is called to iconify the frame.  */
   void (*iconify_frame_hook) (struct frame *f);
 
+  /* This hook is called to change the size of frame F's native
+   (underlying) window.  If CHANGE_GRAVITY, change to top-left-corner
+   window gravity for this size change and subsequent size changes.
+   Otherwise we leave the window gravity unchanged.  */
+  void (*set_window_size_hook) (struct frame *f, bool change_gravity,
+                                int width, int height, bool pixelwise);
+
+  /* CHANGE_GRAVITY is 1 when calling from Fset_frame_position,
+   to really change the position, and 0 when calling from
+   *_make_frame_visible (in that case, XOFF and YOFF are the current
+   position values).  It is -1 when calling from gui_set_frame_parameters,
+   which means, do adjust for borders but don't change the gravity.  */
+
+  void (*set_frame_offset_hook) (struct frame *f, register int xoff,
+                                 register int yoff, int change_gravity);
+
   /* This hook is called to set the frame's transparency.  */
   void (*set_frame_alpha_hook) (struct frame *f);
 
@@ -550,12 +570,21 @@ struct terminal
   Lisp_Object (*set_new_font_hook) (struct frame *f, Lisp_Object font_object,
                                     int fontset);
 
+  /* This hook is called to set the GUI window icon of F using FILE.  */
+  bool (*set_bitmap_icon_hook) (struct frame *f, Lisp_Object file);
+
+
   void (*implicit_set_name_hook) (struct frame *f, Lisp_Object arg,
                                   Lisp_Object oldval);
 
   /* This hook is called to display menus.  */
   Lisp_Object (*menu_show_hook) (struct frame *f, int x, int y, int menuflags,
 				 Lisp_Object title, const char **error_name);
+
+#ifdef HAVE_EXT_MENU_BAR
+  /* This hook is called to activate the menu bar.  */
+  void (*activate_menubar_hook) (struct frame *f);
+#endif
 
   /* This hook is called to display popup dialog.  */
   Lisp_Object (*popup_dialog_hook) (struct frame *f, Lisp_Object header,
@@ -608,10 +637,10 @@ struct terminal
 					  int position);
 
   /* Set the default scroll bar width on FRAME.  */
-  void (*x_set_scroll_bar_default_width) (struct frame *frame);
+  void (*set_scroll_bar_default_width_hook) (struct frame *frame);
 
   /* Set the default scroll bar height on FRAME.  */
-  void (*x_set_scroll_bar_default_height) (struct frame *frame);
+  void (*set_scroll_bar_default_height_hook) (struct frame *frame);
 
   /* The following three hooks are used when we're doing a thorough
      redisplay of the frame.  We don't explicitly know which scroll bars
@@ -674,6 +703,11 @@ struct terminal
      while it runs.  */
   void (*buffer_flipping_unblocked_hook) (struct frame *);
 
+  /* Retrieve the string resource specified by NAME with CLASS from
+     database RDB. */
+  const char * (*get_string_resource_hook) (void *rdb,
+                                            const char *name,
+                                            const char *class);
 
   /* Called to delete the device-specific portions of a frame that is
      on this terminal device. */

@@ -9541,7 +9541,7 @@ x_draw_window_cursor (struct window *w, struct glyph_row *glyph_row, int x,
 
 /* Make the x-window of frame F use the gnu icon bitmap.  */
 
-bool
+static bool
 x_bitmap_icon (struct frame *f, Lisp_Object file)
 {
   ptrdiff_t bitmap_id;
@@ -9551,7 +9551,7 @@ x_bitmap_icon (struct frame *f, Lisp_Object file)
 
   /* Free up our existing icon bitmap and mask if any.  */
   if (f->output_data.x->icon_bitmap > 0)
-    x_destroy_bitmap (f, f->output_data.x->icon_bitmap);
+    image_destroy_bitmap (f, f->output_data.x->icon_bitmap);
   f->output_data.x->icon_bitmap = 0;
 
   if (STRINGP (file))
@@ -9562,7 +9562,7 @@ x_bitmap_icon (struct frame *f, Lisp_Object file)
       if (xg_set_icon (f, file))
 	return false;
 #endif /* USE_GTK */
-      bitmap_id = gui_create_bitmap_from_file (f, file);
+      bitmap_id = image_create_bitmap_from_file (f, file);
       x_create_bitmap_mask (f, bitmap_id);
     }
   else
@@ -9592,8 +9592,10 @@ x_bitmap_icon (struct frame *f, Lisp_Object file)
 	  /* If all else fails, use the (black and white) xbm image. */
 	  if (rc == -1)
 	    {
-              rc = gui_create_bitmap_from_data (f, (char *) gnu_xbm_bits,
-                                                gnu_xbm_width, gnu_xbm_height);
+              rc = image_create_bitmap_from_data (f,
+                                                  (char *) gnu_xbm_bits,
+                                                  gnu_xbm_width,
+                                                  gnu_xbm_height);
 	      if (rc == -1)
 		return true;
 
@@ -9606,7 +9608,7 @@ x_bitmap_icon (struct frame *f, Lisp_Object file)
 	 this increments the ref-count one extra time.
 	 As a result, the GNU bitmap and mask are never freed.
 	 That way, we don't have to worry about allocating it again.  */
-      gui_reference_bitmap (f, FRAME_DISPLAY_INFO (f)->icon_bitmap_id);
+      image_reference_bitmap (f, FRAME_DISPLAY_INFO (f)->icon_bitmap_id);
 
       bitmap_id = FRAME_DISPLAY_INFO (f)->icon_bitmap_id;
     }
@@ -9637,7 +9639,7 @@ x_text_icon (struct frame *f, const char *icon_name)
   }
 
   if (f->output_data.x->icon_bitmap > 0)
-    x_destroy_bitmap (f, f->output_data.x->icon_bitmap);
+    image_destroy_bitmap (f, f->output_data.x->icon_bitmap);
   f->output_data.x->icon_bitmap = 0;
   x_wm_set_icon_pixmap (f, 0);
 
@@ -10140,7 +10142,7 @@ xim_open_dpy (struct x_display_info *dpyinfo, char *resource_name)
     {
       if (dpyinfo->xim)
 	XCloseIM (dpyinfo->xim);
-      xim = XOpenIM (dpyinfo->display, dpyinfo->xrdb, resource_name,
+      xim = XOpenIM (dpyinfo->display, dpyinfo->rdb, resource_name,
 		     emacs_class);
       dpyinfo->xim = xim;
 
@@ -10239,7 +10241,7 @@ xim_initialize (struct x_display_info *dpyinfo, char *resource_name)
       xim_inst->dpyinfo = dpyinfo;
       xim_inst->resource_name = xstrdup (resource_name);
       ret = XRegisterIMInstantiateCallback
-	(dpyinfo->display, dpyinfo->xrdb, xim_inst->resource_name,
+	(dpyinfo->display, dpyinfo->rdb, xim_inst->resource_name,
 	 emacs_class, xim_instantiate_callback,
 	 /* This is XPointer in XFree86 but (XPointer *)
 	    on Tru64, at least, hence the configure test.  */
@@ -10267,7 +10269,7 @@ xim_close_dpy (struct x_display_info *dpyinfo)
       if (dpyinfo->display)
 	{
 	  Bool ret = XUnregisterIMInstantiateCallback
-	    (dpyinfo->display, dpyinfo->xrdb, xim_inst->resource_name,
+	    (dpyinfo->display, dpyinfo->rdb, xim_inst->resource_name,
 	     emacs_class, xim_instantiate_callback,
 	     (XRegisterIMInstantiateCallback_arg6) xim_inst);
 	  eassert (ret == True);
@@ -10383,7 +10385,7 @@ x_calc_absolute_position (struct frame *f)
    position values).  It is -1 when calling from gui_set_frame_parameters,
    which means, do adjust for borders but don't change the gravity.  */
 
-void
+static void
 x_set_offset (struct frame *f, register int xoff, register int yoff, int change_gravity)
 {
   int modified_top, modified_left;
@@ -10796,7 +10798,7 @@ do_ewmh_fullscreen (struct frame *f)
   int cur;
   bool dummy;
 
-  get_current_wm_state (f, FRAME_OUTER_WINDOW (f), &cur, &dummy);
+  x_get_current_wm_state (f, FRAME_OUTER_WINDOW (f), &cur, &dummy);
 
   /* Some window managers don't say they support _NET_WM_STATE, but they do say
      they support _NET_WM_STATE_FULLSCREEN.  Try that also.  */
@@ -11201,7 +11203,7 @@ x_set_window_size_1 (struct frame *f, bool change_gravity,
   if (EQ (fullscreen, Qfullwidth) && width == FRAME_TEXT_WIDTH (f))
     {
       frame_size_history_add
-	(f, Qx_set_window_size_1, width, height,
+	(f, Qgui_set_window_size_1, width, height,
 	 list2i (old_height, pixelheight + FRAME_MENUBAR_HEIGHT (f)));
 
       XResizeWindow (FRAME_X_DISPLAY (f), FRAME_OUTER_WINDOW (f),
@@ -11210,7 +11212,7 @@ x_set_window_size_1 (struct frame *f, bool change_gravity,
   else if (EQ (fullscreen, Qfullheight) && height == FRAME_TEXT_HEIGHT (f))
     {
       frame_size_history_add
-	(f, Qx_set_window_size_2, width, height,
+	(f, Qgui_set_window_size_2, width, height,
 	 list2i (old_width, pixelwidth));
 
       XResizeWindow (FRAME_X_DISPLAY (f), FRAME_OUTER_WINDOW (f),
@@ -11220,7 +11222,7 @@ x_set_window_size_1 (struct frame *f, bool change_gravity,
   else
     {
       frame_size_history_add
-	(f, Qx_set_window_size_3, width, height,
+	(f, Qgui_set_window_size_3, width, height,
 	 list3i (pixelwidth + FRAME_TOOLBAR_WIDTH (f),
 		 (pixelheight + FRAME_TOOLBAR_HEIGHT (f)
 		  + FRAME_MENUBAR_HEIGHT (f)),
@@ -11358,7 +11360,7 @@ frame_set_mouse_pixel_position (struct frame *f, int pix_x, int pix_y)
 
 /* Raise frame F.  */
 
-void
+static void
 x_raise_frame (struct frame *f)
 {
   block_input ();
@@ -12183,7 +12185,7 @@ x_wm_set_icon_pixmap (struct frame *f, ptrdiff_t pixmap_id)
 
   if (pixmap_id > 0)
     {
-      icon_pixmap = x_bitmap_pixmap (f, pixmap_id);
+      icon_pixmap = image_bitmap_pixmap (f, pixmap_id);
       f->output_data.x->wm_hints.icon_pixmap = icon_pixmap;
       icon_mask = x_bitmap_mask (f, pixmap_id);
       f->output_data.x->wm_hints.icon_mask = icon_mask;
@@ -12757,7 +12759,7 @@ x_term_init (Lisp_Object display_name, char *xrm_option, char *resource_name)
 #endif
   /* Put the rdb where we can find it in a way that works on
      all versions.  */
-  dpyinfo->xrdb = xrdb;
+  dpyinfo->rdb = xrdb;
 
   dpyinfo->screen = ScreenOfDisplay (dpyinfo->display,
 				     DefaultScreen (dpyinfo->display));
@@ -12788,8 +12790,8 @@ x_term_init (Lisp_Object display_name, char *xrm_option, char *resource_name)
 	  AUTO_STRING (privateColormap, "privateColormap");
 	  AUTO_STRING (PrivateColormap, "PrivateColormap");
 	  Lisp_Object value
-	    = display_x_get_resource (dpyinfo, privateColormap,
-				      PrivateColormap, Qnil, Qnil);
+	    = gui_display_get_resource (dpyinfo, privateColormap,
+                                        PrivateColormap, Qnil, Qnil);
 	  if (STRINGP (value)
 	      && (!strcmp (SSDATA (value), "true")
 		  || !strcmp (SSDATA (value), "on")))
@@ -13006,8 +13008,8 @@ x_term_init (Lisp_Object display_name, char *xrm_option, char *resource_name)
   {
     AUTO_STRING (synchronous, "synchronous");
     AUTO_STRING (Synchronous, "Synchronous");
-    Lisp_Object value = display_x_get_resource (dpyinfo, synchronous,
-						Synchronous, Qnil, Qnil);
+    Lisp_Object value = gui_display_get_resource (dpyinfo, synchronous,
+                                                  Synchronous, Qnil, Qnil);
     if (STRINGP (value)
 	&& (!strcmp (SSDATA (value), "true")
 	    || !strcmp (SSDATA (value), "on")))
@@ -13017,8 +13019,8 @@ x_term_init (Lisp_Object display_name, char *xrm_option, char *resource_name)
   {
     AUTO_STRING (useXIM, "useXIM");
     AUTO_STRING (UseXIM, "UseXIM");
-    Lisp_Object value = display_x_get_resource (dpyinfo, useXIM, UseXIM,
-						Qnil, Qnil);
+    Lisp_Object value = gui_display_get_resource (dpyinfo, useXIM, UseXIM,
+                                                  Qnil, Qnil);
 #ifdef USE_XIM
     if (STRINGP (value)
 	&& (!strcmp (SSDATA (value), "false")
@@ -13210,13 +13212,13 @@ x_delete_terminal (struct terminal *terminal)
   /* Normally, the display is available...  */
   if (dpyinfo->display)
     {
-      gui_destroy_all_bitmaps (dpyinfo);
+      image_destroy_all_bitmaps (dpyinfo);
       XSetCloseDownMode (dpyinfo->display, DestroyAll);
 
       /* Whether or not XCloseDisplay destroys the associated resource
 	 database depends on the version of libX11.  To avoid both
 	 crash and memory leak, we dissociate the database from the
-	 display and then destroy dpyinfo->xrdb ourselves.
+	 display and then destroy dpyinfo->rdb ourselves.
 
 	 Unfortunately, the above strategy does not work in some
 	 situations due to a bug in newer versions of libX11: because
@@ -13236,7 +13238,7 @@ x_delete_terminal (struct terminal *terminal)
       /* We used to call XrmDestroyDatabase from x_delete_display, but
 	 some older versions of libX11 crash if we call it after
 	 closing all the displays.  */
-      XrmDestroyDatabase (dpyinfo->xrdb);
+      XrmDestroyDatabase (dpyinfo->rdb);
 #endif
 
 #ifdef USE_GTK
@@ -13302,10 +13304,16 @@ x_create_terminal (struct x_display_info *dpyinfo)
   terminal->frame_visible_invisible_hook = x_make_frame_visible_invisible;
   terminal->fullscreen_hook = XTfullscreen_hook;
   terminal->iconify_frame_hook = x_iconify_frame;
+  terminal->set_window_size_hook = x_set_window_size;
+  terminal->set_frame_offset_hook = x_set_offset;
   terminal->set_frame_alpha_hook = x_set_frame_alpha;
   terminal->set_new_font_hook = x_new_font;
+  terminal->set_bitmap_icon_hook = x_bitmap_icon;
   terminal->implicit_set_name_hook = x_implicitly_set_name;
   terminal->menu_show_hook = x_menu_show;
+#ifdef HAVE_EXT_MENU_BAR
+  terminal->activate_menubar_hook = x_activate_menubar;
+#endif
 #if defined (USE_X_TOOLKIT) || defined (USE_GTK)
   terminal->popup_dialog_hook = xw_popup_dialog;
 #endif
@@ -13319,6 +13327,7 @@ x_create_terminal (struct x_display_info *dpyinfo)
   terminal->condemn_scroll_bars_hook = XTcondemn_scroll_bars;
   terminal->redeem_scroll_bar_hook = XTredeem_scroll_bar;
   terminal->judge_scroll_bars_hook = XTjudge_scroll_bars;
+  terminal->get_string_resource_hook = x_get_string_resource;
   terminal->delete_frame_hook = x_destroy_window;
   terminal->delete_terminal_hook = x_delete_terminal;
   /* Other hooks are NULL by default.  */

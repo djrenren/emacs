@@ -698,7 +698,7 @@ ns_release_autorelease_pool (void *pool)
    NSDisableScreenUpdates.
 
    We use these functions to prevent the user seeing a blank frame
-   after it has been resized.  x_set_window_size disables updates and
+   after it has been resized.  ns_set_window_size disables updates and
    when redisplay completes unwind_redisplay enables them again
    (bug#30699).  */
 
@@ -1820,12 +1820,12 @@ ns_set_offset (struct frame *f, int xoff, int yoff, int change_grav)
 }
 
 
-void
-x_set_window_size (struct frame *f,
-                   bool change_gravity,
-                   int width,
-                   int height,
-                   bool pixelwise)
+static void
+ns_set_window_size (struct frame *f,
+                    bool change_gravity,
+                    int width,
+                    int height,
+                    bool pixelwise)
 /* --------------------------------------------------------------------------
      Adjust window pixel size based on given character grid size
      Impl is a bit more complex than other terms, need to do some
@@ -1838,7 +1838,7 @@ x_set_window_size (struct frame *f,
   int pixelwidth, pixelheight;
   int orig_height = wr.size.height;
 
-  NSTRACE ("x_set_window_size");
+  NSTRACE ("ns_set_window_size");
 
   if (view == nil)
     return;
@@ -1884,7 +1884,7 @@ x_set_window_size (struct frame *f,
    wr.origin.y += orig_height - wr.size.height;
 
  frame_size_history_add
-   (f, Qx_set_window_size_1, width, height,
+   (f, Qgui_set_window_size_1, width, height,
     list5 (Fcons (make_fixnum (pixelwidth), make_fixnum (pixelheight)),
 	   Fcons (make_fixnum (wr.size.width), make_fixnum (wr.size.height)),
 	   make_fixnum (f->border_width),
@@ -5240,10 +5240,13 @@ ns_create_terminal (struct ns_display_info *dpyinfo)
   terminal->frame_visible_invisible_hook = ns_make_frame_visible_invisible;
   terminal->fullscreen_hook = ns_fullscreen_hook;
   terminal->iconify_frame_hook = ns_iconify_frame;
+  terminal->set_window_size_hook = ns_set_window_size;
+  terminal->set_frame_offset_hook = ns_set_offset;
   terminal->set_frame_alpha_hook = ns_set_frame_alpha;
   terminal->set_new_font_hook = ns_new_font;
   terminal->implicit_set_name_hook = ns_implicitly_set_name;
   terminal->menu_show_hook = ns_menu_show;
+  terminal->activate_menubar_hook = ns_activate_menubar;
   terminal->popup_dialog_hook = ns_popup_dialog;
   terminal->set_vertical_scroll_bar_hook = ns_set_vertical_scroll_bar;
   terminal->set_horizontal_scroll_bar_hook = ns_set_horizontal_scroll_bar;
@@ -5252,6 +5255,7 @@ ns_create_terminal (struct ns_display_info *dpyinfo)
   terminal->condemn_scroll_bars_hook = ns_condemn_scroll_bars;
   terminal->redeem_scroll_bar_hook = ns_redeem_scroll_bar;
   terminal->judge_scroll_bars_hook = ns_judge_scroll_bars;
+  terminal->get_string_resource_hook = ns_get_string_resource;
   terminal->delete_frame_hook = ns_destroy_window;
   terminal->delete_terminal_hook = ns_delete_terminal;
   /* Other hooks are NULL by default.  */
@@ -7576,7 +7580,7 @@ not_in_argv (NSString *arg)
 
 
 /* Called AFTER method below, but before our windowWillResize call there leads
-   to windowDidResize -> x_set_window_size.  Update emacs' notion of frame
+   to windowDidResize -> ns_set_window_size.  Update emacs' notion of frame
    location so set_window_size moves the frame.  */
 - (BOOL)windowShouldZoom: (NSWindow *)sender toFrame: (NSRect)newFrame
 {

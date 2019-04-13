@@ -869,7 +869,7 @@ struct ns_display_info
   Window root_window;
 
   /* Xism */
-  XrmDatabase xrdb;
+  Lisp_Object rdb;
 
   /* The cursor to use for vertical scroll bars.  */
   Cursor vertical_scroll_bar_cursor;
@@ -993,9 +993,9 @@ struct x_output
 
 /* This gives the ns_display_info structure for the display F is on.  */
 #define FRAME_DISPLAY_INFO(f) ((f)->output_data.ns->display_info)
-#define FRAME_X_OUTPUT(f) ((f)->output_data.ns)
+#define FRAME_OUTPUT_DATA(f) ((f)->output_data.ns)
 #define FRAME_NS_WINDOW(f) ((f)->output_data.ns->window_desc)
-#define FRAME_X_WINDOW(f) ((f)->output_data.ns->window_desc)
+#define FRAME_NATIVE_WINDOW(f) FRAME_NS_WINDOW (f)
 
 /* This is the `Display *' which frame F is on.  */
 #define FRAME_NS_DISPLAY(f) (0)
@@ -1159,6 +1159,9 @@ extern void ns_implicitly_set_name (struct frame *f, Lisp_Object arg,
                                     Lisp_Object oldval);
 extern void ns_set_scroll_bar_default_width (struct frame *f);
 extern void ns_set_scroll_bar_default_height (struct frame *f);
+extern const char *ns_get_string_resource (void *_rdb,
+                                           const char *name,
+                                           const char *class);
 
 /* C access to ObjC functionality */
 extern void  ns_release_object (void *obj);
@@ -1217,7 +1220,7 @@ extern int ns_display_pixel_width (struct ns_display_info *);
 
 /* This in nsterm.m */
 extern float ns_antialias_threshold;
-extern void ns_make_frame_visible (struct frame *f)
+extern void ns_make_frame_visible (struct frame *f);
 extern void ns_iconify_frame (struct frame *f);
 extern void ns_set_undecorated (struct frame *f, Lisp_Object new_value,
                                 Lisp_Object old_value);

@@ -336,8 +336,8 @@ along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.  */
 #include TERM_HEADER
 #endif /* HAVE_WINDOW_SYSTEM */
 
-#ifndef FRAME_X_OUTPUT
-#define FRAME_X_OUTPUT(f) ((f)->output_data.x)
+#ifndef FRAME_OUTPUT_DATA
+#define FRAME_OUTPUT_DATA(f) (NULL)
 #endif
 
 #define DISP_INFINITY 10000000
@@ -11275,7 +11275,7 @@ resize_mini_window (struct window *w, bool exact_p)
   /* Nil means don't try to resize.  */
   if ((NILP (Vresize_mini_windows)
        && (NILP (resize_mini_frames) || !FRAME_MINIBUF_ONLY_P (f)))
-      || (FRAME_X_P (f) && FRAME_X_OUTPUT (f) == NULL))
+      || (FRAME_X_P (f) && FRAME_OUTPUT_DATA (f) == NULL))
     return false;
 
   /* By default, start display at the beginning.  */
@@ -30018,13 +30018,13 @@ show_mouse_face (Mouse_HLInfo *hlinfo, enum draw_glyphs_face draw)
 #ifndef HAVE_EXT_TOOL_BAR
       if (draw == DRAW_NORMAL_TEXT
 	  && !EQ (hlinfo->mouse_face_window, f->tool_bar_window))
-	FRAME_RIF (f)->define_frame_cursor (f, FRAME_X_OUTPUT (f)->text_cursor);
+	FRAME_RIF (f)->define_frame_cursor (f, FRAME_OUTPUT_DATA (f)->text_cursor);
       else
 #endif
       if (draw == DRAW_MOUSE_FACE)
-	FRAME_RIF (f)->define_frame_cursor (f, FRAME_X_OUTPUT (f)->hand_cursor);
+	FRAME_RIF (f)->define_frame_cursor (f, FRAME_OUTPUT_DATA (f)->hand_cursor);
       else
-	FRAME_RIF (f)->define_frame_cursor (f, FRAME_X_OUTPUT (f)->nontext_cursor);
+	FRAME_RIF (f)->define_frame_cursor (f, FRAME_OUTPUT_DATA (f)->nontext_cursor);
     }
 #endif	/* HAVE_WINDOW_SYSTEM */
 }
@@ -30966,25 +30966,25 @@ define_frame_cursor1 (struct frame *f, Cursor cursor, Lisp_Object pointer)
   if (!NILP (pointer))
     {
       if (EQ (pointer, Qarrow))
-	cursor = FRAME_X_OUTPUT (f)->nontext_cursor;
+	cursor = FRAME_OUTPUT_DATA (f)->nontext_cursor;
       else if (EQ (pointer, Qhand))
-	cursor = FRAME_X_OUTPUT (f)->hand_cursor;
+	cursor = FRAME_OUTPUT_DATA (f)->hand_cursor;
       else if (EQ (pointer, Qtext))
-	cursor = FRAME_X_OUTPUT (f)->text_cursor;
+	cursor = FRAME_OUTPUT_DATA (f)->text_cursor;
       else if (EQ (pointer, intern ("hdrag")))
-	cursor = FRAME_X_OUTPUT (f)->horizontal_drag_cursor;
+	cursor = FRAME_OUTPUT_DATA (f)->horizontal_drag_cursor;
       else if (EQ (pointer, intern ("nhdrag")))
-	cursor = FRAME_X_OUTPUT (f)->vertical_drag_cursor;
+	cursor = FRAME_OUTPUT_DATA (f)->vertical_drag_cursor;
 # ifdef HAVE_X_WINDOWS
       else if (EQ (pointer, intern ("vdrag")))
 	cursor = FRAME_DISPLAY_INFO (f)->vertical_scroll_bar_cursor;
 # endif
       else if (EQ (pointer, intern ("hourglass")))
-	cursor = FRAME_X_OUTPUT (f)->hourglass_cursor;
+	cursor = FRAME_OUTPUT_DATA (f)->hourglass_cursor;
       else if (EQ (pointer, Qmodeline))
-	cursor = FRAME_X_OUTPUT (f)->modeline_cursor;
+	cursor = FRAME_OUTPUT_DATA (f)->modeline_cursor;
       else
-	cursor = FRAME_X_OUTPUT (f)->nontext_cursor;
+	cursor = FRAME_OUTPUT_DATA (f)->nontext_cursor;
     }
 
   if (cursor != No_Cursor)
@@ -31136,7 +31136,7 @@ note_mode_line_or_margin_highlight (Lisp_Object window, int x, int y,
 
 	  if (STRINGP (string))
 	    {
-	      cursor = FRAME_X_OUTPUT (f)->nontext_cursor;
+	      cursor = FRAME_OUTPUT_DATA (f)->nontext_cursor;
 
 	      if (NILP (pointer))
 		pointer = Fget_text_property (pos, Qpointer, string);
@@ -31151,13 +31151,13 @@ note_mode_line_or_margin_highlight (Lisp_Object window, int x, int y,
 		  if (!KEYMAPP (map))
 		    map = Fget_text_property (pos, Qkeymap, string);
 		  if (!KEYMAPP (map) && draggable && area == ON_MODE_LINE)
-		    cursor = FRAME_X_OUTPUT (f)->vertical_drag_cursor;
+		    cursor = FRAME_OUTPUT_DATA (f)->vertical_drag_cursor;
 		}
 	    }
 	  else if (draggable && area == ON_MODE_LINE)
-	    cursor = FRAME_X_OUTPUT (f)->vertical_drag_cursor;
+	    cursor = FRAME_OUTPUT_DATA (f)->vertical_drag_cursor;
 	  else
-	    cursor = FRAME_X_OUTPUT (f)->nontext_cursor;
+	    cursor = FRAME_OUTPUT_DATA (f)->nontext_cursor;
 	}
 #endif
     }
@@ -31366,41 +31366,41 @@ note_mouse_highlight (struct frame *f, int x, int y)
       switch (part)
 	{
 	case INTERNAL_BORDER_NONE:
-	  if (cursor != FRAME_X_OUTPUT (f)->nontext_cursor)
+	  if (cursor != FRAME_OUTPUT_DATA (f)->nontext_cursor)
 	    /* Reset cursor.  */
-	    cursor = FRAME_X_OUTPUT (f)->nontext_cursor;
+	    cursor = FRAME_OUTPUT_DATA (f)->nontext_cursor;
 	  break;
 	case INTERNAL_BORDER_LEFT_EDGE:
-	  cursor = FRAME_X_OUTPUT (f)->left_edge_cursor;
+	  cursor = FRAME_OUTPUT_DATA (f)->left_edge_cursor;
 	  break;
 	case INTERNAL_BORDER_TOP_LEFT_CORNER:
-	  cursor = FRAME_X_OUTPUT (f)->top_left_corner_cursor;
+	  cursor = FRAME_OUTPUT_DATA (f)->top_left_corner_cursor;
 	  break;
 	case INTERNAL_BORDER_TOP_EDGE:
-	  cursor = FRAME_X_OUTPUT (f)->top_edge_cursor;
+	  cursor = FRAME_OUTPUT_DATA (f)->top_edge_cursor;
 	  break;
 	case INTERNAL_BORDER_TOP_RIGHT_CORNER:
-	  cursor = FRAME_X_OUTPUT (f)->top_right_corner_cursor;
+	  cursor = FRAME_OUTPUT_DATA (f)->top_right_corner_cursor;
 	  break;
 	case INTERNAL_BORDER_RIGHT_EDGE:
-	  cursor = FRAME_X_OUTPUT (f)->right_edge_cursor;
+	  cursor = FRAME_OUTPUT_DATA (f)->right_edge_cursor;
 	  break;
 	case INTERNAL_BORDER_BOTTOM_RIGHT_CORNER:
-	  cursor = FRAME_X_OUTPUT (f)->bottom_right_corner_cursor;
+	  cursor = FRAME_OUTPUT_DATA (f)->bottom_right_corner_cursor;
 	  break;
 	case INTERNAL_BORDER_BOTTOM_EDGE:
-	  cursor = FRAME_X_OUTPUT (f)->bottom_edge_cursor;
+	  cursor = FRAME_OUTPUT_DATA (f)->bottom_edge_cursor;
 	  break;
 	case INTERNAL_BORDER_BOTTOM_LEFT_CORNER:
-	  cursor = FRAME_X_OUTPUT (f)->bottom_left_corner_cursor;
+	  cursor = FRAME_OUTPUT_DATA (f)->bottom_left_corner_cursor;
 	  break;
 	default:
 	  /* This should not happen.  */
-	  if (cursor != FRAME_X_OUTPUT (f)->nontext_cursor)
-	    cursor = FRAME_X_OUTPUT (f)->nontext_cursor;
+	  if (cursor != FRAME_OUTPUT_DATA (f)->nontext_cursor)
+	    cursor = FRAME_OUTPUT_DATA (f)->nontext_cursor;
 	}
 
-      if (cursor != FRAME_X_OUTPUT (f)->nontext_cursor)
+      if (cursor != FRAME_OUTPUT_DATA (f)->nontext_cursor)
 	{
 	  /* Do we really want a help echo here?  */
 	  help_echo_string = build_string ("drag-mouse-1: resize frame");
@@ -31436,7 +31436,7 @@ note_mouse_highlight (struct frame *f, int x, int y)
 #ifdef HAVE_WINDOW_SYSTEM
       if (part == ON_LEFT_MARGIN || part == ON_RIGHT_MARGIN)
 	{
-	  cursor = FRAME_X_OUTPUT (f)->nontext_cursor;
+	  cursor = FRAME_OUTPUT_DATA (f)->nontext_cursor;
 	  /* Show non-text cursor (Bug#16647).  */
 	  goto set_cursor;
 	}
@@ -31448,13 +31448,13 @@ note_mouse_highlight (struct frame *f, int x, int y)
 #ifdef HAVE_WINDOW_SYSTEM
   if (part == ON_VERTICAL_BORDER)
     {
-      cursor = FRAME_X_OUTPUT (f)->horizontal_drag_cursor;
+      cursor = FRAME_OUTPUT_DATA (f)->horizontal_drag_cursor;
       help_echo_string = build_string ("drag-mouse-1: resize");
       goto set_cursor;
     }
   else if (part == ON_RIGHT_DIVIDER)
     {
-      cursor = FRAME_X_OUTPUT (f)->horizontal_drag_cursor;
+      cursor = FRAME_OUTPUT_DATA (f)->horizontal_drag_cursor;
       help_echo_string = build_string ("drag-mouse-1: resize");
       goto set_cursor;
     }
@@ -31463,18 +31463,18 @@ note_mouse_highlight (struct frame *f, int x, int y)
 	|| minibuf_level
 	|| NILP (Vresize_mini_windows))
       {
-	cursor = FRAME_X_OUTPUT (f)->vertical_drag_cursor;
+	cursor = FRAME_OUTPUT_DATA (f)->vertical_drag_cursor;
 	help_echo_string = build_string ("drag-mouse-1: resize");
 	goto set_cursor;
       }
     else
-      cursor = FRAME_X_OUTPUT (f)->nontext_cursor;
+      cursor = FRAME_OUTPUT_DATA (f)->nontext_cursor;
   else if (part == ON_LEFT_FRINGE || part == ON_RIGHT_FRINGE
 	   || part == ON_VERTICAL_SCROLL_BAR
 	   || part == ON_HORIZONTAL_SCROLL_BAR)
-    cursor = FRAME_X_OUTPUT (f)->nontext_cursor;
+    cursor = FRAME_OUTPUT_DATA (f)->nontext_cursor;
   else
-    cursor = FRAME_X_OUTPUT (f)->text_cursor;
+    cursor = FRAME_OUTPUT_DATA (f)->text_cursor;
 #endif
 
   /* Are we in a window whose display is up to date?
@@ -31565,7 +31565,7 @@ note_mouse_highlight (struct frame *f, int x, int y)
 	    {
 #ifdef HAVE_WINDOW_SYSTEM
 	      if (area != TEXT_AREA)
-		cursor = FRAME_X_OUTPUT (f)->nontext_cursor;
+		cursor = FRAME_OUTPUT_DATA (f)->nontext_cursor;
 	      else
 		pointer = Vvoid_text_area_pointer;
 #endif

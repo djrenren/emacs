@@ -21,7 +21,6 @@ along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #include <config.h>
 #include "lisp.h"
-#include "w32term.h"	/* for XrmDatabase, xrdb */
 #include "blockinput.h"
 
 #include <stdio.h>
@@ -73,8 +72,8 @@ w32_get_rdb_resource (const char *rdb, const char *resource)
   return NULL;
 }
 
-static char *
-w32_get_string_resource (const char *name, const char *class, DWORD dwexptype)
+static const char *
+w32_get_string_resource_1 (const char *name, const char *class, DWORD dwexptype)
 {
   LPBYTE lpvalue = NULL;
   HKEY hrootkey = NULL;
@@ -134,15 +133,17 @@ w32_get_string_resource (const char *name, const char *class, DWORD dwexptype)
       /* Check if there are Windows specific defaults defined.  */
       return w32_get_rdb_resource (SYSTEM_DEFAULT_RESOURCES, name);
     }
-  return (char *)lpvalue;
+  return (const char *)lpvalue;
 }
 
 /* Retrieve the string resource specified by NAME with CLASS from
    database RDB. */
 
-char *
-x_get_string_resource (XrmDatabase rdb, const char *name, const char *class)
+const char *
+w32_get_string_resource (void *v_rdb, const char *name, const char *class)
 {
+  const char *rdb = *((const char *)v_rdb);
+
   if (rdb)
     {
       char *resource;
@@ -157,5 +158,5 @@ x_get_string_resource (XrmDatabase rdb, const char *name, const char *class)
     /* --quick was passed, so this is a no-op.  */
     return NULL;
 
-  return w32_get_string_resource (name, class, REG_SZ);
+  return w32_get_string_resource_1 (name, class, REG_SZ);
 }

@@ -129,8 +129,8 @@ static unsigned long *colors_in_color_table (int *n);
    Bitmap indices are guaranteed to be > 0, so a negative number can
    be used to indicate no bitmap.
 
-   If you use gui_create_bitmap_from_data, then you must keep track of
-   the bitmaps yourself.  That is, creating a bitmap from the same
+   If you use image_create_bitmap_from_data, then you must keep track
+   of the bitmaps yourself.  That is, creating a bitmap from the same
    data more than once will not be caught.  */
 
 #ifdef HAVE_NS
@@ -169,7 +169,7 @@ x_bitmap_width (struct frame *f, ptrdiff_t id)
 
 #if defined (HAVE_X_WINDOWS) || defined (HAVE_NTGUI)
 ptrdiff_t
-x_bitmap_pixmap (struct frame *f, ptrdiff_t id)
+image_bitmap_pixmap (struct frame *f, ptrdiff_t id)
 {
   /* HAVE_NTGUI needs the explicit cast here.  */
   return (ptrdiff_t) FRAME_DISPLAY_INFO (f)->bitmaps[id - 1].pixmap;
@@ -187,7 +187,7 @@ x_bitmap_mask (struct frame *f, ptrdiff_t id)
 /* Allocate a new bitmap record.  Returns index of new record.  */
 
 static ptrdiff_t
-gui_allocate_bitmap_record (struct frame *f)
+image_allocate_bitmap_record (struct frame *f)
 {
   Display_Info *dpyinfo = FRAME_DISPLAY_INFO (f);
   ptrdiff_t i;
@@ -208,7 +208,7 @@ gui_allocate_bitmap_record (struct frame *f)
 /* Add one reference to the reference count of the bitmap with id ID.  */
 
 void
-gui_reference_bitmap (struct frame *f, ptrdiff_t id)
+image_reference_bitmap (struct frame *f, ptrdiff_t id)
 {
   ++FRAME_DISPLAY_INFO (f)->bitmaps[id - 1].refcount;
 }
@@ -216,8 +216,8 @@ gui_reference_bitmap (struct frame *f, ptrdiff_t id)
 /* Create a bitmap for frame F from a HEIGHT x WIDTH array of bits at BITS.  */
 
 ptrdiff_t
-gui_create_bitmap_from_data (struct frame *f, char *bits,
-                             unsigned int width, unsigned int height)
+image_create_bitmap_from_data (struct frame *f, char *bits,
+                               unsigned int width, unsigned int height)
 {
   Display_Info *dpyinfo = FRAME_DISPLAY_INFO (f);
   ptrdiff_t id;
@@ -247,7 +247,7 @@ gui_create_bitmap_from_data (struct frame *f, char *bits,
       return -1;
 #endif
 
-  id = gui_allocate_bitmap_record (f);
+  id = image_allocate_bitmap_record (f);
 
 #ifdef HAVE_NS
   dpyinfo->bitmaps[id - 1].img = bitmap;
@@ -277,7 +277,7 @@ gui_create_bitmap_from_data (struct frame *f, char *bits,
 /* Create bitmap from file FILE for frame F.  */
 
 ptrdiff_t
-gui_create_bitmap_from_file (struct frame *f, Lisp_Object file)
+image_create_bitmap_from_file (struct frame *f, Lisp_Object file)
 {
 #ifdef HAVE_NTGUI
   return -1;  /* W32_TODO : bitmap support */
@@ -293,7 +293,7 @@ gui_create_bitmap_from_file (struct frame *f, Lisp_Object file)
       return -1;
 
 
-  id = gui_allocate_bitmap_record (f);
+  id = image_allocate_bitmap_record (f);
   dpyinfo->bitmaps[id - 1].img = bitmap;
   dpyinfo->bitmaps[id - 1].refcount = 1;
   dpyinfo->bitmaps[id - 1].file = xlispstrdup (file);
@@ -336,7 +336,7 @@ gui_create_bitmap_from_file (struct frame *f, Lisp_Object file)
   if (result != BitmapSuccess)
     return -1;
 
-  id = gui_allocate_bitmap_record (f);
+  id = image_allocate_bitmap_record (f);
   dpyinfo->bitmaps[id - 1].pixmap = bitmap;
   dpyinfo->bitmaps[id - 1].have_mask = false;
   dpyinfo->bitmaps[id - 1].refcount = 1;
@@ -378,7 +378,7 @@ free_bitmap_record (Display_Info *dpyinfo, Bitmap_Record *bm)
 /* Remove reference to bitmap with id number ID.  */
 
 void
-x_destroy_bitmap (struct frame *f, ptrdiff_t id)
+image_destroy_bitmap (struct frame *f, ptrdiff_t id)
 {
   Display_Info *dpyinfo = FRAME_DISPLAY_INFO (f);
 
@@ -398,7 +398,7 @@ x_destroy_bitmap (struct frame *f, ptrdiff_t id)
 /* Free all the bitmaps for the display specified by DPYINFO.  */
 
 void
-gui_destroy_all_bitmaps (Display_Info *dpyinfo)
+image_destroy_all_bitmaps (Display_Info *dpyinfo)
 {
   ptrdiff_t i;
   Bitmap_Record *bm = dpyinfo->bitmaps;
@@ -465,7 +465,7 @@ x_create_bitmap_mask (struct frame *f, ptrdiff_t id)
   if (!(id > 0))
     return;
 
-  pixmap = x_bitmap_pixmap (f, id);
+  pixmap = image_bitmap_pixmap (f, id);
   width = x_bitmap_width (f, id);
   height = x_bitmap_height (f, id);
 
@@ -3775,7 +3775,7 @@ x_create_bitmap_from_xpm_data (struct frame *f, const char **bits)
       return -1;
     }
 
-  id = gui_allocate_bitmap_record (f);
+  id = image_allocate_bitmap_record (f);
   dpyinfo->bitmaps[id - 1].pixmap = bitmap;
   dpyinfo->bitmaps[id - 1].have_mask = true;
   dpyinfo->bitmaps[id - 1].mask = mask;
@@ -4911,7 +4911,7 @@ static int laplace_matrix[9] = {
    allocated with xmalloc; it must be freed by the caller.  */
 
 static XColor *
-x_to_xcolors (struct frame *f, struct image *img, bool rgb_p)
+image_to_xcolors (struct frame *f, struct image *img, bool rgb_p)
 {
   int x, y;
   XColor *colors, *p;
@@ -5019,7 +5019,7 @@ XPutPixel (XImagePtr ximg, int x, int y, COLORREF color)
    COLORS will be freed; an existing IMG->pixmap will be freed, too.  */
 
 static void
-x_from_xcolors (struct frame *f, struct image *img, XColor *colors)
+image_from_xcolors (struct frame *f, struct image *img, XColor *colors)
 {
   int x, y;
   XImagePtr oimg = NULL;
@@ -5061,7 +5061,7 @@ static void
 image_detect_edges (struct frame *f, struct image *img,
                     int *matrix, int color_adjust)
 {
-  XColor *colors = x_to_xcolors (f, img, 1);
+  XColor *colors = image_to_xcolors (f, img, 1);
   XColor *new, *p;
   int x, y, i, sum;
   ptrdiff_t nbytes;
@@ -5119,7 +5119,7 @@ image_detect_edges (struct frame *f, struct image *img,
     }
 
   xfree (colors);
-  x_from_xcolors (f, img, new);
+  image_from_xcolors (f, img, new);
 
 #undef COLOR
 }
@@ -5202,7 +5202,7 @@ image_disable_image (struct frame *f, struct image *img)
       /* Color (or grayscale).  Convert to gray, and equalize.  Just
 	 drawing such images with a stipple can look very odd, so
 	 we're using this method instead.  */
-      XColor *colors = x_to_xcolors (f, img, 1);
+      XColor *colors = image_to_xcolors (f, img, 1);
       XColor *p, *end;
       const int h = 15000;
       const int l = 30000;
@@ -5216,7 +5216,7 @@ image_disable_image (struct frame *f, struct image *img)
 	  p->red = p->green = p->blue = i2;
 	}
 
-      x_from_xcolors (f, img, colors);
+      image_from_xcolors (f, img, colors);
     }
 
   /* Draw a cross over the disabled image, if we must or if we

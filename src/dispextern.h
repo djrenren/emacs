@@ -1680,7 +1680,7 @@ struct face
 
   /* True means that colors of this face may not be freed because they
      have been copied bitwise from a base face (see
-     realize_x_face).  */
+     realize_gui_face).  */
   bool_bf colors_copied_bitwise_p : 1;
 
   /* If non-zero, use overstrike (to simulate bold-face).  */
@@ -3352,18 +3352,19 @@ extern bool buffer_flipping_blocked_p (void);
 
 #ifdef HAVE_WINDOW_SYSTEM
 
-extern ptrdiff_t x_bitmap_pixmap (struct frame *, ptrdiff_t);
-extern void gui_reference_bitmap (struct frame *, ptrdiff_t);
-extern ptrdiff_t gui_create_bitmap_from_data (struct frame *, char *,
-					    unsigned int, unsigned int);
-extern ptrdiff_t gui_create_bitmap_from_file (struct frame *, Lisp_Object);
+extern ptrdiff_t image_bitmap_pixmap (struct frame *, ptrdiff_t);
+extern void image_reference_bitmap (struct frame *, ptrdiff_t);
+extern ptrdiff_t image_create_bitmap_from_data (struct frame *, char *,
+                                                unsigned int, unsigned int);
+extern ptrdiff_t image_create_bitmap_from_file (struct frame *, Lisp_Object);
 #if defined HAVE_XPM && defined HAVE_X_WINDOWS && !defined USE_GTK
 extern ptrdiff_t x_create_bitmap_from_xpm_data (struct frame *, const char **);
 #endif
-#ifndef x_destroy_bitmap
-extern void x_destroy_bitmap (struct frame *, ptrdiff_t);
+#ifndef image_destroy_bitmap
+extern void image_destroy_bitmap (struct frame *, ptrdiff_t);
 #endif
-extern void gui_destroy_all_bitmaps (Display_Info *);
+extern void image_destroy_all_bitmaps (Display_Info *);
+#ifdef HAVE_X_WINDOWS
 extern void x_create_bitmap_mask (struct frame *, ptrdiff_t);
 #endif
 extern Lisp_Object image_find_image_file (Lisp_Object);
@@ -3587,19 +3588,17 @@ enum resource_types
 };
 
 extern Display_Info *check_x_display_info (Lisp_Object);
-extern Lisp_Object x_get_arg (Display_Info *, Lisp_Object,
-                              Lisp_Object, const char *, const char *class,
-                              enum resource_types);
-extern Lisp_Object x_frame_get_and_record_arg (struct frame *, Lisp_Object,
-                                               Lisp_Object,
-					       const char *, const char *,
-                                               enum resource_types);
+extern Lisp_Object gui_display_get_arg (Display_Info *, Lisp_Object,
+                                        Lisp_Object, const char *, const char *,
+                                        enum resource_types);
+extern Lisp_Object gui_frame_get_and_record_arg (struct frame *, Lisp_Object,
+                                                 Lisp_Object,
+                                                 const char *, const char *,
+                                                 enum resource_types);
 extern Lisp_Object gui_default_parameter (struct frame *, Lisp_Object,
                                           Lisp_Object, Lisp_Object,
                                           const char *, const char *,
                                           enum resource_types);
-extern char *x_get_string_resource (XrmDatabase, const char *,
-				    const char *);
 
 #ifndef HAVE_NS /* These both used on W32 and X only.  */
 extern bool gui_mouse_grabbed (Display_Info *);

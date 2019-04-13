@@ -1466,7 +1466,7 @@ x_set_icon_type (struct frame *f, Lisp_Object arg, Lisp_Object oldval)
 				   ? f->icon_name
 				   : f->name)));
   else
-    result = x_bitmap_icon (f, arg);
+    result = FRAME_TERMINAL (f)->set_bitmap_icon_hook (f, arg);
 
   if (result)
     {
@@ -2056,7 +2056,7 @@ x_set_title (struct frame *f, Lisp_Object name, Lisp_Object old_name)
   x_set_name_internal (f, name);
 }
 
-static void
+void
 x_set_scroll_bar_default_width (struct frame *f)
 {
   int unit = FRAME_COLUMN_WIDTH (f);
@@ -2077,7 +2077,7 @@ x_set_scroll_bar_default_width (struct frame *f)
 #endif
 }
 
-static void
+void
 x_set_scroll_bar_default_height (struct frame *f)
 {
   int height = FRAME_LINE_HEIGHT (f);
@@ -2115,7 +2115,8 @@ x_default_scroll_bar_color_parameter (struct frame *f,
   struct x_display_info *dpyinfo = FRAME_DISPLAY_INFO (f);
   Lisp_Object tem;
 
-  tem = x_get_arg (dpyinfo, alist, prop, xprop, xclass, RES_TYPE_STRING);
+  tem = gui_display_get_arg (dpyinfo, alist, prop, xprop, xclass,
+                             RES_TYPE_STRING);
   if (EQ (tem, Qunbound))
     {
 #ifdef USE_TOOLKIT_SCROLL_BARS
@@ -2125,7 +2126,7 @@ x_default_scroll_bar_color_parameter (struct frame *f,
       AUTO_STRING (foreground, "foreground");
       AUTO_STRING (background, "foreground");
       AUTO_STRING (verticalScrollBar, "verticalScrollBar");
-      tem = (display_x_get_resource
+      tem = (gui_display_get_resource
 	     (dpyinfo, foreground_p ? foreground : background,
 	      empty_unibyte_string,
 	      verticalScrollBar,
@@ -3257,8 +3258,8 @@ x_icon_verify (struct frame *f, Lisp_Object parms)
 
   /* Set the position of the icon.  Note that twm groups all
      icons in an icon window.  */
-  icon_x = x_frame_get_and_record_arg (f, parms, Qicon_left, 0, 0, RES_TYPE_NUMBER);
-  icon_y = x_frame_get_and_record_arg (f, parms, Qicon_top, 0, 0, RES_TYPE_NUMBER);
+  icon_x = gui_frame_get_and_record_arg (f, parms, Qicon_left, 0, 0, RES_TYPE_NUMBER);
+  icon_y = gui_frame_get_and_record_arg (f, parms, Qicon_top, 0, 0, RES_TYPE_NUMBER);
   if (!EQ (icon_x, Qunbound) && !EQ (icon_y, Qunbound))
     {
       CHECK_FIXNUM (icon_x);
@@ -3278,9 +3279,9 @@ x_icon (struct frame *f, Lisp_Object parms)
   /* Set the position of the icon.  Note that twm groups all
      icons in an icon window.  */
   Lisp_Object icon_x
-    = x_frame_get_and_record_arg (f, parms, Qicon_left, 0, 0, RES_TYPE_NUMBER);
+    = gui_frame_get_and_record_arg (f, parms, Qicon_left, 0, 0, RES_TYPE_NUMBER);
   Lisp_Object icon_y
-    = x_frame_get_and_record_arg (f, parms, Qicon_top, 0, 0, RES_TYPE_NUMBER);
+    = gui_frame_get_and_record_arg (f, parms, Qicon_top, 0, 0, RES_TYPE_NUMBER);
   if (!EQ (icon_x, Qunbound) && !EQ (icon_y, Qunbound))
     {
       CHECK_TYPE_RANGED_INTEGER (int, icon_x);
@@ -3294,12 +3295,13 @@ x_icon (struct frame *f, Lisp_Object parms)
   if (! EQ (icon_x, Qunbound))
     x_wm_set_icon_position (f, XFIXNUM (icon_x), XFIXNUM (icon_y));
 
-#if false /* x_get_arg removes the visibility parameter as a side effect,
-	     but x_create_frame still needs it.  */
+#if false /* gui_display_get_arg removes the visibility parameter as a
+	     side effect, but x_create_frame still needs it.  */
   /* Start up iconic or window? */
   struct x_display_info *dpyinfo = FRAME_DISPLAY_INFO (f);
   x_wm_set_window_state
-    (f, (EQ (x_get_arg (dpyinfo, parms, Qvisibility, 0, 0, RES_TYPE_SYMBOL),
+    (f, (EQ (gui_display_get_arg (dpyinfo, parms, Qvisibility, 0, 0,
+                                  RES_TYPE_SYMBOL),
 	     Qicon)
 	 ? IconicState
 	 : NormalState));
@@ -3463,8 +3465,8 @@ static void
 x_default_font_parameter (struct frame *f, Lisp_Object parms)
 {
   struct x_display_info *dpyinfo = FRAME_DISPLAY_INFO (f);
-  Lisp_Object font_param = x_get_arg (dpyinfo, parms, Qfont, NULL, NULL,
-                                      RES_TYPE_STRING);
+  Lisp_Object font_param = gui_display_get_arg (dpyinfo, parms, Qfont, NULL, NULL,
+                                                RES_TYPE_STRING);
   Lisp_Object font = Qnil;
   if (EQ (font_param, Qunbound))
     font_param = Qnil;
@@ -3481,7 +3483,8 @@ x_default_font_parameter (struct frame *f, Lisp_Object parms)
 
   if (NILP (font))
       font = !NILP (font_param) ? font_param
-      : x_get_arg (dpyinfo, parms, Qfont, "font", "Font", RES_TYPE_STRING);
+      : gui_display_get_arg (dpyinfo, parms, Qfont, "font", "Font",
+                             RES_TYPE_STRING);
 
   if (! FONTP (font) && ! STRINGP (font))
     {
@@ -3592,9 +3595,11 @@ This function is an internal primitive--use `make-frame' instead.  */)
      until we know if this frame has a specified name.  */
   Vx_resource_name = Vinvocation_name;
 
-  display = x_get_arg (dpyinfo, parms, Qterminal, 0, 0, RES_TYPE_NUMBER);
+  display = gui_display_get_arg (dpyinfo, parms, Qterminal, 0, 0,
+                                 RES_TYPE_NUMBER);
   if (EQ (display, Qunbound))
-    display = x_get_arg (dpyinfo, parms, Qdisplay, 0, 0, RES_TYPE_STRING);
+    display = gui_display_get_arg (dpyinfo, parms, Qdisplay, 0, 0,
+                                   RES_TYPE_STRING);
   if (EQ (display, Qunbound))
     display = Qnil;
   dpyinfo = check_x_display_info (display);
@@ -3603,7 +3608,8 @@ This function is an internal primitive--use `make-frame' instead.  */)
   if (!dpyinfo->terminal->name)
     error ("Terminal is not live, can't create new frames on it");
 
-  name = x_get_arg (dpyinfo, parms, Qname, "name", "Name", RES_TYPE_STRING);
+  name = gui_display_get_arg (dpyinfo, parms, Qname, "name", "Name",
+                              RES_TYPE_STRING);
   if (!STRINGP (name)
       && ! EQ (name, Qunbound)
       && ! NILP (name))
@@ -3613,15 +3619,17 @@ This function is an internal primitive--use `make-frame' instead.  */)
     Vx_resource_name = name;
 
   /* See if parent window is specified.  */
-  parent = x_get_arg (dpyinfo, parms, Qparent_id, NULL, NULL, RES_TYPE_NUMBER);
+  parent = gui_display_get_arg (dpyinfo, parms, Qparent_id, NULL, NULL,
+                                RES_TYPE_NUMBER);
   if (EQ (parent, Qunbound))
     parent = Qnil;
   if (! NILP (parent))
     CHECK_FIXNUM (parent);
 
   frame = Qnil;
-  tem = x_get_arg (dpyinfo, parms, Qminibuffer, "minibuffer", "Minibuffer",
-		   RES_TYPE_SYMBOL);
+  tem = gui_display_get_arg (dpyinfo,
+                             parms, Qminibuffer, "minibuffer", "Minibuffer",
+                             RES_TYPE_SYMBOL);
   if (EQ (tem, Qnone) || NILP (tem))
     f = make_frame_without_minibuffer (Qnil, kb, display);
   else if (EQ (tem, Qonly))
@@ -3634,8 +3642,12 @@ This function is an internal primitive--use `make-frame' instead.  */)
   else
     f = make_frame (true);
 
-  parent_frame = x_get_arg (dpyinfo, parms, Qparent_frame, NULL, NULL,
-			    RES_TYPE_SYMBOL);
+  parent_frame = gui_display_get_arg (dpyinfo,
+                                      parms,
+                                      Qparent_frame,
+                                      NULL,
+                                      NULL,
+                                      RES_TYPE_SYMBOL);
   /* Accept parent-frame iff parent-id was not specified.  */
   if (!NILP (parent)
       || EQ (parent_frame, Qunbound)
@@ -3648,16 +3660,24 @@ This function is an internal primitive--use `make-frame' instead.  */)
   fset_parent_frame (f, parent_frame);
   store_frame_param (f, Qparent_frame, parent_frame);
 
-  if (!NILP (tem = (x_get_arg (dpyinfo, parms, Qundecorated, NULL, NULL,
-			       RES_TYPE_BOOLEAN)))
+  if (!NILP (tem = (gui_display_get_arg (dpyinfo,
+                                         parms,
+                                         Qundecorated,
+                                         NULL,
+                                         NULL,
+                                         RES_TYPE_BOOLEAN)))
       && !(EQ (tem, Qunbound)))
     undecorated = true;
 
   FRAME_UNDECORATED (f) = undecorated;
   store_frame_param (f, Qundecorated, undecorated ? Qt : Qnil);
 
-  if (!NILP (tem = (x_get_arg (dpyinfo, parms, Qoverride_redirect, NULL, NULL,
-			       RES_TYPE_BOOLEAN)))
+  if (!NILP (tem = (gui_display_get_arg (dpyinfo,
+                                         parms,
+                                         Qoverride_redirect,
+                                         NULL,
+                                         NULL,
+                                         RES_TYPE_BOOLEAN)))
       && !(EQ (tem, Qunbound)))
     override_redirect = true;
 
@@ -3681,9 +3701,12 @@ This function is an internal primitive--use `make-frame' instead.  */)
   f->output_data.x->white_relief.pixel = -1;
   f->output_data.x->black_relief.pixel = -1;
 
-  fset_icon_name (f,
-		  x_get_arg (dpyinfo, parms, Qicon_name, "iconName", "Title",
-			     RES_TYPE_STRING));
+  fset_icon_name (f, gui_display_get_arg (dpyinfo,
+                                          parms,
+                                          Qicon_name,
+                                          "iconName",
+                                          "Title",
+                                          RES_TYPE_STRING));
   if (! STRINGP (f->icon_name))
     fset_icon_name (f, Qnil);
 
@@ -3792,8 +3815,9 @@ This function is an internal primitive--use `make-frame' instead.  */)
     {
       Lisp_Object value;
 
-      value = x_get_arg (dpyinfo, parms, Qinternal_border_width,
-			 "internalBorder", "internalBorder", RES_TYPE_NUMBER);
+      value = gui_display_get_arg (dpyinfo, parms, Qinternal_border_width,
+                                   "internalBorder", "internalBorder",
+                                   RES_TYPE_NUMBER);
       if (! EQ (value, Qunbound))
 	parms = Fcons (Fcons (Qinternal_border_width, value),
 		       parms);
@@ -3865,15 +3889,17 @@ This function is an internal primitive--use `make-frame' instead.  */)
 
      Also process `min-width' and `min-height' parameters right here
      because `frame-windows-min-size' needs them.  */
-  tem = x_get_arg (dpyinfo, parms, Qmin_width, NULL, NULL, RES_TYPE_NUMBER);
+  tem = gui_display_get_arg (dpyinfo, parms, Qmin_width, NULL, NULL,
+                             RES_TYPE_NUMBER);
   if (FIXNUMP (tem))
     store_frame_param (f, Qmin_width, tem);
-  tem = x_get_arg (dpyinfo, parms, Qmin_height, NULL, NULL, RES_TYPE_NUMBER);
+  tem = gui_display_get_arg (dpyinfo, parms, Qmin_height, NULL, NULL,
+                             RES_TYPE_NUMBER);
   if (FIXNUMP (tem))
     store_frame_param (f, Qmin_height, tem);
   adjust_frame_size (f, FRAME_COLS (f) * FRAME_COLUMN_WIDTH (f),
 		     FRAME_LINES (f) * FRAME_LINE_HEIGHT (f), 5, true,
-		     Qx_create_frame_1);
+		     Qgui_create_frame_1);
 
   /* Set the menu-bar-lines and tool-bar-lines parameters.  We don't
      look up the X resources controlling the menu-bar and tool-bar
@@ -3906,7 +3932,8 @@ This function is an internal primitive--use `make-frame' instead.  */)
   window_prompting = gui_figure_window_size (f, parms, true,
                                              &x_width, &x_height);
 
-  tem = x_get_arg (dpyinfo, parms, Qunsplittable, 0, 0, RES_TYPE_BOOLEAN);
+  tem = gui_display_get_arg (dpyinfo, parms, Qunsplittable, 0, 0,
+                             RES_TYPE_BOOLEAN);
   f->no_split = minibuffer_only || EQ (tem, Qt);
 
   x_icon_verify (f, parms);
@@ -3980,7 +4007,7 @@ This function is an internal primitive--use `make-frame' instead.  */)
 #endif /* USE_X_TOOLKIT || USE_GTK */
 
   /* Consider frame official, now.  */
-  f->can_x_set_window_size = true;
+  f->can_set_window_size = true;
 
   if (x_width > 0)
     SET_FRAME_WIDTH (f, x_width);
@@ -3995,7 +4022,7 @@ This function is an internal primitive--use `make-frame' instead.  */)
   unblock_input ();
 
   adjust_frame_size (f, FRAME_TEXT_WIDTH (f), FRAME_TEXT_HEIGHT (f),
-		     0, true, Qx_create_frame_2);
+		     0, true, Qgui_create_frame_2);
 
   /* Process fullscreen parameter here in the hope that normalizing a
      fullheight/fullwidth frame will produce the size set by the last
@@ -4009,7 +4036,8 @@ This function is an internal primitive--use `make-frame' instead.  */)
   if (!f->output_data.x->explicit_parent)
     {
       Lisp_Object visibility
-	= x_get_arg (dpyinfo, parms, Qvisibility, 0, 0, RES_TYPE_SYMBOL);
+	= gui_display_get_arg (dpyinfo, parms, Qvisibility, 0, 0,
+                               RES_TYPE_SYMBOL);
 
       if (EQ (visibility, Qicon))
 	x_iconify_frame (f);
@@ -4057,8 +4085,9 @@ This function is an internal primitive--use `make-frame' instead.  */)
           || !FRAME_LIVE_P (XFRAME (KVAR (kb, Vdefault_minibuffer_frame)))))
     kset_default_minibuffer_frame (kb, frame);
 
-  /* All remaining specified parameters, which have not been "used"
-     by x_get_arg and friends, now go in the misc. alist of the frame.  */
+  /* All remaining specified parameters, which have not been "used" by
+     gui_display_get_arg and friends, now go in the misc. alist of the
+     frame.  */
   for (tem = parms; CONSP (tem); tem = XCDR (tem))
     if (CONSP (XCAR (tem)) && !NILP (XCAR (XCAR (tem))))
       fset_param_alist (f, Fcons (XCAR (tem), f->param_alist));
@@ -5482,8 +5511,8 @@ select_visual (struct x_display_info *dpyinfo)
   /* See if a visual is specified.  */
   AUTO_STRING (visualClass, "visualClass");
   AUTO_STRING (VisualClass, "VisualClass");
-  Lisp_Object value = display_x_get_resource (dpyinfo, visualClass,
-					      VisualClass, Qnil, Qnil);
+  Lisp_Object value = gui_display_get_resource (dpyinfo, visualClass,
+                                                VisualClass, Qnil, Qnil);
 
   if (STRINGP (value))
     {
@@ -6091,7 +6120,8 @@ x_create_tip_frame (struct x_display_info *dpyinfo, Lisp_Object parms)
   parms = Fcopy_alist (parms);
 
   /* Get the name of the frame to use for resource lookup.  */
-  name = x_get_arg (dpyinfo, parms, Qname, "name", "Name", RES_TYPE_STRING);
+  name = gui_display_get_arg (dpyinfo, parms, Qname, "name", "Name",
+                              RES_TYPE_STRING);
   if (!STRINGP (name)
       && !EQ (name, Qunbound)
       && !NILP (name))
@@ -6209,8 +6239,9 @@ x_create_tip_frame (struct x_display_info *dpyinfo, Lisp_Object parms)
     {
       Lisp_Object value;
 
-      value = x_get_arg (dpyinfo, parms, Qinternal_border_width,
-			 "internalBorder", "internalBorder", RES_TYPE_NUMBER);
+      value = gui_display_get_arg (dpyinfo, parms, Qinternal_border_width,
+                                   "internalBorder", "internalBorder",
+                                   RES_TYPE_NUMBER);
       if (! EQ (value, Qunbound))
 	parms = Fcons (Fcons (Qinternal_border_width, value),
 		       parms);
@@ -6366,7 +6397,7 @@ x_create_tip_frame (struct x_display_info *dpyinfo, Lisp_Object parms)
      below.  And the frame needs to be on Vframe_list or making it
      visible won't work.  */
   Vframe_list = Fcons (frame, Vframe_list);
-  f->can_x_set_window_size = true;
+  f->can_set_window_size = true;
 
   /* Setting attributes of faces of the tooltip frame from resources
      and similar will set face_change, which leads to the clearing of

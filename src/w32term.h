@@ -120,7 +120,7 @@ struct w32_display_info
   Cursor horizontal_scroll_bar_cursor;
 
   /* Resource data base */
-  XrmDatabase xrdb;
+  const char *rdb;
 
   /* color palette information.  */
   int has_palette;
@@ -231,7 +231,7 @@ extern struct frame *w32_window_to_frame (struct w32_display_info *, HWND);
 
 extern void w32_real_positions (struct frame *f, int *xptr, int *yptr);
 
-extern void w32_change_tool_bar_height (struct frame *, int)
+extern void w32_change_tool_bar_height (struct frame *, int);
 extern void w32_implicitly_set_name (struct frame *, Lisp_Object, Lisp_Object);
 extern void w32_set_scroll_bar_default_width (struct frame *);
 extern void w32_set_scroll_bar_default_height (struct frame *);
@@ -249,8 +249,8 @@ extern int w32_display_pixel_width (struct w32_display_info *);
 extern void initialize_frame_menubar (struct frame *);
 extern void w32_dialog_in_progress (Lisp_Object in_progress);
 
-extern void w32_make_frame_visible (struct frame *f)
-extern void w32_make_frame_invisible (struct frame *f)
+extern void w32_make_frame_visible (struct frame *f);
+extern void w32_make_frame_invisible (struct frame *f);
 extern void w32_iconify_frame (struct frame *f);
 extern void w32_free_frame_resources (struct frame *);
 extern void w32_wm_set_size_hint (struct frame *, long, bool);
@@ -263,6 +263,10 @@ extern int w32_kbd_mods_to_emacs (DWORD mods, WORD key);
 extern void w32con_hide_cursor (void);
 extern void w32con_show_cursor (void);
 
+/* w32reg.c */
+extern const char *w32_get_string_resource (void *v_rdb,
+                                            const char *name,
+                                            const char *class);
 
 #define PIX_TYPE COLORREF
 
@@ -403,12 +407,12 @@ struct w32_output
 
 extern struct w32_output w32term_display;
 
-/* Return the X output data for frame F.  */
-#define FRAME_X_OUTPUT(f) ((f)->output_data.w32)
+/* Return the output data for frame F.  */
+#define FRAME_OUTPUT_DATA(f) ((f)->output_data.w32)
 
 /* Return the window associated with the frame F.  */
 #define FRAME_W32_WINDOW(f) ((f)->output_data.w32->window_desc)
-#define FRAME_X_WINDOW(f) FRAME_W32_WINDOW (f)
+#define FRAME_NATIVE_WINDOW(f) FRAME_W32_WINDOW (f)
 
 #define FRAME_FONT(f) ((f)->output_data.w32->font)
 #define FRAME_FONTSET(f) ((f)->output_data.w32->fontset)

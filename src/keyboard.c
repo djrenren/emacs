@@ -3892,10 +3892,12 @@ kbd_buffer_get_event (KBOARD **kbp,
 #ifdef HAVE_EXT_MENU_BAR
       case MENU_BAR_ACTIVATE_EVENT:
 	{
+          struct frame *f;
 	  kbd_fetch_ptr = next_kbd_event (event);
 	  input_pending = readable_events (0);
-	  if (FRAME_LIVE_P (XFRAME (event->ie.frame_or_window)))
-	    x_activate_menubar (XFRAME (event->ie.frame_or_window));
+          f = (XFRAME (event->ie.frame_or_window));
+	  if (FRAME_LIVE_P (f) && FRAME_TERMINAL (f)->activate_menubar_hook)
+	    FRAME_TERMINAL (f)->activate_menubar_hook (f);
 	}
         break;
 #endif

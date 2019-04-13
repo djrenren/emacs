@@ -1061,7 +1061,7 @@ font_for_char (struct face *face, int c, ptrdiff_t pos, Lisp_Object object)
 /* Make a realized fontset for ASCII face FACE on frame F from the
    base fontset BASE_FONTSET_ID.  If BASE_FONTSET_ID is -1, use the
    default fontset as the base.  Value is the id of the new fontset.
-   Called from realize_x_face.  */
+   Called from realize_gui_face.  */
 
 int
 make_fontset_for_ascii_face (struct frame *f, int base_fontset_id, struct face *face)
