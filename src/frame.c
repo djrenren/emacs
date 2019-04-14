@@ -4033,7 +4033,7 @@ gui_set_frame_parameters (struct frame *f, Lisp_Object alist)
 
 	  store_frame_param (f, prop, val);
 
-	  param_index = Fget (prop, Qframe_parameter_pos);
+	  param_index = Fget (prop, Qx_frame_parameter);
 	  if (FIXNATP (param_index)
 	      && XFIXNAT (param_index) < ARRAYELTS (frame_parms)
 	      && FRAME_RIF (f)->frame_parm_handlers[XFIXNUM (param_index)])
@@ -5806,7 +5806,7 @@ syms_of_frame (void)
   DEFSYM (Qfullboth, "fullboth");
   DEFSYM (Qmaximized, "maximized");
   DEFSYM (Qx_resource_name, "x-resource-name");
-  DEFSYM (Qframe_parameter_pos, "frame-parameter-pos");
+  DEFSYM (Qx_frame_parameter, "x-frame-parameter");
 
   DEFSYM (Qworkarea, "workarea");
   DEFSYM (Qmm_size, "mm-size");
@@ -5925,7 +5925,7 @@ syms_of_frame (void)
 	Lisp_Object v = (frame_parms[i].sym < 0
 			 ? intern_c_string (frame_parms[i].name)
 			 : builtin_lisp_symbol (frame_parms[i].sym));
-	Fput (v, Qframe_parameter_pos, make_fixnum (i));
+	Fput (v, Qx_frame_parameter, make_fixnum (i));
       }
   }
 
