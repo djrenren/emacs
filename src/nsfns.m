@@ -1240,7 +1240,7 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
     store_frame_param (f, Qmin_height, tem);
   adjust_frame_size (f, FRAME_COLS (f) * FRAME_COLUMN_WIDTH (f),
 		     FRAME_LINES (f) * FRAME_LINE_HEIGHT (f), 5, 1,
-		     Qgui_create_frame_1);
+		     Qx_create_frame_1);
 
   tem = gui_display_get_arg (dpyinfo, parms, Qundecorated, NULL, NULL,
                              RES_TYPE_BOOLEAN);
@@ -1371,7 +1371,7 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
     SET_FRAME_HEIGHT (f, x_height);
 
   adjust_frame_size (f, FRAME_TEXT_WIDTH (f), FRAME_TEXT_HEIGHT (f), 0, 1,
-		     Qgui_create_frame_2);
+		     Qx_create_frame_2);
 
   if (! f->output_data.ns->explicit_parent)
     {

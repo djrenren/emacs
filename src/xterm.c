@@ -11211,7 +11211,7 @@ x_set_window_size_1 (struct frame *f, bool change_gravity,
   if (EQ (fullscreen, Qfullwidth) && width == FRAME_TEXT_WIDTH (f))
     {
       frame_size_history_add
-	(f, Qgui_set_window_size_1, width, height,
+	(f, Qx_set_window_size_1, width, height,
 	 list2i (old_height, pixelheight + FRAME_MENUBAR_HEIGHT (f)));
 
       XResizeWindow (FRAME_X_DISPLAY (f), FRAME_OUTER_WINDOW (f),
@@ -11220,7 +11220,7 @@ x_set_window_size_1 (struct frame *f, bool change_gravity,
   else if (EQ (fullscreen, Qfullheight) && height == FRAME_TEXT_HEIGHT (f))
     {
       frame_size_history_add
-	(f, Qgui_set_window_size_2, width, height,
+	(f, Qx_set_window_size_2, width, height,
 	 list2i (old_width, pixelwidth));
 
       XResizeWindow (FRAME_X_DISPLAY (f), FRAME_OUTER_WINDOW (f),
@@ -11230,7 +11230,7 @@ x_set_window_size_1 (struct frame *f, bool change_gravity,
   else
     {
       frame_size_history_add
-	(f, Qgui_set_window_size_3, width, height,
+	(f, Qx_set_window_size_3, width, height,
 	 list3i (pixelwidth + FRAME_TOOLBAR_WIDTH (f),
 		 (pixelheight + FRAME_TOOLBAR_HEIGHT (f)
 		  + FRAME_MENUBAR_HEIGHT (f)),

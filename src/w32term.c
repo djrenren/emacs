@@ -6507,7 +6507,7 @@ w32_set_window_size (struct frame *f, bool change_gravity,
   if (pixelwidth > 0 || pixelheight > 0)
     {
       frame_size_history_add
-	(f, Qgui_set_window_size_1, width, height,
+	(f, Qx_set_window_size_1, width, height,
 	 list2 (Fcons (make_fixnum (pixelwidth),
 		       make_fixnum (pixelheight)),
 		Fcons (make_fixnum (rect.right - rect.left),

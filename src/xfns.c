@@ -3899,7 +3899,7 @@ This function is an internal primitive--use `make-frame' instead.  */)
     store_frame_param (f, Qmin_height, tem);
   adjust_frame_size (f, FRAME_COLS (f) * FRAME_COLUMN_WIDTH (f),
 		     FRAME_LINES (f) * FRAME_LINE_HEIGHT (f), 5, true,
-		     Qgui_create_frame_1);
+		     Qx_create_frame_1);
 
   /* Set the menu-bar-lines and tool-bar-lines parameters.  We don't
      look up the X resources controlling the menu-bar and tool-bar
@@ -4022,7 +4022,7 @@ This function is an internal primitive--use `make-frame' instead.  */)
   unblock_input ();
 
   adjust_frame_size (f, FRAME_TEXT_WIDTH (f), FRAME_TEXT_HEIGHT (f),
-		     0, true, Qgui_create_frame_2);
+		     0, true, Qx_create_frame_2);
 
   /* Process fullscreen parameter here in the hope that normalizing a
      fullheight/fullwidth frame will produce the size set by the last

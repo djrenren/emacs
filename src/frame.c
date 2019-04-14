@@ -4168,7 +4168,7 @@ gui_set_frame_parameters (struct frame *f, Lisp_Object alist)
       Lisp_Object old_value = get_frame_param (f, Qfullscreen);
 
       frame_size_history_add
-	(f, Qgui_set_fullscreen, 0, 0, list2 (old_value, fullscreen));
+	(f, Qx_set_fullscreen, 0, 0, list2 (old_value, fullscreen));
 
       store_frame_param (f, Qfullscreen, fullscreen);
       if (!EQ (fullscreen, old_value))
@@ -5833,15 +5833,15 @@ syms_of_frame (void)
   DEFSYM (QEmacsFrameResize, "EmacsFrameResize");
   DEFSYM (Qset_frame_size, "set-frame-size");
   DEFSYM (Qframe_inhibit_resize, "frame-inhibit-resize");
-  DEFSYM (Qgui_set_fullscreen, "gui-set-fullscreen");
+  DEFSYM (Qx_set_fullscreen, "x-set-fullscreen");
   DEFSYM (Qx_check_fullscreen, "x-check-fullscreen");
   DEFSYM (Qxg_frame_resized, "xg-frame-resized");
   DEFSYM (Qxg_frame_set_char_size_1, "xg-frame-set-char-size-1");
   DEFSYM (Qxg_frame_set_char_size_2, "xg-frame-set-char-size-2");
   DEFSYM (Qxg_frame_set_char_size_3, "xg-frame-set-char-size-3");
-  DEFSYM (Qgui_set_window_size_1, "gui-set-window-size-1");
-  DEFSYM (Qgui_set_window_size_2, "gui-set-window-size-2");
-  DEFSYM (Qgui_set_window_size_3, "gui-set-window-size-3");
+  DEFSYM (Qx_set_window_size_1, "x-set-window-size-1");
+  DEFSYM (Qx_set_window_size_2, "x-set-window-size-2");
+  DEFSYM (Qx_set_window_size_3, "x-set-window-size-3");
   DEFSYM (Qxg_change_toolbar_position, "xg-change-toolbar-position");
   DEFSYM (Qx_net_wm_state, "x-net-wm-state");
   DEFSYM (Qx_handle_net_wm_state, "x-handle-net-wm-state");
@@ -5852,8 +5852,8 @@ syms_of_frame (void)
   DEFSYM (Qchange_frame_size, "change-frame-size");
   DEFSYM (Qxg_frame_set_char_size, "xg-frame-set-char-size");
   DEFSYM (Qset_window_configuration, "set-window-configuration");
-  DEFSYM (Qgui_create_frame_1, "gui-create-frame-1");
-  DEFSYM (Qgui_create_frame_2, "gui-create-frame-2");
+  DEFSYM (Qx_create_frame_1, "x-create-frame-1");
+  DEFSYM (Qx_create_frame_2, "x-create-frame-2");
   DEFSYM (Qterminal_frame, "terminal-frame");
 
 #ifdef HAVE_NS

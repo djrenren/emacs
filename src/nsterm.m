@@ -1884,7 +1884,7 @@ ns_set_window_size (struct frame *f,
    wr.origin.y += orig_height - wr.size.height;
 
  frame_size_history_add
-   (f, Qgui_set_window_size_1, width, height,
+   (f, Qx_set_window_size_1, width, height,
     list5 (Fcons (make_fixnum (pixelwidth), make_fixnum (pixelheight)),
 	   Fcons (make_fixnum (wr.size.width), make_fixnum (wr.size.height)),
 	   make_fixnum (f->border_width),
