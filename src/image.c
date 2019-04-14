@@ -4926,11 +4926,7 @@ image_to_xcolors (struct frame *f, struct image *img, bool rgb_p)
 	p->pixel = GET_PIXEL (ximg, x, y);
       if (rgb_p)
         {
-# ifdef HAVE_NTGUI
-          w32_query_colors (f, row, img->width);
-# else
-          x_query_colors (f, row, img->width);
-# endif
+          FRAME_TERMINAL (f)->query_colors (f, row, img->width);
         }
 #else
 

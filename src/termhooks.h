@@ -504,6 +504,12 @@ struct terminal
 
   void (*query_frame_background_color) (struct frame *f, XColor *bgcolor);
 
+#if defined (HAVE_X_WINDOWS) || defined (HAVE_NTGUI)
+  /* On frame F, translate pixel colors to RGB values for the NCOLORS
+     colors in COLORS.  Use cached information, if available.  */
+
+  void (*query_colors) (struct frame *f, XColor *colors, int ncolors);
+#endif
   /* Return the current position of the mouse.
 
      Set *f to the frame the mouse is in, or zero if the mouse is in no

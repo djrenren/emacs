@@ -1593,7 +1593,7 @@ w32_alloc_lighter_color (struct frame *f, COLORREF *color,
 /* On frame F, translate pixel colors to RGB values for the NCOLORS
    colors in COLORS.  On W32, we no longer try to map colors to
    a palette.  */
-void
+static void
 w32_query_colors (struct frame *f, XColor *colors, int ncolors)
 {
   int i;
@@ -7169,6 +7169,7 @@ w32_create_terminal (struct w32_display_info *dpyinfo)
   terminal->frame_up_to_date_hook = w32_frame_up_to_date;
   terminal->defined_color_hook = w32_defined_color;
   terminal->query_frame_background_color = w32_query_frame_background_color;
+  terminal->query_colors = w32_query_colors;
   terminal->mouse_position_hook = w32_mouse_position;
   terminal->get_focus_frame = w32_get_focus_frame;
   terminal->focus_frame_hook = w32_focus_frame;

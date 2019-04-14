@@ -13306,6 +13306,7 @@ x_create_terminal (struct x_display_info *dpyinfo)
   terminal->buffer_flipping_unblocked_hook = XTbuffer_flipping_unblocked_hook;
   terminal->defined_color_hook = x_defined_color;
   terminal->query_frame_background_color = x_query_frame_background_color;
+  terminal->query_colors = x_query_colors;
   terminal->mouse_position_hook = XTmouse_position;
   terminal->get_focus_frame = x_get_focus_frame;
   terminal->focus_frame_hook = x_focus_frame;
