@@ -502,6 +502,8 @@ struct terminal
 
   /* Multi-frame and mouse support hooks.  */
 
+  void (*query_frame_background_color) (struct frame *f, XColor *bgcolor);
+
   /* Return the current position of the mouse.
 
      Set *f to the frame the mouse is in, or zero if the mouse is in no
