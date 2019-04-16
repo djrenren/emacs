@@ -502,6 +502,17 @@ struct terminal
 
   /* Multi-frame and mouse support hooks.  */
 
+  /* Graphical window systems are expected to define all of the
+     following hooks with the possible exception of:
+
+   * query_colors
+   * activate_menubar_hook
+   * change_tool_bar_height_hook
+   * set_bitmap_icon_hook
+   * buffer_flipping_unblocked_hook
+
+   */
+
   void (*query_frame_background_color) (struct frame *f, XColor *bgcolor);
 
 #if defined (HAVE_X_WINDOWS) || defined (HAVE_NTGUI)
@@ -610,10 +621,8 @@ struct terminal
   Lisp_Object (*popup_dialog_hook) (struct frame *f, Lisp_Object header,
 				    Lisp_Object contents);
 
-#ifndef HAVE_EXT_TOOL_BAR
   /* This hook is called to change the frame's (internal) tool-bar.  */
   void (*change_tool_bar_height_hook) (struct frame *f, int height);
-#endif
 
   /* Scroll bar hooks.  */
 
