@@ -1371,7 +1371,7 @@ do_switch_frame (Lisp_Object frame, int track, int for_deletion, Lisp_Object nor
 #else /* ! 0 */
   /* Instead, apply it only to the frame we're pointing to.  */
 #ifdef HAVE_WINDOW_SYSTEM
-  if (track && FRAME_WINDOW_P (f))
+  if (track && FRAME_WINDOW_P (f) && FRAME_TERMINAL (f)->get_focus_frame)
     {
       Lisp_Object focus, gfocus;
 
