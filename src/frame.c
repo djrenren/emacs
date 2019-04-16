@@ -4343,7 +4343,7 @@ gui_set_screen_gamma (struct frame *f, Lisp_Object new_value, Lisp_Object old_va
   bgcolor = Fassq (Qbackground_color, f->param_alist);
   if (CONSP (bgcolor) && (bgcolor = XCDR (bgcolor), STRINGP (bgcolor)))
     {
-      Lisp_Object parm_index = Fget (Qbackground_color, Qframe_parameter_pos);
+      Lisp_Object parm_index = Fget (Qbackground_color, Qx_frame_parameter);
       if (FIXNATP (parm_index)
 	  && XFIXNAT (parm_index) < ARRAYELTS (frame_parms)
 	  && FRAME_RIF (f)->frame_parm_handlers[XFIXNAT (parm_index)])
