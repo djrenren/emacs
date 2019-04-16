@@ -513,6 +513,8 @@ struct terminal
 
    */
 
+  /* This hook is called to store the frame's background color into
+     BGCOLOR.  */
   void (*query_frame_background_color) (struct frame *f, XColor *bgcolor);
 
 #if defined (HAVE_X_WINDOWS) || defined (HAVE_NTGUI)
