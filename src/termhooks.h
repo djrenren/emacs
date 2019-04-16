@@ -604,7 +604,8 @@ struct terminal
   /* This hook is called to set the GUI window icon of F using FILE.  */
   bool (*set_bitmap_icon_hook) (struct frame *f, Lisp_Object file);
 
-
+  /* This hook is called to set the name of the GUI window of F by
+     redisplay unless another name was explicitly requested.  */
   void (*implicit_set_name_hook) (struct frame *f, Lisp_Object arg,
                                   Lisp_Object oldval);
 
