@@ -1143,7 +1143,7 @@ ns_defined_color (struct frame *f,
                   XColor *color_def, bool alloc,
                   bool makeIndex);
 extern void
-ns_query_color (void *col, XColor *color_def, int setPixel);
+ns_query_color (void *col, XColor *color_def, bool setPixel);
 
 #ifdef __OBJC__
 extern int ns_lisp_to_color (Lisp_Object color, NSColor **col);
