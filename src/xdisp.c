@@ -11592,9 +11592,10 @@ clear_garbaged_frames (void)
 	      else
 		clear_current_matrices (f);
 
+#ifdef HAVE_WINDOW_SYSTEM
               if (FRAME_RIF (f)->clear_under_internal_border)
                 FRAME_RIF (f)->clear_under_internal_border (f);
-
+#endif
 	      fset_redisplay (f);
 	      f->garbaged = false;
 	      f->resized_p = false;
@@ -11663,9 +11664,10 @@ echo_area_display (bool update_frame_p)
 	    {
 	      n = redisplay_mode_lines (FRAME_ROOT_WINDOW (f), false);
 
+#ifdef HAVE_WINDOW_SYSTEM
               if (FRAME_RIF (f)->clear_under_internal_border)
                 FRAME_RIF (f)->clear_under_internal_border (f);
-
+#endif
 	    }
 
 	  if (window_height_changed_p
@@ -14488,9 +14490,10 @@ redisplay_internal (void)
 		      && garbaged_frame_retries++ < MAX_GARBAGED_FRAME_RETRIES)
                     goto retry;
 
+#ifdef HAVE_WINDOW_SYSTEM
                   if (FRAME_RIF (f)->clear_under_internal_border)
                     FRAME_RIF (f)->clear_under_internal_border (f);
-
+#endif
 		  /* Prevent various kinds of signals during display
 		     update.  stdio is not robust about handling
 		     signals, which can cause an apparent I/O error.  */
