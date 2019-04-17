@@ -6640,7 +6640,7 @@ DEFUN ("x-close-connection", Fx_close_connection,
     error ("Display still has frames on it");
 
   block_input ();
-  x_destroy_all_bitmaps (dpyinfo);
+  image_destroy_all_bitmaps (dpyinfo);
 
   w32_delete_display (dpyinfo);
   unblock_input ();

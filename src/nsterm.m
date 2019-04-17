@@ -5211,7 +5211,7 @@ ns_delete_terminal (struct terminal *terminal)
 
   block_input ();
 
-  gui_destroy_all_bitmaps (dpyinfo);
+  image_destroy_all_bitmaps (dpyinfo);
   ns_delete_display (dpyinfo);
   unblock_input ();
 }
