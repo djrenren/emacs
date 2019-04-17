@@ -1386,7 +1386,7 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
 	ns_iconify_frame (f);
       else if (! NILP (visibility))
 	{
-	  x_make_frame_visible (f);
+	  ns_make_frame_visible (f);
 	  [[FRAME_NS_VIEW (f) window] makeKeyWindow];
 	}
       else

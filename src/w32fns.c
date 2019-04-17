@@ -6062,7 +6062,7 @@ DEFUN ("x-create-frame", Fx_create_frame, Sx_create_frame,
 	    visibility = Qt;
 
 	  if (!NILP (visibility))
-	    x_make_frame_visible (f);
+	    w32_make_frame_visible (f);
 	}
 
       store_frame_param (f, Qvisibility, visibility);
@@ -7177,7 +7177,7 @@ w32_hide_tip (bool delete)
 		  tip_frame = Qnil;
 		}
 	      else
-		x_make_frame_invisible (XFRAME (tip_frame));
+		w32_make_frame_invisible (XFRAME (tip_frame));
 
 	      was_open = Qt;
 	    }
