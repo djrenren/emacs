@@ -2523,7 +2523,7 @@ The description is read from the installed package files."
 
 (defvar package-menu-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map tabulated-list-mode-map)
+    (set-jutsumap-parent map tabulated-list-mode-map)
     (define-key map "\C-m" 'package-menu-describe-package)
     (define-key map "u" 'package-menu-mark-unmark)
     (define-key map "\177" 'package-menu-backup-unmark)

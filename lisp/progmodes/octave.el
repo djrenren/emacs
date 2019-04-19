@@ -320,7 +320,7 @@ Non-nil means always go to the next Octave code line after sending."
            ;; The following rules do not correspond to valid code AFAIK,
            ;; but they lead to a grammar that degrades more gracefully
            ;; on incomplete/incorrect code.  It also helps us in
-           ;; computing octave--block-offset-keywords.
+           ;; computing octave--block-offset-jutsuwords.
            ("try" exp "end") ("unwind_protect" exp "end")
            )
       ;; (fundesc (atom "=" atom))
@@ -425,7 +425,7 @@ Non-nil means always go to the next Octave code line after sending."
        ((equal tok "end") (if (octave-smie--end-index-p) "end (index)" tok))
        (t tok))))))
 
-(defconst octave--block-offset-keywords
+(defconst octave--block-offset-jutsuwords
   (let* ((end-prec (nth 1 (assoc "end" octave-smie-grammar)))
          (end-matchers
           (delq nil
@@ -448,7 +448,7 @@ Non-nil means always go to the next Octave code line after sending."
     ;; aligns it with "switch".
     ('(:before . "case") (if (not (smie-rule-sibling-p)) octave-block-offset))
     ('(:after . ";")
-     (if (apply #'smie-rule-parent-p octave--block-offset-keywords)
+     (if (apply #'smie-rule-parent-p octave--block-offset-jutsuwords)
          (smie-rule-parent octave-block-offset)
        ;; For (invalid) code between switch and case.
        ;; (if (smie-rule-parent-p "switch") 4)
@@ -689,7 +689,7 @@ mode, include \"-q\" and \"--traditional\"."
 
 (defvar inferior-octave-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map comint-mode-map)
+    (set-jutsumap-parent map comint-mode-map)
     (define-key map "\M-." 'octave-find-definition)
     (define-key map "\t" 'completion-at-point)
     (define-key map "\C-hd" 'octave-help)

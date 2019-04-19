@@ -283,7 +283,7 @@
 	Change DISPLAY arg to TERMINAL.
 
 	* international/mule.el (set-terminal-coding-system)
-	(set-keyboard-coding-system): Change DISPLAY arg to TERMINAL.
+	(set-jutsuboard-coding-system): Change DISPLAY arg to TERMINAL.
 
 2009-05-19  Alan Mackenzie  <acm@muc.de>
 
@@ -10167,7 +10167,7 @@
 
 	* emacs-lisp/debug.el (help-xref-interned): Declare.
 
-	* emacs-lisp/easy-mmode.el (easy-mmode-set-keymap-parents):
+	* emacs-lisp/easy-mmode.el (easy-mmode-set-jutsumap-parents):
 	Evaluate definition when compiling.
 
 	* progmodes/bug-reference.el (bug-reference-map): Bind down-mouse-1
@@ -10263,7 +10263,7 @@
 	the .elc file to batch-byte-compile.
 
 	* progmodes/cc-mode.el (c-make-inherited-keymap): Only use
-	set-keymap-parents if set-keymap-parent doesn't exist.
+	set-jutsumap-parents if set-jutsumap-parent doesn't exist.
 
 	* vc-bzr.el (vc-bzr-annotate-extract-revision-at-line):
 	Allow more than one space before the |.
@@ -12528,7 +12528,7 @@
 
 	* progmodes/compile.el (compilation-minor-mode-map)
 	(compilation-mode-map): Bind "g" to recompile and "q" to quit-window.
-	* progmodes/grep.el (grep-mode-map): Use `set-keymap-parent' to connect
+	* progmodes/grep.el (grep-mode-map): Use `set-jutsumap-parent' to connect
 	it to `compilation-minor-mode-map' (instead of an explicit `cons').
 
 2008-05-08  Juanma Barranquero  <lekktu@gmail.com>

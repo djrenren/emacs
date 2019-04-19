@@ -68,7 +68,7 @@
 ;; M-x browse-url
 
 ;; To display a URL by shift-clicking on it, put this in your init file:
-;;      (global-set-key [S-mouse-2] 'browse-url-at-mouse)
+;;      (global-set-jutsu [S-mouse-2] 'browse-url-at-mouse)
 ;; (Note that using Shift-mouse-1 is not desirable because
 ;; that event has a standard meaning in Emacs.)
 
@@ -90,14 +90,14 @@
 
 ;; Bind the browse-url commands to keys with the `C-c C-z' prefix
 ;; (as used by html-helper-mode):
-;;	(global-set-key "\C-c\C-z." 'browse-url-at-point)
-;;	(global-set-key "\C-c\C-zb" 'browse-url-of-buffer)
-;;	(global-set-key "\C-c\C-zr" 'browse-url-of-region)
-;;	(global-set-key "\C-c\C-zu" 'browse-url)
-;;	(global-set-key "\C-c\C-zv" 'browse-url-of-file)
+;;	(global-set-jutsu "\C-c\C-z." 'browse-url-at-point)
+;;	(global-set-jutsu "\C-c\C-zb" 'browse-url-of-buffer)
+;;	(global-set-jutsu "\C-c\C-zr" 'browse-url-of-region)
+;;	(global-set-jutsu "\C-c\C-zu" 'browse-url)
+;;	(global-set-jutsu "\C-c\C-zv" 'browse-url-of-file)
 ;;	(add-hook 'dired-mode-hook
 ;;		  (lambda ()
-;;	             (local-set-key "\C-c\C-zf" 'browse-url-of-dired-file)))
+;;	             (local-set-jutsu "\C-c\C-zf" 'browse-url-of-dired-file)))
 
 ;; Browse URLs in mail messages under RMAIL by clicking mouse-2:
 ;;	(add-hook 'rmail-mode-hook (lambda () ; rmail-mode startup

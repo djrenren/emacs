@@ -3653,7 +3653,7 @@ The return value is the cons of the language id and the layout id.  */)
 }
 
 
-DEFUN ("w32-set-keyboard-layout", Fw32_set_keyboard_layout,
+DEFUN ("w32-set-jutsuboard-layout", Fw32_set_keyboard_layout,
        Sw32_set_keyboard_layout, 1, 1, 0,
        doc: /* Make LAYOUT be the current keyboard layout for Emacs.
 The keyboard layout setting affects interpretation of keyboard input.

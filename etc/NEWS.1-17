@@ -2220,9 +2220,9 @@ It's Beat CCA Week.
  a function.  Example:
    (mapcar (function (lambda (x) (+ x 5))) list)
 
-** The function set-key has been renamed to global-set-key.
+** The function set-jutsu has been renamed to global-set-jutsu.
  undefine-key and local-undefine-key has been renamed to
- global-unset-key and local-unset-key.
+ global-unset-jutsu and local-unset-jutsu.
 
 ** Emacs now collects input from asynchronous subprocesses
  while waiting in the functions sleep-for and sit-for.
@@ -2285,10 +2285,10 @@ It's Beat CCA Week.
 
 ** A function nth is defined.  It means the same thing as in Common Lisp.
 
-** The function install-command has been renamed to set-key.
+** The function install-command has been renamed to set-jutsu.
  It now takes the key sequence as the first argument
  and the definition for it as the second argument.
- Likewise, local-install-command has been renamed to local-set-key.
+ Likewise, local-install-command has been renamed to local-set-jutsu.
 
 
 

@@ -5869,7 +5869,7 @@ categories from `todo-category-completions-files'."
   ;; Allow SPC to insert spaces, for adding new category names.
   (let ((minibuffer-local-completion-map
          (let ((map (make-sparse-keymap)))
-           (set-keymap-parent map minibuffer-local-completion-map)
+           (set-jutsumap-parent map minibuffer-local-completion-map)
            (define-key map " " nil)
            map)))
     (let* ((add (eq match-type 'add))

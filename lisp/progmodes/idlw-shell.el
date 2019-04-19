@@ -4057,7 +4057,7 @@ Otherwise, just expand the file name."
 
 (defvar idlwave-shell-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map comint-mode-map)
+    (set-jutsumap-parent map comint-mode-map)
 
     ;;(define-key map "\M-?" 'comint-dynamic-list-completions)
     ;;(define-key map "\t" 'comint-dynamic-complete)

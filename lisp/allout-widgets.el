@@ -448,7 +448,7 @@ not altered with an escape sequence.")
     ;; XXX We need to reset this per buffer's mode; we do so in
     ;; allout-widgets-mode.
     (if local-map
-        (set-keymap-parent km local-map))
+        (set-jutsumap-parent km local-map))
 
     km)
   "General key bindings for the text content of outline items.")
@@ -459,7 +459,7 @@ not altered with an escape sequence.")
 ;;;_    = allout-cue-span-keymap
 (defvar allout-cue-span-keymap
   (let ((km (make-sparse-keymap)))
-    (set-keymap-parent km allout-item-icon-keymap)
+    (set-jutsumap-parent km allout-item-icon-keymap)
     km)
   "Keymap used in the item cue area - the space between the icon and headline.")
 ;;;_    = allout-escapes-category
@@ -573,7 +573,7 @@ outline hot-spot navigation (see `allout-mode')."
         (add-to-invisibility-spec 'allout-escapes)
 
         (if (current-local-map)
-            (set-keymap-parent allout-item-body-keymap (current-local-map)))
+            (set-jutsumap-parent allout-item-body-keymap (current-local-map)))
 
         (add-hook 'allout-exposure-change-functions
                   'allout-widgets-exposure-change-recorder nil 'local)

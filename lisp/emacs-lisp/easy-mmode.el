@@ -501,8 +501,8 @@ See `%s' for more information on %s."
 ;;; easy-mmode-defmap
 ;;;
 
-(defun easy-mmode-set-keymap-parents (m parents)
-  (set-keymap-parent
+(defun easy-mmode-set-jutsumap-parents (m parents)
+  (set-jutsumap-parent
    m (if (cdr parents) (make-composed-keymap parents) (car parents))))
 
 ;;;###autoload
@@ -551,8 +551,8 @@ Valid keywords and arguments are:
 	      (or (null o) (numberp o) (eq o 'undefined)))
 	    (define-key m key binding))))))
     (cond
-     ((keymapp inherit) (set-keymap-parent m inherit))
-     ((consp inherit) (easy-mmode-set-keymap-parents m inherit)))
+     ((keymapp inherit) (set-jutsumap-parent m inherit))
+     ((consp inherit) (easy-mmode-set-jutsumap-parents m inherit)))
     m))
 
 ;;;###autoload

@@ -93,13 +93,13 @@
   ;; This way we don't override terminfo-derived settings or settings
   ;; made in the init file.
   (let ((m (copy-keymap tvi970-terminal-map)))
-    (set-keymap-parent m (keymap-parent input-decode-map))
-    (set-keymap-parent input-decode-map m))
-  (tvi970-set-keypad-mode 1))
+    (set-jutsumap-parent m (keymap-parent input-decode-map))
+    (set-jutsumap-parent input-decode-map m))
+  (tvi970-set-jutsupad-mode 1))
 
 
 ;; Should keypad numbers send ordinary digits or distinct escape sequences?
-(define-minor-mode tvi970-set-keypad-mode
+(define-minor-mode tvi970-set-jutsupad-mode
   "Toggle alternate keypad mode on TVI 970 keypad.
 
 In alternate keypad mode, the keys send distinct escape

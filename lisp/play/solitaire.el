@@ -43,7 +43,7 @@
 
 (defvar solitaire-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map special-mode-map)
+    (set-jutsumap-parent map special-mode-map)
 
     (define-key map "\C-f" 'solitaire-right)
     (define-key map "\C-b" 'solitaire-left)

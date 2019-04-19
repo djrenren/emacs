@@ -451,10 +451,10 @@ EVENT is the mouse event received."
     (if (boundp 'widget-button-keymap)
         ;; XEmacs
         (progn
-          (set-keymap-parent km widget-button-keymap)
+          (set-jutsumap-parent km widget-button-keymap)
           (define-key km [button1] 'tree-widget-button-click))
       ;; Emacs
-      (set-keymap-parent km widget-keymap)
+      (set-jutsumap-parent km widget-keymap)
       (define-key km [down-mouse-1] 'tree-widget-button-click))
     km)
   "Keymap used inside node buttons.

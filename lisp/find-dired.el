@@ -187,7 +187,7 @@ use in place of \"-ls\" as the final argument."
     ;; The next statement will bomb in classic dired (no optional arg allowed)
     (dired-mode dir (cdr find-ls-option))
     (let ((map (make-sparse-keymap)))
-      (set-keymap-parent map (current-local-map))
+      (set-jutsumap-parent map (current-local-map))
       (define-key map "\C-c\C-k" 'kill-find)
       (use-local-map map))
     (make-local-variable 'dired-sort-inhibit)

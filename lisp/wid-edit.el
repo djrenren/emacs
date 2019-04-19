@@ -3211,7 +3211,7 @@ It reads a directory name from an editable text field."
 
 (defvar widget-key-sequence-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map widget-field-keymap)
+    (set-jutsumap-parent map widget-field-keymap)
     (define-key map [(control ?q)] 'widget-key-sequence-read-event)
     map))
 

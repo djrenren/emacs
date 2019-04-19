@@ -125,7 +125,7 @@ Returns the number of actions taken."
 	    ;; its definition.
 	    map
             (let ((map (make-sparse-keymap)))
-              (set-keymap-parent map query-replace-map)
+              (set-jutsumap-parent map query-replace-map)
               (dolist (elt action-alist)
                 (define-key map (vector (car elt)) (vector (nth 1 elt))))
               map)))
@@ -327,7 +327,7 @@ When `use-dialog-box' is t, pop up a dialog window to get user input."
             (or (gethash answers read-answer-map--memoize)
                 (puthash answers
                          (let ((map (make-sparse-keymap)))
-                           (set-keymap-parent map minibuffer-local-map)
+                           (set-jutsumap-parent map minibuffer-local-map)
                            (dolist (a answers-with-help)
                              (define-key map (vector (nth 1 a))
                                (lambda ()

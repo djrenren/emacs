@@ -450,7 +450,7 @@ collection clause."
                    (define-key map    "b" #'backward-char)
                    (define-key parent "n" #'next-line)
                    (define-key parent "p" #'previous-line)
-                   (set-keymap-parent map parent)
+                   (set-jutsumap-parent map parent)
                    (cl-loop for b being the key-bindings of map
                             using (key-codes c)
                             do (push (list c b) res))

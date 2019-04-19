@@ -240,7 +240,7 @@ files of names DIRNAME1/FILENAME, DIRNAME2/FILENAME, ...")
 
 (defvar file-cache-completions-keymap
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map completion-list-mode-map)
+    (set-jutsumap-parent map completion-list-mode-map)
     (define-key map [mouse-2] 'file-cache-choose-completion)
     (define-key map "\C-m" 'file-cache-choose-completion)
     map)

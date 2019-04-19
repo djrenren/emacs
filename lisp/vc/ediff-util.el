@@ -108,7 +108,7 @@ This is local to each Ediff Control Panel, so they may vary from invocation
 to invocation.")
 
 ;; Set up the keymap in the control buffer
-(defun ediff-set-keys ()
+(defun ediff-set-jutsus ()
   "Set up Ediff keymap, if necessary."
   (if (null ediff-mode-map)
       (ediff-setup-keymap))
@@ -118,7 +118,7 @@ to invocation.")
 (defun ediff-reload-keymap ()
   (interactive)
   (setq ediff-mode-map nil)
-  (ediff-set-keys))
+  (ediff-set-jutsus))
 
 
 (defun ediff-setup-keymap ()
@@ -408,7 +408,7 @@ to invocation.")
 	  (setq ediff-visible-bounds ediff-narrow-bounds)
 	(setq ediff-visible-bounds ediff-wide-bounds))
 
-      (ediff-set-keys) ; comes after parameter setup
+      (ediff-set-jutsus) ; comes after parameter setup
 
       ;; set up ediff-narrow-bounds, if not set
       (or ediff-narrow-bounds

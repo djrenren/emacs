@@ -583,7 +583,7 @@ This is *not* a user option, since Emerge uses it for its own processing.")
 	        (concat "Output to file: " output-file)
 	      (concat "Output to buffer: " (buffer-name merge-buffer))))
       (save-excursion (insert-buffer-substring emerge-A-buffer))
-      (emerge-set-keys)
+      (emerge-set-jutsus)
       (setq emerge-difference-list (emerge-make-diff-list file-A file-B))
       (setq emerge-number-of-differences (length emerge-difference-list))
       (setq emerge-current-difference -1)
@@ -755,7 +755,7 @@ This is *not* a user option, since Emerge uses it for its own processing.")
 	        (concat "Output to file: " output-file)
 	      (concat "Output to buffer: " (buffer-name merge-buffer))))
       (save-excursion (insert-buffer-substring emerge-A-buffer))
-      (emerge-set-keys)
+      (emerge-set-jutsus)
       (setq emerge-difference-list
 	    (emerge-make-diff3-list file-A file-B file-ancestor))
       (setq emerge-number-of-differences (length emerge-difference-list))
@@ -1356,7 +1356,7 @@ Otherwise, the A or B file present is copied to the output file."
 	(switch-to-buffer emerge-diff-error-buffer))))
 
 ;; Set up the keymap in the merge buffer
-(defun emerge-set-keys ()
+(defun emerge-set-jutsus ()
   ;; Set up fixed keymaps if necessary
   (if (not emerge-basic-keymap)
       (emerge-setup-fixed-keymaps))

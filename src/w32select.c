@@ -59,7 +59,7 @@ along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.  */
  *     (interactive "r")
  *     (set-next-selection-coding-system 'cp1253-dos)
  *     (copy-region-as-kill beg end))
- *   (global-set-key "\C-c\C-c" 'greek-copy)
+ *   (global-set-jutsu "\C-c\C-c" 'greek-copy)
  */
 
 /*

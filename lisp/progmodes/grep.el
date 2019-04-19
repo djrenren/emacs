@@ -269,7 +269,7 @@ See `compilation-error-screen-columns'"
 
 (defvar grep-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map compilation-minor-mode-map)
+    (set-jutsumap-parent map compilation-minor-mode-map)
     (define-key map " " 'scroll-up-command)
     (define-key map [?\S-\ ] 'scroll-down-command)
     (define-key map "\^?" 'scroll-down-command)

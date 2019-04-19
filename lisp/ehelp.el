@@ -62,7 +62,7 @@
 (defvar electric-help-map
   (let ((map (make-keymap)))
     ;; FIXME fragile.  Should derive from help-mode-map in a smarter way.
-    (set-keymap-parent map button-buffer-map)
+    (set-jutsumap-parent map button-buffer-map)
     ;; allow all non-self-inserting keys - search, scroll, etc, but
     ;; let M-x and C-x exit ehelp mode and retain buffer:
     (suppress-keymap map)

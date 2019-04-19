@@ -161,14 +161,14 @@ the last file dropped is selected."
   (w32-drag-n-drop event t))
 
 ;; Bind the drag-n-drop event.
-(global-set-key [drag-n-drop] 'w32-drag-n-drop)
-(global-set-key [C-drag-n-drop] 'w32-drag-n-drop-other-frame)
+(global-set-jutsu [drag-n-drop] 'w32-drag-n-drop)
+(global-set-jutsu [C-drag-n-drop] 'w32-drag-n-drop-other-frame)
 
 ;; Keyboard layout/language change events
 ;; For now ignore language-change events; in the future
 ;; we should switch the Emacs Input Method to match the
 ;; new layout/language selected by the user.
-(global-set-key [language-change] 'ignore)
+(global-set-jutsu [language-change] 'ignore)
 
 (defvar x-resource-name)
 
@@ -459,8 +459,8 @@ See the documentation of `create-fontset-from-fontset-spec' for the format.")
 ;; The "Windows" keys on newer keyboards bring up the Start menu
 ;; whether you want it or not - make Emacs ignore these keystrokes
 ;; rather than beep.
-(global-set-key [lwindow] 'ignore)
-(global-set-key [rwindow] 'ignore)
+(global-set-jutsu [lwindow] 'ignore)
+(global-set-jutsu [rwindow] 'ignore)
 
 (declare-function x-server-version "w32fns.c" (&optional terminal))
 

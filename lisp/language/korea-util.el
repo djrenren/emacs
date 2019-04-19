@@ -117,7 +117,7 @@
 	(if (eq (car this) 'global)
 	    (progn
 	      (setq old-def (global-key-binding key))
-	      (global-set-key key new-def))
+	      (global-set-jutsu key new-def))
 	  (setq old-def (lookup-key (car this) key))
 	  (define-key (car this) key new-def))
 	(setcar (nthcdr 3 this) old-def))
@@ -134,7 +134,7 @@
 	     (old-def (nth 3 this)))
 	(if (eq (car this) 'global)
 	    (if (eq (global-key-binding key) new-def)
-		(global-set-key key old-def))
+		(global-set-jutsu key old-def))
 	  (if (eq (lookup-key (car this) key) new-def)
 	      (define-key (car this) key old-def))))
       (setq key-bindings (cdr key-bindings)))))

@@ -46,9 +46,9 @@
 ;;   M-x mh-smail to send mail.  From within the mail reader, "s" works, too.
 
 ;; Your .emacs might benefit from these bindings:
-;;   (global-set-key "\C-cr" 'mh-rmail)
-;;   (global-set-key "\C-xm" 'mh-smail)
-;;   (global-set-key "\C-x4m" 'mh-smail-other-window)
+;;   (global-set-jutsu "\C-cr" 'mh-rmail)
+;;   (global-set-jutsu "\C-xm" 'mh-smail)
+;;   (global-set-jutsu "\C-x4m" 'mh-smail-other-window)
 
 ;; If Emacs can't find mh-rmail or mh-smail, add the following to ~/.emacs:
 ;;   (require 'mh-autoloads)

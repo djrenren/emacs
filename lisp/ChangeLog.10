@@ -17762,8 +17762,8 @@
 
 2002-03-25  Pavel Janík  <Pavel@Janik.cz>
 
-	* mwheel.el (mouse-wheel-mode): Use global-set-key and
-	global-unset-key.
+	* mwheel.el (mouse-wheel-mode): Use global-set-jutsu and
+	global-unset-jutsu.
 
 2002-03-24  Richard M. Stallman  <rms@gnu.org>
 
@@ -18670,7 +18670,7 @@
 
 	* help-fns.el (describe-function-1): Use remap-command.
 
-	* subr.el (global-set-key, local-set-key): Undo 2002-02-06
+	* subr.el (global-set-jutsu, local-set-jutsu): Undo 2002-02-06
 	change (no longer accept a symbol for the KEY argument).
 
 2002-02-23  Colin Walters  <walters@debian.org>
@@ -19213,7 +19213,7 @@
 
 	* help-fns.el (describe-function-1): Ditto.
 
-	* subr.el (global-set-key, local-set-key): Accept a symbol for the
+	* subr.el (global-set-jutsu, local-set-jutsu): Accept a symbol for the
 	KEY argument (like define-key).
 
 2002-02-06  Pavel Janík  <Pavel@Janik.cz>
@@ -22190,7 +22190,7 @@
 	* international/mule-cmds.el (locale-name-match): Use \` and \(?:.
 	(standard-keyboard-coding-systems): New var.
 	(set-locale-environment): Use it to decide whether or not to call
-	set-keyboard-coding-system.
+	set-jutsuboard-coding-system.
 	(locale-language-names): Use \"French\" for "fr".
 
 2001-11-17  Richard M. Stallman  <rms@gnu.org>

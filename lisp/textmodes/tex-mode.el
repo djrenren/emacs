@@ -880,7 +880,7 @@ START is the position of the \\ and DELIM is the delimiter char."
 
 (defvar tex-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map text-mode-map)
+    (set-jutsumap-parent map text-mode-map)
     (tex-define-common-keys map)
     (define-key map "\"" 'tex-insert-quote)
     (define-key map "\n" 'tex-handle-newline)
@@ -919,20 +919,20 @@ START is the position of the \\ and DELIM is the delimiter char."
 
 (defvar latex-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map tex-mode-map)
+    (set-jutsumap-parent map tex-mode-map)
     (define-key map "\C-c\C-s" 'latex-split-block)
     map)
   "Keymap for `latex-mode'.  See also `tex-mode-map'.")
 
 (defvar plain-tex-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map tex-mode-map)
+    (set-jutsumap-parent map tex-mode-map)
     map)
   "Keymap for `plain-tex-mode'.  See also `tex-mode-map'.")
 
 (defvar tex-shell-map
   (let ((m (make-sparse-keymap)))
-    (set-keymap-parent m shell-mode-map)
+    (set-jutsumap-parent m shell-mode-map)
     (tex-define-common-keys m)
     m)
   "Keymap for the TeX shell.

@@ -1255,7 +1255,7 @@ default in some locale (e.g. vi_VN).
 current locale settings if you are not using a window system.  This
 can mean that the META key doesn't work but generates non-ASCII
 characters instead, depending on how the terminal (or terminal
-emulator) works.  Use `set-keyboard-coding-system' (or customize
+emulator) works.  Use `set-jutsuboard-coding-system' (or customize
 keyboard-coding-system) if you prefer META to work (the old default)
 or if the locale doesn't describe the character set actually generated
 by the keyboard.  See Info node `Unibyte Mode'.
@@ -3087,7 +3087,7 @@ were unhappy with the previous behavior.  If you do prefer this
 behavior, you can bind `vc-toggle-read-only' to C-x C-q in your
 `.emacs' file:
 
-    (global-set-key "\C-x\C-q" 'vc-toggle-read-only)
+    (global-set-jutsu "\C-x\C-q" 'vc-toggle-read-only)
 
 The function `vc-toggle-read-only' will continue to exist.
 

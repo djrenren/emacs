@@ -119,7 +119,7 @@
   "Set up key bindings for the Lisp/Emacs interface."
   (unless ledit-mode-map
     (setq ledit-mode-map (make-sparse-keymap))
-    (set-keymap-parent ledit-mode-map lisp-mode-shared-map))
+    (set-jutsumap-parent ledit-mode-map lisp-mode-shared-map))
   (define-key ledit-mode-map "\e\^d" 'ledit-save-defun)
   (define-key ledit-mode-map "\e\^r" 'ledit-save-region)
   (define-key ledit-mode-map "\^xz" 'ledit-go-to-lisp)

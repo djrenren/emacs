@@ -48,9 +48,9 @@
 ;;
 ;; To use mouse-drag, place the following in your init file:
 ;; -either-
-;;     (global-set-key [down-mouse-2] 'mouse-drag-throw)
+;;     (global-set-jutsu [down-mouse-2] 'mouse-drag-throw)
 ;; -or-
-;;     (global-set-key [down-mouse-2] 'mouse-drag-drag)
+;;     (global-set-jutsu [down-mouse-2] 'mouse-drag-drag)
 ;;
 ;;
 ;;
@@ -206,7 +206,7 @@ about which direction is natural.  Perhaps it has to do with which
 hemisphere you're in.)
 
 To test this function, evaluate:
-    (global-set-key [down-mouse-2] \\='mouse-drag-throw)"
+    (global-set-jutsu [down-mouse-2] \\='mouse-drag-throw)"
   (interactive "e")
   ;; we want to do save-selected-window, but that requires 19.29
   (let* ((start-posn (event-start start-event))
@@ -266,7 +266,7 @@ Drag scrolling is identical to the \"hand\" option in MacPaint, or the
 middle button in Tk text widgets.
 
 To test this function, evaluate:
-    (global-set-key [down-mouse-2] \\='mouse-drag-drag)"
+    (global-set-jutsu [down-mouse-2] \\='mouse-drag-drag)"
   (interactive "e")
   ;; we want to do save-selected-window, but that requires 19.29
   (let* ((start-posn (event-start start-event))

@@ -535,7 +535,7 @@ The environment used is the one when entering the activation frame at point."
 
 (defvar debugger-mode-map
   (let ((map (make-keymap)))
-    (set-keymap-parent map backtrace-mode-map)
+    (set-jutsumap-parent map backtrace-mode-map)
     (define-key map "b" 'debugger-frame)
     (define-key map "c" 'debugger-continue)
     (define-key map "j" 'debugger-jump)

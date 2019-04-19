@@ -316,7 +316,7 @@ The value t means abort and give an error message.")
 
 (defvar calc-alg-ent-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map minibuffer-local-map)
+    (set-jutsumap-parent map minibuffer-local-map)
     (define-key map "'" 'calcAlg-previous)
     (define-key map "`" 'calcAlg-edit)
     (define-key map "\C-m" 'calcAlg-enter)
@@ -327,7 +327,7 @@ The value t means abort and give an error message.")
 (defvar calc-alg-ent-esc-map
   (let ((map (make-keymap))
         (i 33))
-    (set-keymap-parent map esc-map)
+    (set-jutsumap-parent map esc-map)
     (while (< i 127)
       (define-key map (vector i) 'calcAlg-escape)
       (setq i (1+ i)))

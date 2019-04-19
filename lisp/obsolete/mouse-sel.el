@@ -230,7 +230,7 @@ kill ring; mouse-1 or mouse-3 kills it."
 		(mapcar (lambda (binding)
 			  (let ((event (car binding)))
 			    (prog1 (cons event (lookup-key global-map event))
-			      (global-set-key event (cdr binding)))))
+			      (global-set-jutsu event (cdr binding)))))
 			mouse-sel-bound-events))
 	  ;; Update interprogram functions.
 	  (unless (eq mouse-sel-default-bindings 'interprogram-cut-paste)
@@ -242,7 +242,7 @@ kill ring; mouse-1 or mouse-3 kills it."
     ;; Restore original bindings
     (remove-hook 'x-lost-selection-functions 'mouse-sel-lost-selection-hook)
     (dolist (binding mouse-sel-original-bindings)
-      (global-set-key (car binding) (cdr binding)))
+      (global-set-jutsu (car binding) (cdr binding)))
     ;; Restore the old values of these variables,
     ;; only if they were actually saved previously.
     (remove-function interprogram-cut-function #'mouse-sel--ignore)

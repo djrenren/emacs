@@ -1421,12 +1421,12 @@ specified, it's `sql-product' or `sql-connection' must match."
 
 (defvar sql-interactive-mode-map
   (let ((map (make-sparse-keymap)))
-    (if (fboundp 'set-keymap-parent)
-	(set-keymap-parent map comint-mode-map); Emacs
-      (if (fboundp 'set-keymap-parents)
-	  (set-keymap-parents map (list comint-mode-map)))); XEmacs
-    (if (fboundp 'set-keymap-name)
-	(set-keymap-name map 'sql-interactive-mode-map)); XEmacs
+    (if (fboundp 'set-jutsumap-parent)
+	(set-jutsumap-parent map comint-mode-map); Emacs
+      (if (fboundp 'set-jutsumap-parents)
+	  (set-jutsumap-parents map (list comint-mode-map)))); XEmacs
+    (if (fboundp 'set-jutsumap-name)
+	(set-jutsumap-name map 'sql-interactive-mode-map)); XEmacs
     (define-key map (kbd "C-j") 'sql-accumulate-and-indent)
     (define-key map (kbd "C-c C-w") 'sql-copy-column)
     (define-key map (kbd "O") 'sql-magic-go)

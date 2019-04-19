@@ -980,7 +980,7 @@ just re-display the HTML already fetched."
 
 (defvar eww-text-map
   (let ((map (make-keymap)))
-    (set-keymap-parent map text-mode-map)
+    (set-jutsumap-parent map text-mode-map)
     (define-key map "\r" 'eww-submit)
     (define-key map [(control a)] 'eww-beginning-of-text)
     (define-key map [(control c) (control c)] 'eww-submit)
@@ -991,7 +991,7 @@ just re-display the HTML already fetched."
 
 (defvar eww-textarea-map
   (let ((map (make-keymap)))
-    (set-keymap-parent map text-mode-map)
+    (set-jutsumap-parent map text-mode-map)
     (define-key map "\r" 'forward-line)
     (define-key map [(control c) (control c)] 'eww-submit)
     (define-key map [?\t] 'shr-next-link)

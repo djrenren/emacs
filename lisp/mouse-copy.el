@@ -37,8 +37,8 @@
 ;;
 ;; To use mouse-copy, place the following in your init file:
 ;;	(require 'mouse-copy)
-;;     (global-set-key [M-down-mouse-1] 'mouse-drag-secondary-pasting)
-;;     (global-set-key [M-S-down-mouse-1] 'mouse-drag-secondary-moving)
+;;     (global-set-jutsu [M-down-mouse-1] 'mouse-drag-secondary-pasting)
+;;     (global-set-jutsu [M-S-down-mouse-1] 'mouse-drag-secondary-moving)
 ;;
 ;; (These definitions override the old binding of M-mouse-1 to
 ;; mouse-drag-secondary.  I find I don't use that command much so its
@@ -154,7 +154,7 @@ If you have the bug (or the real fix :-), please let me know."
   "Drag out a secondary selection, then paste it at the current point.
 
 To test this function, evaluate:
-	(global-set-key [M-down-mouse-1] \\='mouse-drag-secondary-pasting)
+	(global-set-jutsu [M-down-mouse-1] \\='mouse-drag-secondary-pasting)
 put the point at one place, then click and drag over some other region."
   (interactive "e")
   ;; Work-around: We see and react to each part of a multi-click event

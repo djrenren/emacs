@@ -39,7 +39,7 @@
 
 (defvar widget-browse-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map widget-keymap)
+    (set-jutsumap-parent map widget-keymap)
     (define-key map "q" 'bury-buffer)
     map)
   "Keymap for `widget-browse-mode'.")
@@ -263,7 +263,7 @@ VALUE is assumed to be a list of widgets."
 
 (defvar widget-minor-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map widget-keymap)
+    (set-jutsumap-parent map widget-keymap)
     map)
   "Keymap used in Widget Minor Mode.")
 

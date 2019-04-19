@@ -71,8 +71,8 @@
 ;;      the addition of two bindings to your to your global keymap.  I
 ;;      personally have the following in my initialization file:
 ;;
-;;          (global-set-key "\C-ct" 'todo-show)  ; switch to TODO buffer
-;;	    (global-set-key "\C-ci" 'todo-insert-item) ; insert new item
+;;          (global-set-jutsu "\C-ct" 'todo-show)  ; switch to TODO buffer
+;;	    (global-set-jutsu "\C-ci" 'todo-insert-item) ; insert new item
 ;;
 ;;      Note, however, that this recommendation has prompted some
 ;;      criticism, since the keys C-c LETTER are reserved for user

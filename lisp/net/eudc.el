@@ -68,7 +68,7 @@
 
 (defvar eudc-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map widget-keymap)
+    (set-jutsumap-parent map widget-keymap)
     (define-key map "q" 'kill-current-buffer)
     (define-key map "x" 'kill-current-buffer)
     (define-key map "f" 'eudc-query-form)

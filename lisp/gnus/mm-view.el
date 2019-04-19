@@ -175,7 +175,7 @@
 		     (on (get-text-property start 'w3m-href-anchor))
 		     (map (copy-keymap w3m-link-map))
 		     next)
-		(set-keymap-parent map w3m-minor-mode-map)
+		(set-jutsumap-parent map w3m-minor-mode-map)
 		(while (< start end)
 		  (if on
 		      (progn

@@ -1727,7 +1727,7 @@ Return non-nil if a selection was deactivated."
 
 (defvar mpc-tagbrowser-dir-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map mpc-tagbrowser-mode-map)
+    (set-jutsumap-parent map mpc-tagbrowser-mode-map)
     (define-key map [?\M-\C-m] 'mpc-tagbrowser-dir-toggle)
     map))
 

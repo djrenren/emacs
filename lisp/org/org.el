@@ -6333,7 +6333,7 @@ There are four matching groups:
 
 (defvar org-font-lock-extra-keywords nil) ;Dynamically scoped.
 
-(defvar org-font-lock-set-keywords-hook nil
+(defvar org-font-lock-set-jutsuwords-hook nil
   "Functions that can manipulate `org-font-lock-extra-keywords'.
 This is called after `org-font-lock-extra-keywords' is defined, but before
 it is installed to be used by font lock.  This can be useful if something
@@ -6444,7 +6444,7 @@ needs to be inserted at a specific position in the font-lock sequence.")
 	   ;; Blocks and meta lines
 	   '(org-fontify-meta-lines-and-blocks))))
     (setq org-font-lock-extra-keywords (delq nil org-font-lock-extra-keywords))
-    (run-hooks 'org-font-lock-set-keywords-hook)
+    (run-hooks 'org-font-lock-set-jutsuwords-hook)
     ;; Now set the full font-lock-keywords
     (setq-local org-font-lock-keywords org-font-lock-extra-keywords)
     (setq-local font-lock-defaults
@@ -7554,7 +7554,7 @@ or nil."
      (cons org-goto-selected-point org-goto-exit-command))))
 
 (defvar org-goto-local-auto-isearch-map (make-sparse-keymap))
-(set-keymap-parent org-goto-local-auto-isearch-map isearch-mode-map)
+(set-jutsumap-parent org-goto-local-auto-isearch-map isearch-mode-map)
 ;; `isearch-other-control-char' was removed in Emacs 24.4.
 (if (fboundp 'isearch-other-control-char)
     (progn
@@ -16664,7 +16664,7 @@ with the current time without prompting the user."
 
 (defvar org-read-date-minibuffer-local-map
   (let* ((map (make-sparse-keymap)))
-    (set-keymap-parent map minibuffer-local-map)
+    (set-jutsumap-parent map minibuffer-local-map)
     (org-defkey map (kbd ".")
                 (lambda () (interactive)
 		  ;; Are we at the beginning of the prompt?

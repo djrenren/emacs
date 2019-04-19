@@ -36,7 +36,7 @@
 ;; command.  For example, you may wish the have a mouse stroke that
 ;; looks like a capital `C' which means `copy-region-as-kill'.  Treat
 ;; strokes just like you do key bindings.  For example, Emacs sets key
-;; bindings globally with the `global-set-key' command.  Likewise, you
+;; bindings globally with the `global-set-jutsu' command.  Likewise, you
 ;; can do
 
 ;; > M-x strokes-global-set-stroke
@@ -45,7 +45,7 @@
 ;; first one to this very command, so that from then on, you invoke
 ;; `strokes-global-set-stroke' with a stroke.  Likewise, there may
 ;; eventually be a `strokes-local-set-stroke' command, also analogous
-;; to `local-set-key'.
+;; to `local-set-jutsu'.
 
 ;; You can always unset the last stroke definition with the command
 
@@ -434,7 +434,7 @@ or for window START-WINDOW if that is specified."
 ;;;###autoload
 (defun strokes-global-set-stroke (stroke command)
   "Interactively give STROKE the global binding as COMMAND.
-Works just like `global-set-key', except for strokes.  COMMAND is
+Works just like `global-set-jutsu', except for strokes.  COMMAND is
 a symbol naming an interactively-callable function.  STROKE is a
 list of sampled positions on the stroke grid as described in the
 documentation for the `strokes-define-stroke' function.
@@ -450,7 +450,7 @@ See also `strokes-global-set-stroke-string'."
 
 (defun strokes-global-set-stroke-string (stroke string)
   "Interactively give STROKE the global binding as STRING.
-Works just like `global-set-key', except for strokes.  STRING
+Works just like `global-set-jutsu', except for strokes.  STRING
 is a string to be inserted by the stroke.  STROKE is a list of
 sampled positions on the stroke grid as described in the
 documentation for the `strokes-define-stroke' function.

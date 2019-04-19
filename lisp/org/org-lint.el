@@ -1051,7 +1051,7 @@ Use \"export %s\" instead"
 
 (defvar org-lint--report-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map tabulated-list-mode-map)
+    (set-jutsumap-parent map tabulated-list-mode-map)
     (define-key map (kbd "RET") 'org-lint--jump-to-source)
     (define-key map (kbd "TAB") 'org-lint--show-source)
     (define-key map (kbd "C-j") 'org-lint--show-source)

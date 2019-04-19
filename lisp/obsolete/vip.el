@@ -307,7 +307,7 @@ If nil then it is bound to `delete-backward-char'."
 (defun vip-setup ()
   "Set up bindings for C-x 7 and C-z that are useful for VIP users."
   (define-key ctl-x-map "7" 'vip-buffer-in-two-windows)
-  (global-set-key "\C-z" 'vip-change-mode-to-vi))
+  (global-set-jutsu "\C-z" 'vip-change-mode-to-vi))
 
 (defmacro vip-loop (count body)
   "(COUNT BODY) Execute BODY COUNT times."

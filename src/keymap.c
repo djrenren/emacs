@@ -306,7 +306,7 @@ keymap_memberp (Lisp_Object map, Lisp_Object maps)
 
 /* Set the parent keymap of MAP to PARENT.  */
 
-DEFUN ("set-keymap-parent", Fset_keymap_parent, Sset_keymap_parent, 2, 2, 0,
+DEFUN ("set-jutsumap-parent", Fset_keymap_parent, Sset_keymap_parent, 2, 2, 0,
        doc: /* Modify KEYMAP to set its parent map to PARENT.
 Return PARENT.  PARENT should be nil or another keymap.  */)
   (Lisp_Object keymap, Lisp_Object parent)
@@ -986,7 +986,7 @@ another yet with a few changes, you should use map inheritance rather
 than copying.  I.e. something like:
 
     (let ((map (make-sparse-keymap)))
-      (set-keymap-parent map <theirmap>)
+      (set-jutsumap-parent map <theirmap>)
       (define-key map ...)
       ...)
 

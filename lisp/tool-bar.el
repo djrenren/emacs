@@ -79,7 +79,7 @@ See `tool-bar-mode' for more information."
   "Keymap for the tool bar.
 Define this locally to override the global tool bar.")
 
-(global-set-key [tool-bar]
+(global-set-jutsu [tool-bar]
 		`(menu-item ,(purecopy "tool bar") ignore
 			    :filter tool-bar-make-keymap))
 

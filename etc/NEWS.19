@@ -278,7 +278,7 @@ as well as lists.
 ** The new function keymap-parent returns the parent keymap
 of a given keymap.
 
-** The new function set-keymap-parent specifies a new parent for a
+** The new function set-jutsumap-parent specifies a new parent for a
 given keymap.  The arguments are KEYMAP and PARENT.  PARENT must be a
 keymap or nil.
 
@@ -1599,7 +1599,7 @@ the ESC ESC ESC feature, on the grounds that people who evaluate Lisp
 expressions are experienced users and can cope with a change.
 If you prefer the old ESC ESC binding, put in your `~/.emacs':
 
-	(global-set-key "\e\e" 'eval-expression)
+	(global-set-jutsu "\e\e" 'eval-expression)
 
 ** The f1 function key is now equivalent to the help key.  This is
 done with key-translation-map; delete the binding for f1 in that map
@@ -4709,7 +4709,7 @@ Just define that subcommand of the menu item with `undefined'
 as the definition.  For example, this cancels out the `Buffers' item
 for the current major mode:
 
-    (local-set-key [menu-bar buffer] 'undefined)
+    (local-set-jutsu [menu-bar buffer] 'undefined)
 
 ** To put global items at the end of the menu bar, use the new variable
 `menu-bar-final-items'.  It should be a list of symbols--event types

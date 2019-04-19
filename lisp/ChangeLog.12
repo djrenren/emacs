@@ -17463,7 +17463,7 @@
 	into a function.  Move all calls to toplevel.
 	(completion-lisp-mode-hook): New fun.
 	(completion-c-mode-hook, completion-setup-fortran-mode):
-	Set the syntax-table here.  Use local-set-key.
+	Set the syntax-table here.  Use local-set-jutsu.
 	(completion-saved-bindings): New var.
 	(dynamic-completion-mode): Make it into a proper minor mode.
 	(load-completions-from-file): Remove unused var `num-uses'.
@@ -21277,7 +21277,7 @@
 	* international/quail.el (quail-show-keyboard-layout):
 	* international/mule.el (set-buffer-file-coding-system)
 	(revert-buffer-with-coding-system, set-file-name-coding-system)
-	(set-terminal-coding-system, set-keyboard-coding-system)
+	(set-terminal-coding-system, set-jutsuboard-coding-system)
 	(set-next-selection-coding-system):
 	* international/mule-diag.el (describe-coding-system)
 	(describe-font, describe-fontset):
@@ -21769,7 +21769,7 @@
 	(make-diary-entry): Avoid `previous-line'.
 	(diary-mode-map): New var.
 	(diary-mode): Redraw cal after saving.  Setup header-line.
-	(fancy-diary-display-mode): Use local-set-key.
+	(fancy-diary-display-mode): Use local-set-jutsu.
 
 	* startup.el (command-line): Try calling various terminal-init-foo-bar
 	functions by stripping hyphenated suffixes from $TERM.
@@ -24626,7 +24626,7 @@
 	(tree-widget-lookup-image): New function split from
 	`tree-widget-find-image'.  Clearer implementation.
 	(tree-widget-find-image): Use it.
-	(tree-widget-button-keymap): Use `set-keymap-parent'.
+	(tree-widget-button-keymap): Use `set-jutsumap-parent'.
 	(tree-widget) [define-widget]: Use `widget-children-value-delete'.
 	Define the sub-widgets here.
 	(tree-widget-node): Check that :node is not a tree-widget.

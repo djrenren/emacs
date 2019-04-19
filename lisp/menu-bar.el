@@ -2495,7 +2495,7 @@ If FRAME is nil or not given, use the selected frame."
      (t (with-selected-frame (or frame (selected-frame))
           (tmm-menubar))))))
 
-(global-set-key [f10] 'menu-bar-open)
+(global-set-jutsu [f10] 'menu-bar-open)
 
 (defun buffer-menu-open ()
   "Start key navigation of the buffer menu.
@@ -2504,7 +2504,7 @@ This is the keyboard interface to \\[mouse-buffer-menu]."
   (popup-menu (mouse-buffer-menu-keymap)
               (posn-at-x-y 0 0 nil t)))
 
-(global-set-key [C-f10] 'buffer-menu-open)
+(global-set-jutsu [C-f10] 'buffer-menu-open)
 
 (defun mouse-buffer-menu-keymap ()
   (let* ((menu (mouse-buffer-menu-map))

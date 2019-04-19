@@ -1037,7 +1037,7 @@ existing buffer `*gnatfind*', if there is one."
 
     ;;  Hide the "Compilation" menu
     (with-current-buffer ada-gnatfind-buffer-name
-      (local-unset-key [menu-bar compilation-menu])
+      (local-unset-jutsu [menu-bar compilation-menu])
 
       (if old-contents
 	  (progn

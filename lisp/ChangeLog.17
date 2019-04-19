@@ -6300,7 +6300,7 @@
 	(epg-signature-creation-time, epg-signature-expiration-time)
 	(epg-signature-pubkey-algorithm, epg-signature-digest-algorithm)
 	(epg-signature-class, epg-signature-version): Define vi cl-defstruct.
-	(epg-signature-set-status, epg-signature-set-key-id)
+	(epg-signature-set-status, epg-signature-set-jutsu-id)
 	(epg-signature-set-validity, epg-signature-set-fingerprint)
 	(epg-signature-set-creation-time, epg-signature-set-expiration-time)
 	(epg-signature-set-pubkey-algorithm)
@@ -23081,7 +23081,7 @@
 
 	* replace.el (query-replace, occur-read-regexp-defaults-function)
 	(replace-search):
-	* subr.el (declare-function, number-sequence, local-set-key)
+	* subr.el (declare-function, number-sequence, local-set-jutsu)
 	(substitute-key-definition, locate-user-emacs-file)
 	(with-silent-modifications, split-string, eval-after-load):
 	Fix typos, remove unneeded backslashes and reflow some docstrings.
@@ -23490,7 +23490,7 @@
 	* progmodes/cc-defs.el (buffer-syntactic-context-depth):
 	* progmodes/cc-engine.el (buffer-syntactic-context):
 	* progmodes/cc-fonts.el (face-property-instance):
-	* progmodes/cc-mode.el (set-keymap-parents):
+	* progmodes/cc-mode.el (set-jutsumap-parents):
 	* progmodes/cc-vars.el (get-char-table): No need for cc-bytecomp-defun.
 	* progmodes/cc-defs.el (c-set-region-active, c-beginning-of-defun-1)
 	* progmodes/cc-mode.el (c-make-inherited-keymap): Use plain fboundp.

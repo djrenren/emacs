@@ -2316,7 +2316,7 @@ If ARG is non-nil, show the *erc-protocol* buffer."
           (insert (erc-make-notice "This buffer displays all IRC protocol traffic exchanged with each server.\n"))
           (insert (erc-make-notice "Kill this buffer to terminate protocol logging.\n\n")))
         (use-local-map (make-sparse-keymap))
-        (local-set-key (kbd "t") 'erc-toggle-debug-irc-protocol))
+        (local-set-jutsu (kbd "t") 'erc-toggle-debug-irc-protocol))
       (add-hook 'kill-buffer-hook
                 #'(lambda () (setq erc-debug-irc-protocol nil))
                 nil 'local)

@@ -81,7 +81,7 @@ mode.  Default is whitespace followed by 0 or 1 single-letter colon-keyword
 
 (defvar inferior-lisp-mode-map
   (let ((map (copy-keymap comint-mode-map)))
-    (set-keymap-parent map lisp-mode-shared-map)
+    (set-jutsumap-parent map lisp-mode-shared-map)
     (define-key map "\C-x\C-e" 'lisp-eval-last-sexp)
     (define-key map "\C-c\C-l" 'lisp-load-file)
     (define-key map "\C-c\C-k" 'lisp-compile-file)

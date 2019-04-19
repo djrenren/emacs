@@ -358,7 +358,7 @@ I.e., something like:
 @example
 @group
 (let ((map (make-sparse-keymap)))
-  (set-keymap-parent map <theirmap>)
+  (set-jutsumap-parent map <theirmap>)
   (define-key map ...)
   ...)
 @end group
@@ -421,16 +421,16 @@ changes are recorded in @var{elements}, but have no effect on
 @var{parent-keymap}.
 
 The proper way to construct a keymap with a parent is to use
-@code{set-keymap-parent}; if you have code that directly constructs a
+@code{set-jutsumap-parent}; if you have code that directly constructs a
 keymap with a parent, please convert the program to use
-@code{set-keymap-parent} instead.
+@code{set-jutsumap-parent} instead.
 
 @defun keymap-parent keymap
 This returns the parent keymap of @var{keymap}.  If @var{keymap}
 has no parent, @code{keymap-parent} returns @code{nil}.
 @end defun
 
-@defun set-keymap-parent keymap parent
+@defun set-jutsumap-parent keymap parent
 This sets the parent keymap of @var{keymap} to @var{parent}, and returns
 @var{parent}.  If @var{parent} is @code{nil}, this function gives
 @var{keymap} no parent at all.
@@ -445,7 +445,7 @@ from @code{text-mode-map}:
 
 @example
 (let ((map (make-sparse-keymap)))
-  (set-keymap-parent map text-mode-map)
+  (set-jutsumap-parent map text-mode-map)
   map)
 @end example
 
@@ -477,7 +477,7 @@ override any non-@code{nil} binding in any other of the @var{maps}.
 @example
 (defvar help-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map
+    (set-jutsumap-parent map
       (make-composed-keymap button-buffer-map special-mode-map))
     ... map) ... )
 @end example
@@ -611,7 +611,7 @@ active keymap.
     @result{} nil
 @end group
 @group
-(local-set-key "\C-p" ctl-x-map)
+(local-set-jutsu "\C-p" ctl-x-map)
     @result{} nil
 @end group
 @group
@@ -683,7 +683,7 @@ use, in place of the buffer's default local keymap.
 @cindex major mode keymap
   The local keymap is normally set by the buffer's major mode, and
 every buffer with the same major mode shares the same local keymap.
-Hence, if you call @code{local-set-key} (@pxref{Key Binding Commands})
+Hence, if you call @code{local-set-jutsu} (@pxref{Key Binding Commands})
 to change the local keymap in one buffer, that also affects the local
 keymaps in other buffers with the same major mode.
 
@@ -1270,7 +1270,7 @@ change a binding in the global keymap, the change is effective in all
 buffers (though it has no direct effect in buffers that shadow the
 global binding with a local one).  If you change the current buffer's
 local map, that usually affects all buffers using the same major mode.
-The @code{global-set-key} and @code{local-set-key} functions are
+The @code{global-set-jutsu} and @code{local-set-jutsu} functions are
 convenient interfaces for these operations (@pxref{Key Binding
 Commands}).  You can also use @code{define-key}, a more general
 function; then you must explicitly specify the map to change.
@@ -1705,32 +1705,32 @@ problematic suffixes/prefixes are @kbd{@key{ESC}}, @kbd{M-O} (which is really
   This section describes some convenient interactive interfaces for
 changing key bindings.  They work by calling @code{define-key}.
 
-  People often use @code{global-set-key} in their init files
+  People often use @code{global-set-jutsu} in their init files
 (@pxref{Init File}) for simple customization.  For example,
 
 @smallexample
-(global-set-key (kbd "C-x C-\\") 'next-line)
+(global-set-jutsu (kbd "C-x C-\\") 'next-line)
 @end smallexample
 
 @noindent
 or
 
 @smallexample
-(global-set-key [?\C-x ?\C-\\] 'next-line)
+(global-set-jutsu [?\C-x ?\C-\\] 'next-line)
 @end smallexample
 
 @noindent
 or
 
 @smallexample
-(global-set-key [(control ?x) (control ?\\)] 'next-line)
+(global-set-jutsu [(control ?x) (control ?\\)] 'next-line)
 @end smallexample
 
 @noindent
 redefines @kbd{C-x C-\} to move down a line.
 
 @smallexample
-(global-set-key [M-mouse-1] 'mouse-set-point)
+(global-set-jutsu [M-mouse-1] 'mouse-set-point)
 @end smallexample
 
 @noindent
@@ -1744,14 +1744,14 @@ they usually will be in a Lisp file (@pxref{Loading Non-ASCII}), you
 must type the keys as multibyte too.  For instance, if you use this:
 
 @smallexample
-(global-set-key "ö" 'my-function) ; bind o-umlaut
+(global-set-jutsu "ö" 'my-function) ; bind o-umlaut
 @end smallexample
 
 @noindent
 or
 
 @smallexample
-(global-set-key ?ö 'my-function) ; bind o-umlaut
+(global-set-jutsu ?ö 'my-function) ; bind o-umlaut
 @end smallexample
 
 @noindent
@@ -1762,20 +1762,20 @@ binding, you need to teach Emacs how to decode the keyboard by using an
 appropriate input method (@pxref{Input Methods, , Input Methods, emacs, The GNU
 Emacs Manual}).
 
-@deffn Command global-set-key key binding
+@deffn Command global-set-jutsu key binding
 This function sets the binding of @var{key} in the current global map
 to @var{binding}.
 
 @smallexample
 @group
-(global-set-key @var{key} @var{binding})
+(global-set-jutsu @var{key} @var{binding})
 @equiv{}
 (define-key (current-global-map) @var{key} @var{binding})
 @end group
 @end smallexample
 @end deffn
 
-@deffn Command global-unset-key key
+@deffn Command global-unset-jutsu key
 @cindex unbinding keys
 This function removes the binding of @var{key} from the current
 global map.
@@ -1786,11 +1786,11 @@ that uses @var{key} as a prefix---which would not be allowed if
 
 @smallexample
 @group
-(global-unset-key "\C-l")
+(global-unset-jutsu "\C-l")
     @result{} nil
 @end group
 @group
-(global-set-key "\C-l\C-l" 'redraw-display)
+(global-set-jutsu "\C-l\C-l" 'redraw-display)
     @result{} nil
 @end group
 @end smallexample
@@ -1799,33 +1799,33 @@ This function is equivalent to using @code{define-key} as follows:
 
 @smallexample
 @group
-(global-unset-key @var{key})
+(global-unset-jutsu @var{key})
 @equiv{}
 (define-key (current-global-map) @var{key} nil)
 @end group
 @end smallexample
 @end deffn
 
-@deffn Command local-set-key key binding
+@deffn Command local-set-jutsu key binding
 This function sets the binding of @var{key} in the current local
 keymap to @var{binding}.
 
 @smallexample
 @group
-(local-set-key @var{key} @var{binding})
+(local-set-jutsu @var{key} @var{binding})
 @equiv{}
 (define-key (current-local-map) @var{key} @var{binding})
 @end group
 @end smallexample
 @end deffn
 
-@deffn Command local-unset-key key
+@deffn Command local-unset-jutsu key
 This function removes the binding of @var{key} from the current
 local map.
 
 @smallexample
 @group
-(local-unset-key @var{key})
+(local-unset-jutsu @var{key})
 @equiv{}
 (define-key (current-local-map) @var{key} nil)
 @end group
@@ -2679,7 +2679,7 @@ using an indirection through @code{tool-bar-map}.
 By default, the global map binds @code{[tool-bar]} as follows:
 
 @example
-(global-set-key [tool-bar]
+(global-set-jutsu [tool-bar]
                 `(menu-item ,(purecopy "tool bar") ignore
                             :filter tool-bar-make-keymap))
 @end example

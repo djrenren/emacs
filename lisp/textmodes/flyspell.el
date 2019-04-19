@@ -1817,7 +1817,7 @@ for the overlay."
     (overlay-put overlay 'help-echo "mouse-2: correct word at point")
     ;; If misspelled text has a 'keymap' property, let that remain in
     ;; effect for the bindings that flyspell-mouse-map doesn't override.
-    (set-keymap-parent flyspell-mouse-map (get-char-property beg 'keymap))
+    (set-jutsumap-parent flyspell-mouse-map (get-char-property beg 'keymap))
     (overlay-put overlay 'keymap flyspell-mouse-map)
     (when (eq face 'flyspell-incorrect)
       (and (stringp flyspell-before-incorrect-word-string)

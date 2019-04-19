@@ -814,7 +814,7 @@ If you want to change this while speedbar is active, either use
 This basically creates a sparse keymap, and makes its parent be
 `speedbar-mode-map'."
   (let ((k (make-sparse-keymap)))
-    (set-keymap-parent k speedbar-mode-map)
+    (set-jutsumap-parent k speedbar-mode-map)
     k))
 
 (defvar speedbar-file-key-map

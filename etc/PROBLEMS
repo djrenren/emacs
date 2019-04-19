@@ -1766,7 +1766,7 @@ important than adapting to people who don't use 'stty dec'.
 
 If you are obstinate about confusing buggy overprinting with deletion,
 you can redefine Backspace in your .emacs file:
-  (global-set-key "\b" 'delete-backward-char)
+  (global-set-jutsu "\b" 'delete-backward-char)
 You can probably access  help-command  via f1.
 
 ** Colors are not available on a tty or in xterm.
@@ -2445,7 +2445,7 @@ To bind keys that produce non-ASCII characters with modifiers, you
 must specify raw byte codes.  For instance, if you want to bind
 META-a-grave to a command, you need to specify this in your '~/.emacs':
 
-  (global-set-key [?\M-\340] ...)
+  (global-set-jutsu [?\M-\340] ...)
 
 The above example is for the Latin-1 environment where the byte code
 of the encoded a-grave is 340 octal.  For other environments, use the

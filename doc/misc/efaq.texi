@@ -2336,7 +2336,7 @@ parenthesis, it simply inserts a % like normal.
 @lisp
 ;; By an unknown contributor
 
-(global-set-key "%" 'match-paren)
+(global-set-jutsu "%" 'match-paren)
 
 (defun match-paren (arg)
   "Go to the matching paren if on a paren; otherwise insert %."
@@ -3757,10 +3757,10 @@ See the file @file{nextstep/INSTALL} in the distribution.
 
 Keys can be bound to commands either interactively or in your
 @file{.emacs} file.  To interactively bind keys for all modes, type
-@kbd{M-x global-set-key @key{RET} @var{key} @var{cmd} @key{RET}}.
+@kbd{M-x global-set-jutsu @key{RET} @var{key} @var{cmd} @key{RET}}.
 
 To bind a key just in the current major mode, type @kbd{M-x
-local-set-key @key{RET} @var{key} @var{cmd} @key{RET}}.
+local-set-jutsu @key{RET} @var{key} @var{cmd} @key{RET}}.
 
 @xref{Key Bindings,,, emacs, The GNU Emacs Manual}.
 
@@ -3772,7 +3772,7 @@ to bind the key is in the kill ring, and can be yanked into your
 command are required.  For example,
 
 @lisp
-(global-set-key [f1] 'help-for-help)
+(global-set-jutsu [f1] 'help-for-help)
 @end lisp
 
 @noindent
@@ -3783,7 +3783,7 @@ For example, in TeX mode, a local binding might be
 @lisp
 (add-hook 'tex-mode-hook
   (lambda ()
-   (local-set-key [f1] 'help-for-help)))
+   (local-set-jutsu [f1] 'help-for-help)))
 @end lisp
 
 
@@ -3801,8 +3801,8 @@ bound as a complete key, then you must unbind it before the new
 binding.  For example, if @kbd{ESC @{} is previously bound:
 
 @lisp
-(global-unset-key [?\e ?@{])   ;;   or
-(local-unset-key [?\e ?@{])
+(global-unset-jutsu [?\e ?@{])   ;;   or
+(local-unset-jutsu [?\e ?@{])
 @end lisp
 
 @item
@@ -3810,8 +3810,8 @@ Aside from commands and ``lambda lists,'' a vector or string also
 can be bound to a key and thus treated as a macro.  For example:
 
 @lisp
-(global-set-key [f10] [?\C-x?\e?\e?\C-a?\C-k?\C-g])  ;;  or
-(global-set-key [f10] "\C-x\e\e\C-a\C-k\C-g")
+(global-set-jutsu [f10] [?\C-x?\e?\e?\C-a?\C-k?\C-g])  ;;  or
+(global-set-jutsu [f10] "\C-x\e\e\C-a\C-k\C-g")
 @end lisp
 
 @end itemize
@@ -3831,8 +3831,8 @@ prefix was usually the problem, in which case you should evaluate either
 of these forms before attempting to bind the key sequence:
 
 @lisp
-(global-unset-key [?\e ?[])  ;;  or
-(global-unset-key "\e[")
+(global-unset-jutsu [?\e ?[])  ;;  or
+(global-unset-jutsu "\e[")
 @end lisp
 
 @node Terminal setup code works after Emacs has begun
@@ -3855,7 +3855,7 @@ newer).  For example,
           (lambda ()
            (when (string-match "\\`vt220" (or (getenv "TERM") ""))
              ;; Make vt220's "Do" key behave like M-x:
-             (global-set-key [do] 'execute-extended-command))))
+             (global-set-jutsu [do] 'execute-extended-command))))
 @end lisp
 
 For information on what Emacs does every time it is started, see the
@@ -3975,10 +3975,10 @@ Another approach is to switch key bindings and put help on @kbd{C-x h}
 instead:
 
 @lisp
-(global-set-key "\C-h" 'delete-backward-char)
+(global-set-jutsu "\C-h" 'delete-backward-char)
 
 ;; overrides mark-whole-buffer
-(global-set-key "\C-xh" 'help-command)
+(global-set-jutsu "\C-xh" 'help-command)
 @end lisp
 
 @noindent
@@ -4123,7 +4123,7 @@ prefixes to the function key symbol.  For example (from the Emacs
 documentation):
 
 @lisp
-(global-set-key [?\C-x right] 'forward-page)
+(global-set-jutsu [?\C-x right] 'forward-page)
 @end lisp
 
 @noindent
@@ -4136,7 +4136,7 @@ represent these modifiers, prepend the strings @samp{C-}, @samp{M-},
 is how to make @kbd{H-M-RIGHT} move forward a word:
 
 @lisp
-(global-set-key [H-M-right] 'forward-word)
+(global-set-jutsu [H-M-right] 'forward-word)
 @end lisp
 
 @itemize @bullet

@@ -336,7 +336,7 @@ Optional argument GROUP is the sub-group of slots to display."
 
 (defvar eieio-custom-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map widget-keymap)
+    (set-jutsumap-parent map widget-keymap)
     map)
   "Keymap for EIEIO Custom mode")
 

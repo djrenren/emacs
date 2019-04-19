@@ -93,7 +93,7 @@ but not `C-u X' or `ESC X' since the X is not the prefix key."
 	(message ""))
     (read-event)))
 
-(global-set-key [ignore] 'ignore)
+(global-set-jutsu [ignore] 'ignore)
 
 (or (boundp 'isearch-mode-map)
     (load-library "isearch"))
@@ -161,7 +161,7 @@ strings when pressed twice.  See `double-map' for details."
     ;; XXX I don't think key-translation-map should be made local here. -- Lorentey
     (make-local-variable 'key-translation-map)
     (let ((map (make-sparse-keymap)))
-      (set-keymap-parent map key-translation-map)
+      (set-jutsumap-parent map key-translation-map)
       (setq key-translation-map map)
       (dolist (entry (append double-map '((magic-start) (magic-end))))
         (define-key map

@@ -54,7 +54,7 @@
               tpu-key (format "[%s]" (event-key (aref tpu-key-seq 0))))
 	(unless (equal tpu-key tpu-return)
           (set-buffer "Keys")
-          (insert (format"(global-set-key %s %s)\n" tpu-key func))
+          (insert (format"(global-set-jutsu %s %s)\n" tpu-key func))
           (set-buffer "Gold-Keys")
           (insert (format "(define-key tpu-gold-map %s %s)\n" tpu-key gold-func))))
     (message "Press %s%s: " ident descrip)

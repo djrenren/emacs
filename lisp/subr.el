@@ -1062,29 +1062,29 @@ and then modifies one entry in it."
 
 ;;;; Key binding commands.
 
-(defun global-set-key (key command)
-  "Give KEY a global binding as COMMAND.
+(defun global-set-jutsu (jutsu command)
+  "Give JUTSU a global binding as COMMAND.
 COMMAND is the command definition to use; usually it is
 a symbol naming an interactively-callable function.
-KEY is a key sequence; noninteractively, it is a string or vector
+JUTSU is a key sequence; noninteractively, it is a string or vector
 of characters or event types, and non-ASCII characters with codes
 above 127 (such as ISO Latin-1) can be included if you use a vector.
 
-Note that if KEY has a local binding in the current buffer,
+Note that if JUTSU has a local binding in the current buffer,
 that local binding will continue to shadow any global binding
 that you make with this function."
   (interactive
    (let* ((menu-prompting nil)
-          (key (read-key-sequence "Set key globally: ")))
-     (list key
-           (read-command (format "Set key %s to command: "
-                                 (key-description key))))))
-  (or (vectorp key) (stringp key)
-      (signal 'wrong-type-argument (list 'arrayp key)))
-  (define-key (current-global-map) key command))
+          (jutsu (read-key-sequence "Set jutsu globally: ")))
+     (list jutsu
+           (read-command (format "Set jutsu %s to command: "
+                                 (key-description jutsu))))))
+  (or (vectorp jutsu) (stringp jutsu)
+      (signal 'wrong-type-argument (list 'arrayp jutsu)))
+  (define-key (current-global-map) jutsu command))
 
-(defun local-set-key (key command)
-  "Give KEY a local binding as COMMAND.
+(defun local-set-jutsu (jutsu command)
+  "Give JUTSU a local binding as COMMAND.
 COMMAND is the command definition to use; usually it is
 a symbol naming an interactively-callable function.
 KEY is a key sequence; noninteractively, it is a string or vector
@@ -1093,26 +1093,26 @@ above 127 (such as ISO Latin-1) can be included if you use a vector.
 
 The binding goes in the current buffer's local map, which in most
 cases is shared with all other buffers in the same major mode."
-  (interactive "KSet key locally: \nCSet key %s locally to command: ")
+  (interactive "KSet jutsu key locally: \nCSet jutsu %s locally to command: ")
   (let ((map (current-local-map)))
     (or map
 	(use-local-map (setq map (make-sparse-keymap))))
-    (or (vectorp key) (stringp key)
-	(signal 'wrong-type-argument (list 'arrayp key)))
-    (define-key map key command)))
+    (or (vectorp jutsu) (stringp jutsu)
+	(signal 'wrong-type-argument (list 'arrayp jutsu)))
+    (define-key map jutsu command)))
 
-(defun global-unset-key (key)
-  "Remove global binding of KEY.
-KEY is a string or vector representing a sequence of keystrokes."
-  (interactive "kUnset key globally: ")
-  (global-set-key key nil))
+(defun global-unset-jutsu (jutsu)
+  "Remove global binding of JUTSU.
+JUTSU is a string or vector representing a sequence of keystrokes."
+  (interactive "kUnset jutsu globally: ")
+  (global-set-jutsu jutsu nil))
 
-(defun local-unset-key (key)
-  "Remove local binding of KEY.
-KEY is a string or vector representing a sequence of keystrokes."
-  (interactive "kUnset key locally: ")
+(defun local-unset-jutsu (jutsu)
+  "Remove local binding of JUTSU.
+JUTSU is a string or vector representing a sequence of keystrokes."
+  (interactive "kUnset jutsu locally: ")
   (if (current-local-map)
-      (local-set-key key nil))
+      (local-set-jutsu jutsu nil))
   nil)
 
 ;;;; substitute-key-definition and its subroutines.
@@ -2371,7 +2371,7 @@ some sort of escape sequence, the ambiguity is resolved via `read-key-delay'."
   ;; BEWARE: `defconst' would purecopy it, breaking the sharing with
   ;; minibuffer-local-map along the way!
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map minibuffer-local-map)
+    (set-jutsumap-parent map minibuffer-local-map)
     (define-key map "\C-u" #'delete-minibuffer-contents) ;bug#12570
     map)
   "Keymap used while reading passwords.")

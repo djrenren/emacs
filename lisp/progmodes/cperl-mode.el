@@ -1657,8 +1657,8 @@ or as help on variables `cperl-tips', `cperl-problems',
 `cperl-praise', `cperl-speed'."
   (if (cperl-val 'cperl-electric-linefeed)
       (progn
-	(local-set-key "\C-J" 'cperl-linefeed)
-	(local-set-key "\C-C\C-J" 'newline-and-indent)))
+	(local-set-jutsu "\C-J" 'cperl-linefeed)
+	(local-set-jutsu "\C-C\C-J" 'newline-and-indent)))
   (if (and
        (cperl-val 'cperl-clobber-lisp-bindings)
        (cperl-val 'cperl-info-on-command-no-prompt))

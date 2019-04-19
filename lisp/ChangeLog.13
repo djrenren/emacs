@@ -142,10 +142,10 @@
 
 	* printing.el: Fix pr-interface-map initialization code.
 	(pr-version): New version 6.9.3.
-	(pr-f-set-keymap-parents): Replace by pr-set-keymap-parents.
-	(pr-f-set-keymap-name): Replace by pr-set-keymap-name.
+	(pr-f-set-jutsumap-parents): Replace by pr-set-jutsumap-parents.
+	(pr-f-set-jutsumap-name): Replace by pr-set-jutsumap-name.
 	(pr-f-read-string): Replace by pr-read-string.
-	(pr-set-keymap-parents, pr-set-keymap-name, pr-read-string):
+	(pr-set-jutsumap-parents, pr-set-jutsumap-name, pr-read-string):
 	New function name.
 	(pr-interactive-n-up, pr-interactive-regexp): Code fix.
 
@@ -277,7 +277,7 @@
 	(pr-menu-get-item, pr-menu-set-item-name, pr-menu-set-utility-title)
 	(pr-menu-set-ps-title, pr-menu-set-txt-title, pr-region-active-p)
 	(pr-do-update-menus, pr-update-mode-line, pr-f-read-string)
-	(pr-f-set-keymap-parents, pr-keep-region-active): Function aliases.
+	(pr-f-set-jutsumap-parents, pr-keep-region-active): Function aliases.
 	(pr-menu-print-item, pr-ps-printer-menu-modified)
 	(pr-txt-printer-menu-modified, pr-ps-utility-menu-modified)
 	(pr-even-or-odd-alist): Move variable definitions.
@@ -519,7 +519,7 @@
 	(pr-update-mode-line, pr-do-update-menus, pr-menu-alist)
 	(pr-relabel-menu-item, pr-menu-set-ps-title, pr-menu-set-txt-title)
 	(pr-menu-set-utility-title, pr-even-or-odd-pages)
-	(pr-f-set-keymap-parents, pr-f-set-keymap-name, pr-f-read-string)
+	(pr-f-set-jutsumap-parents, pr-f-set-jutsumap-name, pr-f-read-string)
 	(pr-keep-region-active, pr-menu-get-item, pr-menu-set-item-name):
 	Move functions.
 
@@ -961,7 +961,7 @@
 	Check `ascii-incompatible' for backward compatibility.
 	(set-file-name-coding-system): Signal an error for a coding system
 	not suitable for file name.
-	(set-keyboard-coding-system): Signal an error for a coding system
+	(set-jutsuboard-coding-system): Signal an error for a coding system
 	not suitable for keyboard.
 
 	* language/chinese.el (iso-2022-cn, iso-2022-cn-ext):
@@ -2722,7 +2722,7 @@
 2008-02-01  Dave Love  <fx@gnu.org>
 
 	* international/mule-cmds.el (set-locale-environment): Comment out
-	set-keyboard-coding-system stuff.
+	set-jutsuboard-coding-system stuff.
 
 2008-02-01  Kenichi Handa  <handa@etl.go.jp>
 
@@ -8900,7 +8900,7 @@
 	* term/tvi970.el (tvi970-terminal-map): New var.
 	(terminal-init-tvi970): Use it and input-decode-map.
 	(tvi970-keypad-numeric): Remove.
-	(tvi970-set-keypad-mode): Use a terminal-parameter rather than var.
+	(tvi970-set-jutsupad-mode): Use a terminal-parameter rather than var.
 
 	* term/sun.el (sun-raw-prefix): Fill as part of declaration.
 	(terminal-init-sun): Use it and input-decode-map.
@@ -11796,7 +11796,7 @@
 
 	* term/x-win.el (x-menu-bar-open): Delete duplicated function from
 	the merge.
-	(global-set-key): Delete f10 mapping, now done in menu-bar.el.
+	(global-set-jutsu): Delete f10 mapping, now done in menu-bar.el.
 	(provide): Move to the end of file.
 
 	* vc-svn.el (vc-svn-diff-tree): Pass a list to vc-svn-diff.
@@ -12038,9 +12038,9 @@
 
 	* international/mule.el (keyboard-coding-system): Test for
 	encoded-kbd-setup-display, not encoded-kbd-mode.
-	(set-terminal-coding-system, set-keyboard-coding-system): Add
+	(set-terminal-coding-system, set-jutsuboard-coding-system): Add
 	DISPLAY parameter.
-	(set-keyboard-coding-system): Use encoded-kbd-setup-display.
+	(set-jutsuboard-coding-system): Use encoded-kbd-setup-display.
 
 	* term/README: Update.
 

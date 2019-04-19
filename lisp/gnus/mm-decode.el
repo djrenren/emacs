@@ -524,7 +524,7 @@ result of the verification."
 
 (defvar mm-viewer-completion-map
   (let ((map (make-sparse-keymap 'mm-viewer-completion-map)))
-    (set-keymap-parent map minibuffer-local-completion-map)
+    (set-jutsumap-parent map minibuffer-local-completion-map)
     ;; Should we bind other key to minibuffer-complete-word?
     (define-key map " " 'self-insert-command)
     map)

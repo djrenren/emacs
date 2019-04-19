@@ -4371,7 +4371,7 @@ If variable `gnus-use-long-file-name' is non-nil, it is
 ;;; Gnus article mode
 ;;;
 
-(set-keymap-parent gnus-article-mode-map widget-keymap)
+(set-jutsumap-parent gnus-article-mode-map widget-keymap)
 
 (gnus-define-keys gnus-article-mode-map
   " " gnus-article-goto-next-page
@@ -6849,14 +6849,14 @@ then we display only bindings that start with that prefix."
     (with-current-buffer gnus-article-current-summary
       (dolist (key sumkeys)
 	(define-key summap key (key-binding key (current-local-map))))
-      (set-keymap-parent
+      (set-jutsumap-parent
        keymap
        (if (setq parent (keymap-parent gnus-article-mode-map))
 	   (prog1
 	       (setq parent (copy-keymap parent))
-	     (set-keymap-parent parent summap))
+	     (set-jutsumap-parent parent summap))
 	 summap))
-      (set-keymap-parent map (key-binding "S"))
+      (set-jutsumap-parent map (key-binding "S"))
       (let (key def gnus-pick-mode)
 	(while sumkeys
 	  (setq key (pop sumkeys))
@@ -7163,7 +7163,7 @@ other groups."
 ;; Should we be using derived.el for this?
 (unless gnus-article-edit-mode-map
   (setq gnus-article-edit-mode-map (make-keymap))
-  (set-keymap-parent gnus-article-edit-mode-map text-mode-map)
+  (set-jutsumap-parent gnus-article-edit-mode-map text-mode-map)
 
   (gnus-define-keys gnus-article-edit-mode-map
     "\C-c?"    describe-mode

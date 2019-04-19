@@ -454,7 +454,7 @@ struct terminal
 
   /* Coding-system of what is sent from terminal keyboard.  This
      structure contains information of a coding-system specified by
-     the function `set-keyboard-coding-system'.  */
+     the function `set-jutsuboard-coding-system'.  */
   struct coding_system *keyboard_coding;
 
   /* Window-based redisplay interface for this device (0 for tty

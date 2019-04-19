@@ -1505,7 +1505,7 @@ in *Help* buffer.  See also the command `describe-char'."
     ;; Might as well bind TAB to completion, since inserting a TAB char is
     ;; much too rarely useful.
     (define-key m "\t" 'completion-at-point)
-    (set-keymap-parent m minibuffer-local-map)
+    (set-jutsumap-parent m minibuffer-local-map)
     m))
 
 (defun read-minibuffer (prompt &optional initial-contents)
@@ -3291,7 +3291,7 @@ to the end of the list of defaults just after the default value."
 
 (defvar minibuffer-local-shell-command-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map minibuffer-local-map)
+    (set-jutsumap-parent map minibuffer-local-map)
     (define-key map "\t" 'completion-at-point)
     map)
   "Keymap used for completing shell commands in minibuffer.")
@@ -8854,7 +8854,7 @@ and setting it to nil."
 
 (defvar messages-buffer-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map special-mode-map)
+    (set-jutsumap-parent map special-mode-map)
     (define-key map "g" nil)            ; nothing to revert
     map))
 

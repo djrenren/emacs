@@ -189,7 +189,7 @@ If ADVANCE is non-nil, move forward by one line afterwards."
 
 (defvar tabulated-list-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map (make-composed-keymap
+    (set-jutsumap-parent map (make-composed-keymap
                             button-buffer-map
                             special-mode-map))
     (define-key map "n" 'next-line)

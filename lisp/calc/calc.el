@@ -1401,7 +1401,7 @@ Notations:  3.14e6     3.14 * 10^6
 
 (defvar calc-trail-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map calc-mode-map)
+    (set-jutsumap-parent map calc-mode-map)
     map))
 
 (define-derived-mode calc-trail-mode fundamental-mode "Calc Trail"

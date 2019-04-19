@@ -512,14 +512,14 @@ If FILENAME is given, edit that file."
 
       (use-local-map
        (let ((map (make-sparse-keymap)))
-         (set-keymap-parent map custom-mode-map)
+         (set-jutsumap-parent map custom-mode-map)
          (define-key map "\C-x\C-s" 'ada-prj-save)
          map))
 
       ;; FIXME: Not sure if this works!!
       (set (make-local-variable 'widget-keymap)
            (let ((map (make-sparse-keymap)))
-             (set-keymap-parent map widget-keymap)
+             (set-jutsumap-parent map widget-keymap)
              (define-key map "\C-x\C-s" 'ada-prj-save)
              map))
 

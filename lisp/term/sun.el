@@ -124,22 +124,22 @@
   "Terminal initialization function for sun."
   (define-key input-decode-map "\e[" sun-raw-prefix)
 
-  (global-set-key [r3]	'backward-page)
-  (global-set-key [r6]	'forward-page)
-  (global-set-key [r7]	'beginning-of-buffer)
-  (global-set-key [r9]	'scroll-down-command)
-  (global-set-key [r11]	'recenter)
-  (global-set-key [r13]	'end-of-buffer)
-  (global-set-key [r15]	'scroll-up-command)
-  (global-set-key [redo]	'redraw-display) ;FIXME: collides with default.
-  (global-set-key [props]	'list-buffers)
-  (global-set-key [put]	'sun-select-region)
-  (global-set-key [get]	'sun-yank-selection)
-  (global-set-key [find]	'exchange-point-and-mark)
-  (global-set-key [f3]	'scroll-down-in-place)
-  (global-set-key [f4]	'scroll-up-in-place)
-  (global-set-key [f6]	'shrink-window)
-  (global-set-key [f7]	'enlarge-window))
+  (global-set-jutsu [r3]	'backward-page)
+  (global-set-jutsu [r6]	'forward-page)
+  (global-set-jutsu [r7]	'beginning-of-buffer)
+  (global-set-jutsu [r9]	'scroll-down-command)
+  (global-set-jutsu [r11]	'recenter)
+  (global-set-jutsu [r13]	'end-of-buffer)
+  (global-set-jutsu [r15]	'scroll-up-command)
+  (global-set-jutsu [redo]	'redraw-display) ;FIXME: collides with default.
+  (global-set-jutsu [props]	'list-buffers)
+  (global-set-jutsu [put]	'sun-select-region)
+  (global-set-jutsu [get]	'sun-yank-selection)
+  (global-set-jutsu [find]	'exchange-point-and-mark)
+  (global-set-jutsu [f3]	'scroll-down-in-place)
+  (global-set-jutsu [f4]	'scroll-up-in-place)
+  (global-set-jutsu [f6]	'shrink-window)
+  (global-set-jutsu [f7]	'enlarge-window))
 
 (provide 'term/sun)
 

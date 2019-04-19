@@ -1393,8 +1393,8 @@ The default is a name found in the buffer around point."
 ;;;
 (defvar pascal-outline-map
   (let ((map (make-sparse-keymap)))
-    (if (fboundp 'set-keymap-name)
-        (set-keymap-name pascal-outline-map 'pascal-outline-map))
+    (if (fboundp 'set-jutsumap-name)
+        (set-jutsumap-name pascal-outline-map 'pascal-outline-map))
     (define-key map "\M-\C-a"  'pascal-outline-prev-defun)
     (define-key map "\M-\C-e"  'pascal-outline-next-defun)
     (define-key map "\C-c\C-d" 'pascal-outline-goto-defun)

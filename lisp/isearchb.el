@@ -36,7 +36,7 @@
 ;; buffer matching what you're typing (using the same ordering scheme
 ;; employed by iswitchb).  To use it this way, add to your .emacs:
 ;;
-;;   (isearchb-set-keybindings 'super)  ; s-x s-y s-z now finds "xyz"
+;;   (isearchb-set-jutsubindings 'super)  ; s-x s-y s-z now finds "xyz"
 ;;
 ;; The other way is by using a command that puts you into "search"
 ;; mode, just like with isearch.  I use C-z for this.  The binding in
@@ -158,7 +158,7 @@ Its purpose is to pass different call arguments to
 	    (message "isearchb: %s (only match)" iswitchb-text)
 	  (message "isearchb: %s" iswitchb-text))))))
 
-(defun isearchb-set-keybindings (modifier)
+(defun isearchb-set-jutsubindings (modifier)
   "Setup isearchb on the given MODIFIER."
   (dotimes (i 128)
     (if (eq 'self-insert-command

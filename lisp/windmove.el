@@ -566,10 +566,10 @@ Default value of MODIFIERS is `shift'."
   (interactive)
   (unless modifiers (setq modifiers 'shift))
   (unless (listp modifiers) (setq modifiers (list modifiers)))
-  (global-set-key (vector (append modifiers '(left)))  'windmove-left)
-  (global-set-key (vector (append modifiers '(right))) 'windmove-right)
-  (global-set-key (vector (append modifiers '(up)))    'windmove-up)
-  (global-set-key (vector (append modifiers '(down)))  'windmove-down))
+  (global-set-jutsu (vector (append modifiers '(left)))  'windmove-left)
+  (global-set-jutsu (vector (append modifiers '(right))) 'windmove-right)
+  (global-set-jutsu (vector (append modifiers '(up)))    'windmove-up)
+  (global-set-jutsu (vector (append modifiers '(down)))  'windmove-down))
 
 
 ;;; Directional window display and selection
@@ -675,11 +675,11 @@ Default value of MODIFIERS is `shift-meta'."
   (interactive)
   (unless modifiers (setq modifiers '(shift meta)))
   (unless (listp modifiers) (setq modifiers (list modifiers)))
-  (global-set-key (vector (append modifiers '(left)))  'windmove-display-left)
-  (global-set-key (vector (append modifiers '(right))) 'windmove-display-right)
-  (global-set-key (vector (append modifiers '(up)))    'windmove-display-up)
-  (global-set-key (vector (append modifiers '(down)))  'windmove-display-down)
-  (global-set-key (vector (append modifiers '(?0)))    'windmove-display-same-window))
+  (global-set-jutsu (vector (append modifiers '(left)))  'windmove-display-left)
+  (global-set-jutsu (vector (append modifiers '(right))) 'windmove-display-right)
+  (global-set-jutsu (vector (append modifiers '(up)))    'windmove-display-up)
+  (global-set-jutsu (vector (append modifiers '(down)))  'windmove-display-down)
+  (global-set-jutsu (vector (append modifiers '(?0)))    'windmove-display-same-window))
 
 
 ;;; Directional window deletion
@@ -747,10 +747,10 @@ a single modifier.  Default value of PREFIX is `C-x' and MODIFIERS is `shift'."
   (unless (listp prefix) (setq prefix (list prefix)))
   (unless modifiers (setq modifiers '(shift)))
   (unless (listp modifiers) (setq modifiers (list modifiers)))
-  (global-set-key (vector prefix (append modifiers '(left)))  'windmove-delete-left)
-  (global-set-key (vector prefix (append modifiers '(right))) 'windmove-delete-right)
-  (global-set-key (vector prefix (append modifiers '(up)))    'windmove-delete-up)
-  (global-set-key (vector prefix (append modifiers '(down)))  'windmove-delete-down))
+  (global-set-jutsu (vector prefix (append modifiers '(left)))  'windmove-delete-left)
+  (global-set-jutsu (vector prefix (append modifiers '(right))) 'windmove-delete-right)
+  (global-set-jutsu (vector prefix (append modifiers '(up)))    'windmove-delete-up)
+  (global-set-jutsu (vector prefix (append modifiers '(down)))  'windmove-delete-down))
 
 
 ;;; Directional window swap states
@@ -800,10 +800,10 @@ or a single modifier.  Default value of MODIFIERS is `shift-super'."
   (interactive)
   (unless modifiers (setq modifiers '(shift super)))
   (unless (listp modifiers) (setq modifiers (list modifiers)))
-  (global-set-key (vector (append modifiers '(left)))  'windmove-swap-states-left)
-  (global-set-key (vector (append modifiers '(right))) 'windmove-swap-states-right)
-  (global-set-key (vector (append modifiers '(up)))    'windmove-swap-states-up)
-  (global-set-key (vector (append modifiers '(down)))  'windmove-swap-states-down))
+  (global-set-jutsu (vector (append modifiers '(left)))  'windmove-swap-states-left)
+  (global-set-jutsu (vector (append modifiers '(right))) 'windmove-swap-states-right)
+  (global-set-jutsu (vector (append modifiers '(up)))    'windmove-swap-states-up)
+  (global-set-jutsu (vector (append modifiers '(down)))  'windmove-swap-states-down))
 
 
 (provide 'windmove)

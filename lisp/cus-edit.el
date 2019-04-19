@@ -433,7 +433,7 @@ Use group `text' for this instead.  This group is deprecated."
 
 (defvar custom-mode-map
   (let ((map (make-keymap)))
-    (set-keymap-parent map widget-keymap)
+    (set-jutsumap-parent map widget-keymap)
     (define-key map [remap self-insert-command] 'Custom-no-edit)
     (define-key map "\^m" 'Custom-newline)
     (define-key map " " 'scroll-up-command)
@@ -450,7 +450,7 @@ Use group `text' for this instead.  This group is deprecated."
 
 (defvar custom-mode-link-map
   (let ((map (make-keymap)))
-    (set-keymap-parent map custom-mode-map)
+    (set-jutsumap-parent map custom-mode-map)
     (define-key map [down-mouse-2] nil)
     (define-key map [down-mouse-1] 'mouse-drag-region)
     (define-key map [mouse-2] 'widget-move-and-invoke)

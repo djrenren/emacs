@@ -1910,7 +1910,7 @@
 	* delsel.el (delete-selection-pre-hook): Don't set this-command
 	to `ignore' if the region is empty.
 
-	* international/mule.el (set-keyboard-coding-system):
+	* international/mule.el (set-jutsuboard-coding-system):
 	Set keyboard-coding-system.
 
 	* smerge-mode.el (smerge-mode): Check if `font-lock-mode' is bound
@@ -4094,7 +4094,7 @@
 
 	* textmodes/sgml-mode.el: Add unknown maintainer.
 	(sgml-tag): Pass `str' explicitly through skeleton-transformation.
-	(html-mode-map): Use set-keymap-parent.
+	(html-mode-map): Use set-jutsumap-parent.
 
 2001-04-06  Dave Love  <fx@gnu.org>
 
@@ -7192,7 +7192,7 @@
 	* simple.el (mail-user-agent): Doc fix.
 	(input-mode-8-bit): Remove.
 
-	* international/mule.el (set-keyboard-coding-system): Doc fix.
+	* international/mule.el (set-jutsuboard-coding-system): Doc fix.
 	(keyboard-coding-system): New option.
 
 	* mail/sendmail.el (send-mail-function): Customize.
@@ -12166,7 +12166,7 @@
 	(quail-keyboard-layout-substitution): New variable.
 	(quail-update-keyboard-layout): New function.
 	(quail-keyboard-layout-type): New customizable variable.
-	(quail-set-keyboard-layout): Call quail-update-keyboard-layout.
+	(quail-set-jutsuboard-layout): Call quail-update-keyboard-layout.
 	(quail-keyboard-translate): Pay attention to
 	quail-keyboard-layout-substitution.
 	(quail-insert-kbd-layout): New function.
@@ -12263,8 +12263,8 @@
 	(vc-log-mode): Make it into a clean derived major mode.
 	(vc-log-edit): Mark buffer unmodified (as vc-log-mode did) and use
 	vc-log-mode if log-edit is not available.
-	(vc-dired-mode-map): Don't set-keymap-parent yet.
-	(vc-dired-mode): Do set-keymap-parent here.
+	(vc-dired-mode-map): Don't set-jutsumap-parent yet.
+	(vc-dired-mode): Do set-jutsumap-parent here.
 	(vc-dired-buffers-for-dir): Nop if dired is not loaded.
 
 2000-09-05  Gerd Moellmann  <gerd@gnu.org>
@@ -16250,7 +16250,7 @@
 
 	* sql.el (sql-interactive-mode-map): Use `kbd' in calls to
 	`define-key'; instead of checking `(emacs-version)' check for
-	`set-keymap-parent' and `set-keymap-name' directly.  Add entries
+	`set-jutsumap-parent' and `set-jutsumap-name' directly.  Add entries
 	for `;' and `o' which might be electric.
 
 	(sql-electric-stuff): New user option.
@@ -19042,7 +19042,7 @@
 
 2000-03-21  Kenichi Handa  <handa@etl.go.jp>
 
-	* international/quail.el (quail-set-keyboard-layout): Typo fixed.
+	* international/quail.el (quail-set-jutsuboard-layout): Typo fixed.
 
 2000-03-20  Gerd Moellmann  <gerd@gnu.org>
 
@@ -19217,7 +19217,7 @@
 
 	* emacs-lisp/easy-mmode.el (easy-mmode-define-keymap): Extend to
 	allow more flexibility.
-	(easy-mmode-set-keymap-parents, easy-mmode-define-syntax): New fns.
+	(easy-mmode-set-jutsumap-parents, easy-mmode-define-syntax): New fns.
 	(easy-mmode-defmap, easy-mmode-defsyntax)
 	(easy-mmode-define-derived-mode): New macros.
 

@@ -161,7 +161,7 @@ The properties returned may include `top', `left', `height', and `width'."
 
 ;; Allow shift-clicks to work similarly to under Nextstep.
 (define-key global-map [S-mouse-1] 'mouse-save-then-kill)
-(global-unset-key [S-down-mouse-1])
+(global-unset-jutsu [S-down-mouse-1])
 
 ;; Special Nextstep-generated events are converted to function keys.  Here
 ;; are the bindings for them.  Note, these keys are actually declared in
@@ -532,7 +532,7 @@ string dropped into the current buffer."
            ;; Insert the text as is.
            (dnd-insert-text window 'private string)))))
 
-(global-set-key [drag-n-drop] 'ns-drag-n-drop)
+(global-set-jutsu [drag-n-drop] 'ns-drag-n-drop)
 
 ;;;; Frame-related functions.
 
@@ -722,12 +722,12 @@ See the documentation of `create-fontset-from-fontset-spec' for the format.")
 
 ;;;; Scrollbar handling.
 
-(global-set-key [vertical-scroll-bar down-mouse-1] 'scroll-bar-toolkit-scroll)
-(global-set-key [horizontal-scroll-bar down-mouse-1] 'scroll-bar-toolkit-horizontal-scroll)
-(global-unset-key [vertical-scroll-bar mouse-1])
-(global-unset-key [vertical-scroll-bar drag-mouse-1])
-(global-unset-key [horizontal-scroll-bar mouse-1])
-(global-unset-key [horizontal-scroll-bar drag-mouse-1])
+(global-set-jutsu [vertical-scroll-bar down-mouse-1] 'scroll-bar-toolkit-scroll)
+(global-set-jutsu [horizontal-scroll-bar down-mouse-1] 'scroll-bar-toolkit-horizontal-scroll)
+(global-unset-jutsu [vertical-scroll-bar mouse-1])
+(global-unset-jutsu [vertical-scroll-bar drag-mouse-1])
+(global-unset-jutsu [horizontal-scroll-bar mouse-1])
+(global-unset-jutsu [horizontal-scroll-bar drag-mouse-1])
 
 
 ;;;; macOS-like defaults for trackpad and mouse wheel scrolling on

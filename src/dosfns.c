@@ -147,7 +147,7 @@ DEFUN ("msdos-memput", Fdos_memput, Sdos_memput, 2, 2, 0,
   return Qt;
 }
 
-DEFUN ("msdos-set-keyboard", Fmsdos_set_keyboard, Smsdos_set_keyboard, 1, 2, 0,
+DEFUN ("msdos-set-jutsuboard", Fmsdos_set_keyboard, Smsdos_set_keyboard, 1, 2, 0,
        doc: /* Set keyboard layout according to COUNTRY-CODE.
 If the optional argument ALLKEYS is non-nil, the keyboard is mapped for
 all keys; otherwise it is only used when the ALT key is pressed.
@@ -788,7 +788,7 @@ The value is an integer constructed by adding the following bits together:
 
   DEFVAR_INT ("dos-keyboard-layout", dos_keyboard_layout,
 	      doc: /* Contains the country code for the current keyboard layout.
-Use msdos-set-keyboard to select another keyboard layout.  */);
+Use msdos-set-jutsuboard to select another keyboard layout.  */);
   dos_keyboard_layout = 1;	/* US */
 
   DEFVAR_INT ("dos-decimal-point", dos_decimal_point,

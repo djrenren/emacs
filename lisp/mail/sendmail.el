@@ -1980,7 +1980,7 @@ The seventh argument ACTIONS is a list of actions to take
 "))))
       (use-local-map
        (let ((map (make-sparse-keymap)))
-	 (set-keymap-parent map (current-local-map))
+	 (set-jutsumap-parent map (current-local-map))
 	 map))
       (define-key (current-local-map) "v"
 	(lambda ()

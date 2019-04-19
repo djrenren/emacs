@@ -964,7 +964,7 @@ See the command `imenu' for more information."
       (unless (and (current-local-map)
                    (keymapp (lookup-key (current-local-map) [menu-bar index])))
 	(let ((newmap (make-sparse-keymap)))
-	  (set-keymap-parent newmap (current-local-map))
+	  (set-jutsumap-parent newmap (current-local-map))
 	  (setq imenu--last-menubar-index-alist nil)
           (setq imenu--menubar-keymap (make-sparse-keymap "Imenu"))
 	  (define-key newmap [menu-bar index]

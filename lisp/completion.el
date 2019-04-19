@@ -2298,7 +2298,7 @@ TYPE is the type of the wrapper to be added.  Can be :before or :under."
   ;; that a map has lower precedence if the symbol is not buffer-local.
   (while completion-saved-bindings
     (let ((binding (pop completion-saved-bindings)))
-      (global-set-key (car binding) (cdr binding))))
+      (global-set-jutsu (car binding) (cdr binding))))
   (when dynamic-completion-mode
     (dolist (binding
              '(("\M-\r"  . complete)
@@ -2316,7 +2316,7 @@ TYPE is the type of the wrapper to be added.  Can be :before or :under."
                ([remap kill-region] . completion-kill-region)))
       (push (cons (car binding) (lookup-key global-map (car binding)))
             completion-saved-bindings)
-      (global-set-key (car binding) (cdr binding)))
+      (global-set-jutsu (car binding) (cdr binding)))
 
     ;; Tests --
     ;; foobarbiz

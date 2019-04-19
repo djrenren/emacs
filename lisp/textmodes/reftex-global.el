@@ -148,9 +148,9 @@ No active TAGS table is required."
     (insert " LABEL               FILE\n")
     (insert " -------------------------------------------------------------\n")
     (use-local-map (make-sparse-keymap))
-    (local-set-key [?q] (lambda () "Kill this buffer." (interactive)
+    (local-set-jutsu [?q] (lambda () "Kill this buffer." (interactive)
                           (kill-buffer (current-buffer)) (delete-window)))
-    (local-set-key [?r] 'reftex-change-label)
+    (local-set-jutsu [?r] 'reftex-change-label)
     (while dlist
       (when (and (car (car dlist))
                  (cdr (car dlist)))

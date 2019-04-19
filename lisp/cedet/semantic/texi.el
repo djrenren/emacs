@@ -468,7 +468,7 @@ that start with that symbol."
 	senator-step-at-start-end-tag-classes '(section)
 	semantic-stickyfunc-sticky-classes '(section)
 	)
-  ;; (local-set-key [(f9)] 'semantic-texi-update-doc-from-texi)
+  ;; (local-set-jutsu [(f9)] 'semantic-texi-update-doc-from-texi)
   )
 
 (add-hook 'texinfo-mode-hook 'semantic-default-texi-setup)

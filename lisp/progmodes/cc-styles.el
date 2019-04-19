@@ -450,7 +450,7 @@ STYLE using `c-set-style' if the optional SET-P flag is non-nil."
 	 offset input)
     ;; In principle completing-read is used here, but SPC is unbound
     ;; to make it less annoying to enter lists.
-    (set-keymap-parent keymap minibuffer-local-completion-map)
+    (set-jutsumap-parent keymap minibuffer-local-completion-map)
     (define-key keymap " " 'self-insert-command)
     (while (not offset)
       (setq input (read-from-minibuffer prompt nil keymap t

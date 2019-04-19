@@ -378,7 +378,7 @@ Typically \"page-%s.png\".")
 
 (defvar doc-view-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map image-mode-map)
+    (set-jutsumap-parent map image-mode-map)
     ;; Navigation in the document
     (define-key map (kbd "n")         'doc-view-next-page)
     (define-key map (kbd "p")         'doc-view-previous-page)

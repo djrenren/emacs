@@ -2250,7 +2250,7 @@ a reflection.
 (defvar bookmark-map (let ((map (make-sparse-keymap))) (define-key map "x" 'bookmark-set) (define-key map "m" 'bookmark-set) (define-key map "M" 'bookmark-set-no-overwrite) (define-key map "j" 'bookmark-jump) (define-key map "g" 'bookmark-jump) (define-key map "o" 'bookmark-jump-other-window) (define-key map "5" 'bookmark-jump-other-frame) (define-key map "i" 'bookmark-insert) (define-key map "e" 'edit-bookmarks) (define-key map "f" 'bookmark-insert-location) (define-key map "r" 'bookmark-rename) (define-key map "d" 'bookmark-delete) (define-key map "l" 'bookmark-load) (define-key map "w" 'bookmark-write) (define-key map "s" 'bookmark-save) map) "\
 Keymap containing bindings to bookmark functions.
 It is not bound to any key by default: to bind it
-so that you have a bookmark prefix, just use `global-set-key' and bind a
+so that you have a bookmark prefix, just use `global-set-jutsu' and bind a
 key of your choice to `bookmark-map'.  All interactive bookmark
 functions have a binding in this keymap.")
  (fset 'bookmark-map bookmark-map)
@@ -18559,7 +18559,7 @@ in your init file:
 
 You can bind this to the key C-c i in GNUS or mail by adding to
 `news-reply-mode-hook' or `mail-mode-hook' the following lambda expression:
-   (function (lambda () (local-set-key \"\\C-ci\" \\='ispell-message)))" t nil)
+   (function (lambda () (local-set-jutsu \"\\C-ci\" \\='ispell-message)))" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ispell" '("check-ispell-version" "ispell-")))
 
@@ -18838,12 +18838,12 @@ and the return value is the length of the conversion.
 
 ;;;### (autoloads nil "kmacro" "kmacro.el" (0 0 0 0))
 ;;; Generated autoloads from kmacro.el
- (global-set-key "\C-x(" 'kmacro-start-macro)
- (global-set-key "\C-x)" 'kmacro-end-macro)
- (global-set-key "\C-xe" 'kmacro-end-and-call-macro)
- (global-set-key [f3] 'kmacro-start-macro-or-insert-counter)
- (global-set-key [f4] 'kmacro-end-or-call-macro)
- (global-set-key "\C-x\C-k" 'kmacro-keymap)
+ (global-set-jutsu "\C-x(" 'kmacro-start-macro)
+ (global-set-jutsu "\C-x)" 'kmacro-end-macro)
+ (global-set-jutsu "\C-xe" 'kmacro-end-and-call-macro)
+ (global-set-jutsu [f3] 'kmacro-start-macro-or-insert-counter)
+ (global-set-jutsu [f4] 'kmacro-end-or-call-macro)
+ (global-set-jutsu "\C-x\C-k" 'kmacro-keymap)
  (autoload 'kmacro-keymap "kmacro" "Keymap for keyboard macro commands." t 'keymap)
 
 (autoload 'kmacro-exec-ring-item "kmacro" "\
@@ -21312,7 +21312,7 @@ about which direction is natural.  Perhaps it has to do with which
 hemisphere you're in.)
 
 To test this function, evaluate:
-    (global-set-key [down-mouse-2] \\='mouse-drag-throw)
+    (global-set-jutsu [down-mouse-2] \\='mouse-drag-throw)
 
 \(fn START-EVENT)" t nil)
 
@@ -21330,7 +21330,7 @@ Drag scrolling is identical to the \"hand\" option in MacPaint, or the
 middle button in Tk text widgets.
 
 To test this function, evaluate:
-    (global-set-key [down-mouse-2] \\='mouse-drag-drag)
+    (global-set-jutsu [down-mouse-2] \\='mouse-drag-drag)
 
 \(fn START-EVENT)" t nil)
 
@@ -26110,7 +26110,7 @@ non-Quail commands.
 
 \(fn NAME LANGUAGE TITLE &optional GUIDANCE DOCSTRING TRANSLATION-KEYS FORGET-LAST-SELECTION DETERMINISTIC KBD-TRANSLATE SHOW-LAYOUT CREATE-DECODE-MAP MAXIMUM-SHORTEST OVERLAY-PLIST UPDATE-TRANSLATION-FUNCTION CONVERSION-KEYS SIMPLE)" nil nil)
 
-(autoload 'quail-set-keyboard-layout "quail" "\
+(autoload 'quail-set-jutsuboard-layout "quail" "\
 Set the current keyboard layout to the same as keyboard KBD-TYPE.
 
 Since some Quail packages depends on a physical layout of keys (not
@@ -31311,7 +31311,7 @@ Major-mode for writing SRecode macros.
 
 (autoload 'strokes-global-set-stroke "strokes" "\
 Interactively give STROKE the global binding as COMMAND.
-Works just like `global-set-key', except for strokes.  COMMAND is
+Works just like `global-set-jutsu', except for strokes.  COMMAND is
 a symbol naming an interactively-callable function.  STROKE is a
 list of sampled positions on the stroke grid as described in the
 documentation for the `strokes-define-stroke' function.
@@ -34019,8 +34019,8 @@ resumed later.
 ;;;;;;  0 0))
 ;;; Generated autoloads from textmodes/two-column.el
  (autoload '2C-command "two-column" () t 'keymap)
- (global-set-key "\C-x6" '2C-command)
- (global-set-key [f2] '2C-command)
+ (global-set-jutsu "\C-x6" '2C-command)
+ (global-set-jutsu [f2] '2C-command)
 
 (autoload '2C-two-columns "two-column" "\
 Split current window vertically for two-column editing.
@@ -36400,7 +36400,7 @@ Usage:
   SPECIAL MENUES:
     As an alternative to the speedbar, an index menu can be added (set
     option `vhdl-index-menu' to non-nil) or made accessible as a mouse menu
-    (e.g. add \"(global-set-key [S-down-mouse-3] \\='imenu)\" to your start-up
+    (e.g. add \"(global-set-jutsu [S-down-mouse-3] \\='imenu)\" to your start-up
     file) for browsing the file contents (is not populated if buffer is
     larger than 256000).  Also, a source file menu can be
     added (set option `vhdl-source-file-menu' to non-nil) for browsing the

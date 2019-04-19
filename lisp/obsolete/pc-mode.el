@@ -40,16 +40,16 @@ C-Escape does list-buffers."
   (define-key function-key-map [delete] "\C-d")
   (define-key function-key-map [M-delete] [?\M-d])
   (define-key function-key-map [C-delete] [?\M-d])
-  (global-set-key [C-M-delete] 'kill-sexp)
-  (global-set-key [C-backspace] 'backward-kill-word)
-  (global-set-key [M-backspace] 'undo)
+  (global-set-jutsu [C-M-delete] 'kill-sexp)
+  (global-set-jutsu [C-backspace] 'backward-kill-word)
+  (global-set-jutsu [M-backspace] 'undo)
 
-  (global-set-key [C-escape] 'list-buffers)
+  (global-set-jutsu [C-escape] 'list-buffers)
 
-  (global-set-key [home] 'beginning-of-line)
-  (global-set-key [end] 'end-of-line)
-  (global-set-key [C-home] 'beginning-of-buffer)
-  (global-set-key [C-end] 'end-of-buffer))
+  (global-set-jutsu [home] 'beginning-of-line)
+  (global-set-jutsu [end] 'end-of-line)
+  (global-set-jutsu [C-home] 'beginning-of-buffer)
+  (global-set-jutsu [C-end] 'end-of-buffer))
 
 (provide 'pc-mode)
 

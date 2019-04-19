@@ -442,7 +442,7 @@ Otherwise, the value is whatever the function
 (defvar Man-mode-map
   (let ((map (make-sparse-keymap)))
     (suppress-keymap map)
-    (set-keymap-parent map
+    (set-jutsumap-parent map
       (make-composed-keymap button-buffer-map special-mode-map))
 
     (define-key map "n"    'Man-next-section)

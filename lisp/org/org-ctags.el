@@ -103,7 +103,7 @@
 ;;
 ;;      M-*    "go back" from a tag jump.  Like `org-mark-ring-goto'.
 ;;             You may need to bind this key yourself with (eg)
-;;             (global-set-key (kbd "<M-kp-multiply>") 'pop-tag-mark)
+;;             (global-set-jutsu (kbd "<M-kp-multiply>") 'pop-tag-mark)
 ;;
 ;;      (see etags chapter in Emacs manual for more)
 ;;

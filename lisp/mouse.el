@@ -204,7 +204,7 @@ items `Turn Off' and `Help'."
                                                  " Mode"))
 		   menu-bar-edit-menu)))
     (if ancestor
-	(set-keymap-parent newmap ancestor))
+	(set-jutsumap-parent newmap ancestor))
     newmap))
 
 (defun mouse-menu-non-singleton (menubar)
@@ -1660,11 +1660,11 @@ if `mouse-drag-copy-region' is non-nil)"
       (setq mouse-save-then-kill-posn click-pt)))))
 
 
-(global-set-key [M-mouse-1] 'mouse-start-secondary)
-(global-set-key [M-drag-mouse-1] 'mouse-set-secondary)
-(global-set-key [M-down-mouse-1] 'mouse-drag-secondary)
-(global-set-key [M-mouse-3] 'mouse-secondary-save-then-kill)
-(global-set-key [M-mouse-2] 'mouse-yank-secondary)
+(global-set-jutsu [M-mouse-1] 'mouse-start-secondary)
+(global-set-jutsu [M-drag-mouse-1] 'mouse-set-secondary)
+(global-set-jutsu [M-down-mouse-1] 'mouse-drag-secondary)
+(global-set-jutsu [M-mouse-3] 'mouse-secondary-save-then-kill)
+(global-set-jutsu [M-mouse-2] 'mouse-yank-secondary)
 
 (defconst mouse-secondary-overlay
   (let ((ol (make-overlay (point-min) (point-min))))
@@ -2692,9 +2692,9 @@ is copied instead of being cut."
 
 ;;; Bindings for mouse commands.
 
-(global-set-key [down-mouse-1]	'mouse-drag-region)
-(global-set-key [mouse-1]	'mouse-set-point)
-(global-set-key [drag-mouse-1]	'mouse-set-region)
+(global-set-jutsu [down-mouse-1]	'mouse-drag-region)
+(global-set-jutsu [mouse-1]	'mouse-set-point)
+(global-set-jutsu [drag-mouse-1]	'mouse-set-region)
 
 (defun mouse--strip-first-event (_prompt)
   (substring (this-single-command-raw-keys) 1))
@@ -2702,21 +2702,21 @@ is copied instead of being cut."
 (define-key function-key-map [left-fringe mouse-1] 'mouse--strip-first-event)
 (define-key function-key-map [right-fringe mouse-1] 'mouse--strip-first-event)
 
-(global-set-key [mouse-2]	'mouse-yank-primary)
+(global-set-jutsu [mouse-2]	'mouse-yank-primary)
 ;; Allow yanking also when the corresponding cursor is "in the fringe".
 (define-key function-key-map [right-fringe mouse-2] 'mouse--strip-first-event)
 (define-key function-key-map [left-fringe mouse-2] 'mouse--strip-first-event)
-(global-set-key [mouse-3]	'mouse-save-then-kill)
+(global-set-jutsu [mouse-3]	'mouse-save-then-kill)
 (define-key function-key-map [right-fringe mouse-3] 'mouse--strip-first-event)
 (define-key function-key-map [left-fringe mouse-3] 'mouse--strip-first-event)
 
 ;; By binding these to down-going events, we let the user use the up-going
 ;; event to make the selection, saving a click.
-(global-set-key [C-down-mouse-1] 'mouse-buffer-menu)
+(global-set-jutsu [C-down-mouse-1] 'mouse-buffer-menu)
 (if (not (eq system-type 'ms-dos))
-    (global-set-key [S-down-mouse-1] 'mouse-appearance-menu))
+    (global-set-jutsu [S-down-mouse-1] 'mouse-appearance-menu))
 ;; C-down-mouse-2 is bound in facemenu.el.
-(global-set-key [C-down-mouse-3]
+(global-set-jutsu [C-down-mouse-3]
   `(menu-item ,(purecopy "Menu Bar") ignore
     :filter (lambda (_)
               (if (zerop (or (frame-parameter nil 'menu-bar-lines) 0))
@@ -2727,41 +2727,41 @@ is copied instead of being cut."
 ;; vertical-line prevents Emacs from signaling an error when the mouse
 ;; button is released after dragging these lines, on non-toolkit
 ;; versions.
-(global-set-key [header-line down-mouse-1] 'mouse-drag-header-line)
-(global-set-key [header-line mouse-1] 'mouse-select-window)
-;; (global-set-key [mode-line drag-mouse-1] 'mouse-select-window)
-(global-set-key [mode-line down-mouse-1] 'mouse-drag-mode-line)
-(global-set-key [mode-line mouse-1] 'mouse-select-window)
-(global-set-key [mode-line mouse-2] 'mouse-delete-other-windows)
-(global-set-key [mode-line mouse-3] 'mouse-delete-window)
-(global-set-key [mode-line C-mouse-2] 'mouse-split-window-horizontally)
-(global-set-key [vertical-scroll-bar C-mouse-2] 'mouse-split-window-vertically)
-(global-set-key [horizontal-scroll-bar C-mouse-2] 'mouse-split-window-horizontally)
-(global-set-key [vertical-line down-mouse-1] 'mouse-drag-vertical-line)
-(global-set-key [vertical-line mouse-1] 'mouse-select-window)
-(global-set-key [vertical-line C-mouse-2] 'mouse-split-window-vertically)
-(global-set-key [right-divider down-mouse-1] 'mouse-drag-vertical-line)
-(global-set-key [right-divider mouse-1] 'ignore)
-(global-set-key [right-divider C-mouse-2] 'mouse-split-window-vertically)
-(global-set-key [bottom-divider down-mouse-1] 'mouse-drag-mode-line)
-(global-set-key [bottom-divider mouse-1] 'ignore)
-(global-set-key [bottom-divider C-mouse-2] 'mouse-split-window-horizontally)
-(global-set-key [left-edge down-mouse-1] 'mouse-drag-left-edge)
-(global-set-key [left-edge mouse-1] 'ignore)
-(global-set-key [top-left-corner down-mouse-1] 'mouse-drag-top-left-corner)
-(global-set-key [top-left-corner mouse-1] 'ignore)
-(global-set-key [top-edge down-mouse-1] 'mouse-drag-top-edge)
-(global-set-key [top-edge mouse-1] 'ignore)
-(global-set-key [top-right-corner down-mouse-1] 'mouse-drag-top-right-corner)
-(global-set-key [top-right-corner mouse-1] 'ignore)
-(global-set-key [right-edge down-mouse-1] 'mouse-drag-right-edge)
-(global-set-key [right-edge mouse-1] 'ignore)
-(global-set-key [bottom-right-corner down-mouse-1] 'mouse-drag-bottom-right-corner)
-(global-set-key [bottom-right-corner mouse-1] 'ignore)
-(global-set-key [bottom-edge down-mouse-1] 'mouse-drag-bottom-edge)
-(global-set-key [bottom-edge mouse-1] 'ignore)
-(global-set-key [bottom-left-corner down-mouse-1] 'mouse-drag-bottom-left-corner)
-(global-set-key [bottom-left-corner mouse-1] 'ignore)
+(global-set-jutsu [header-line down-mouse-1] 'mouse-drag-header-line)
+(global-set-jutsu [header-line mouse-1] 'mouse-select-window)
+;; (global-set-jutsu [mode-line drag-mouse-1] 'mouse-select-window)
+(global-set-jutsu [mode-line down-mouse-1] 'mouse-drag-mode-line)
+(global-set-jutsu [mode-line mouse-1] 'mouse-select-window)
+(global-set-jutsu [mode-line mouse-2] 'mouse-delete-other-windows)
+(global-set-jutsu [mode-line mouse-3] 'mouse-delete-window)
+(global-set-jutsu [mode-line C-mouse-2] 'mouse-split-window-horizontally)
+(global-set-jutsu [vertical-scroll-bar C-mouse-2] 'mouse-split-window-vertically)
+(global-set-jutsu [horizontal-scroll-bar C-mouse-2] 'mouse-split-window-horizontally)
+(global-set-jutsu [vertical-line down-mouse-1] 'mouse-drag-vertical-line)
+(global-set-jutsu [vertical-line mouse-1] 'mouse-select-window)
+(global-set-jutsu [vertical-line C-mouse-2] 'mouse-split-window-vertically)
+(global-set-jutsu [right-divider down-mouse-1] 'mouse-drag-vertical-line)
+(global-set-jutsu [right-divider mouse-1] 'ignore)
+(global-set-jutsu [right-divider C-mouse-2] 'mouse-split-window-vertically)
+(global-set-jutsu [bottom-divider down-mouse-1] 'mouse-drag-mode-line)
+(global-set-jutsu [bottom-divider mouse-1] 'ignore)
+(global-set-jutsu [bottom-divider C-mouse-2] 'mouse-split-window-horizontally)
+(global-set-jutsu [left-edge down-mouse-1] 'mouse-drag-left-edge)
+(global-set-jutsu [left-edge mouse-1] 'ignore)
+(global-set-jutsu [top-left-corner down-mouse-1] 'mouse-drag-top-left-corner)
+(global-set-jutsu [top-left-corner mouse-1] 'ignore)
+(global-set-jutsu [top-edge down-mouse-1] 'mouse-drag-top-edge)
+(global-set-jutsu [top-edge mouse-1] 'ignore)
+(global-set-jutsu [top-right-corner down-mouse-1] 'mouse-drag-top-right-corner)
+(global-set-jutsu [top-right-corner mouse-1] 'ignore)
+(global-set-jutsu [right-edge down-mouse-1] 'mouse-drag-right-edge)
+(global-set-jutsu [right-edge mouse-1] 'ignore)
+(global-set-jutsu [bottom-right-corner down-mouse-1] 'mouse-drag-bottom-right-corner)
+(global-set-jutsu [bottom-right-corner mouse-1] 'ignore)
+(global-set-jutsu [bottom-edge down-mouse-1] 'mouse-drag-bottom-edge)
+(global-set-jutsu [bottom-edge mouse-1] 'ignore)
+(global-set-jutsu [bottom-left-corner down-mouse-1] 'mouse-drag-bottom-left-corner)
+(global-set-jutsu [bottom-left-corner mouse-1] 'ignore)
 
 (provide 'mouse)
 

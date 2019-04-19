@@ -1903,12 +1903,12 @@ is t."
   (gnus-summary-post-news)
 
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map (current-local-map))
+    (set-jutsumap-parent map (current-local-map))
     (use-local-map map))
-  ;;(local-set-key "\C-c\C-c" 'gnus-summary-edit-article-done)
-  (local-set-key "\C-c\C-c" 'gnus-uu-post-news-inews)
-  (local-set-key "\C-c\C-s" 'gnus-uu-post-news-inews)
-  (local-set-key "\C-c\C-i" 'gnus-uu-post-insert-binary-in-article)
+  ;;(local-set-jutsu "\C-c\C-c" 'gnus-summary-edit-article-done)
+  (local-set-jutsu "\C-c\C-c" 'gnus-uu-post-news-inews)
+  (local-set-jutsu "\C-c\C-s" 'gnus-uu-post-news-inews)
+  (local-set-jutsu "\C-c\C-i" 'gnus-uu-post-insert-binary-in-article)
 
   (when gnus-uu-post-include-before-composing
     (save-excursion (setq gnus-uu-post-inserted-file-name

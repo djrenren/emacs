@@ -1652,7 +1652,7 @@
 	(html-mode): Set up local vars to use html-imenu-index.
 	Don't sort the menu.
 
-	* international/mule.el (set-keyboard-coding-system): Doc typo.
+	* international/mule.el (set-jutsuboard-coding-system): Doc typo.
 
 1998-06-26  Michael Ernst  <mernst@alum.mit.edu>
 
@@ -4580,7 +4580,7 @@
 	* man.el (Man-notify-when-ready) <newframe>:
 	Mark frame's window as dedicated.
 
-	* subr.el (local-set-key, global-set-key):
+	* subr.el (local-set-jutsu, global-set-jutsu):
 	Return what define-key returns.
 
 	* custom.el (defcustom, defgroup, defface): Don't use backquote.
@@ -4867,7 +4867,7 @@
 	* mail/rmailedit.el (rmail-cease-edit): Call kill-all-local-variables.
 	Call rmail-variables.
 	(rmail-edit-mode): Call text-mode.  Don't run text-mode-hook here.
-	(rmail-edit-map): Use set-keymap-parent.
+	(rmail-edit-map): Use set-jutsumap-parent.
 	(rmail-old-text): Add defvar.
 
 	* mail/rmail.el (rmail-movemail-program): Customized.
@@ -5946,7 +5946,7 @@
 1998-03-03  Richard Stallman  <rms@psilocin.gnu.org>
 
 	* emacs-lisp/lisp-mode.el (lisp-interaction-mode-map)
-	(emacs-lisp-mode-map, lisp-mode-map): Use set-keymap-parent.
+	(emacs-lisp-mode-map, lisp-mode-map): Use set-jutsumap-parent.
 
 1998-03-02  Sam Steingold  <sds@usa.net>
 
@@ -7817,7 +7817,7 @@
 	included in a list with a pointer.
 	(view-register, insert-register): Use numberp, not integerp.
 
-	* subr.el (global-set-key, local-set-key): Doc fix.
+	* subr.el (global-set-jutsu, local-set-jutsu): Doc fix.
 
 	* international/mule.el (load-with-code-conversion): Doc fix.
 
@@ -10290,7 +10290,7 @@
 
 	* cal-menu.el: Require calendar only when compiling.
 
-	* international/quail.el (quail-set-keyboard-layout):
+	* international/quail.el (quail-set-jutsuboard-layout):
 	Add autoload cookie.
 
 1997-09-15  Richard Stallman  <rms@psilocin.gnu.ai.mit.edu>
@@ -10940,7 +10940,7 @@
 
 	* international/mule.el (set-terminal-coding-system):
 	Specify default to read-coding-system.
-	(set-keyboard-coding-system): Likewise.
+	(set-jutsuboard-coding-system): Likewise.
 
 1997-09-05  Paul Eggert  <eggert@twinsun.com>
 
@@ -11312,7 +11312,7 @@
 
 	* international/mule-cmds.el (set-terminal-coding-system):
 	Enable for menus whenever not using X.
-	(set-keyboard-coding-system): Likewise.
+	(set-jutsuboard-coding-system): Likewise.
 
 	* international/quail.el (quail-define-package): New arg SIMPLE.
 	(quail-simple-translation-keymap): New keymap.
@@ -12665,7 +12665,7 @@
 	Call set-default-coding-systems.
 
 	* language/china-util.el (setup-chinese-gb-environment): Do not
-	call set-terminal-coding-system and set-keyboard-coding-system,
+	call set-terminal-coding-system and set-jutsuboard-coding-system,
 	instead call set-default-coding-systems.
 	(setup-chinese-big5-environment): Likewise.
 	(setup-chinese-cns-environment): Likewise.
@@ -12683,7 +12683,7 @@
 	(set-terminal-coding-system):
 	Use default-terminal-coding-system as default.
 	(default-keyboard-coding-system): New variable.
-	(set-keyboard-coding-system):
+	(set-jutsuboard-coding-system):
 	Use default-keyboard-coding-system as default.
 
 1997-08-04  Richard Stallman  <rms@psilocin.gnu.ai.mit.edu>
@@ -17128,7 +17128,7 @@
 1997-05-27  Kenichi HANDA  <handa@nora.(none)>
 
 	* mule.el (set-terminal-coding-system): New function.
-	(set-keyboard-coding-system): New function.
+	(set-jutsuboard-coding-system): New function.
 	(set-buffer-process-coding-system): Name changed from
 	set-current-process-coding-system.
 
@@ -22303,7 +22303,7 @@
 
 	* lucid.el (add-timeout): Duplicate definition deleted.
 	(screenw-width, screen-height): Likewise.
-	(disable-timeout, keymap-parent, set-keymap-parent): Likewise.
+	(disable-timeout, keymap-parent, set-jutsumap-parent): Likewise.
 
 	* frame.el (ctl-x-5-map, ctl-x-5-prefix): Duplicate defs deleted.
 

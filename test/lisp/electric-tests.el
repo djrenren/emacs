@@ -840,7 +840,7 @@ baz\"\""
   (setq-local electric-indent-mode-hook nil)
   (electric-indent-local-mode 1)
   (dolist (key '(?\" ?\' ?\{ ?\} ?\( ?\) ?\[ ?\]))
-    (local-set-key (vector key) 'self-insert-command)))
+    (local-set-jutsu (vector key) 'self-insert-command)))
 
 (defun electric-layout-for-c-style-du-jour (inserted)
   "A function to use in `electric-layout-rules'"
@@ -883,7 +883,7 @@ baz\"\""
   (setq-local electric-indent-mode-hook nil)
   (electric-indent-local-mode 1)
   (dolist (key '(?\" ?\' ?\{ ?\} ?\( ?\) ?\[ ?\]))
-    (local-set-key (vector key) 'self-insert-command)))
+    (local-set-jutsu (vector key) 'self-insert-command)))
 
 (ert-deftest electric-modes-int-main-allman-style ()
   (ert-with-test-buffer ()

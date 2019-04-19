@@ -686,7 +686,7 @@ Commands:                        Equivalent keys in read-only mode:
   (setq minor-mode-alist (list (list 'forms-read-only " View")))
 
   ;;(message "forms: proceeding setup (keymaps)...")
-  (forms--set-keymaps)
+  (forms--set-jutsumaps)
   ;;(message "forms: proceeding setup (commands)...")
   (forms--change-commands)
 
@@ -1253,7 +1253,7 @@ Commands:                        Equivalent keys in read-only mode:
 	    (append forms-format-list
 		    (list (format "%4d: " i) i "\n"))))))
 
-(defun forms--set-keymaps ()
+(defun forms--set-jutsumaps ()
   "Set the keymaps used in this mode."
 
   (use-local-map (if forms-read-only
@@ -1417,20 +1417,20 @@ Commands:                        Equivalent keys in read-only mode:
   ;; scroll-up -> forms-next-record
   (if forms-forms-scroll
       (progn
-	(local-set-key [remap scroll-up] 'forms-next-record)
-	(local-set-key [remap scroll-down] 'forms-prev-record)
-	(local-set-key [remap scroll-up-command] 'forms-next-record)
-	(local-set-key [remap scroll-down-command] 'forms-prev-record)))
+	(local-set-jutsu [remap scroll-up] 'forms-next-record)
+	(local-set-jutsu [remap scroll-down] 'forms-prev-record)
+	(local-set-jutsu [remap scroll-up-command] 'forms-next-record)
+	(local-set-jutsu [remap scroll-down-command] 'forms-prev-record)))
   ;;
   ;; beginning-of-buffer -> forms-first-record
   ;; end-of-buffer -> forms-end-record
   (if forms-forms-jump
       (progn
-	(local-set-key [remap beginning-of-buffer] 'forms-first-record)
-	(local-set-key [remap end-of-buffer] 'forms-last-record)))
+	(local-set-jutsu [remap beginning-of-buffer] 'forms-first-record)
+	(local-set-jutsu [remap end-of-buffer] 'forms-last-record)))
   ;;
   ;; Save buffer
-  (local-set-key "\C-x\C-s" 'forms-save-buffer)
+  (local-set-jutsu "\C-x\C-s" 'forms-save-buffer)
   ;;
   ;; We have our own revert function - use it.
   (make-local-variable 'revert-buffer-function)

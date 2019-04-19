@@ -47,7 +47,7 @@
 
 (defvar gnus-score-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map emacs-lisp-mode-map)
+    (set-jutsumap-parent map emacs-lisp-mode-map)
     (define-key map "\C-c\C-c" 'gnus-score-edit-exit)
     (define-key map "\C-c\C-d" 'gnus-score-edit-insert-date)
     (define-key map "\C-c\C-p" 'gnus-score-pretty-print)

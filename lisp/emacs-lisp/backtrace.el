@@ -200,7 +200,7 @@ frames where the source code location is known.")
 
 (defvar backtrace-mode-map
   (let ((map (copy-keymap special-mode-map)))
-    (set-keymap-parent map button-buffer-map)
+    (set-jutsumap-parent map button-buffer-map)
     (define-key map "n" 'backtrace-forward-frame)
     (define-key map "p" 'backtrace-backward-frame)
     (define-key map "v" 'backtrace-toggle-locals)

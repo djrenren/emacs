@@ -3303,7 +3303,7 @@
 	Improve last todo-mode fix
 
 	* lisp/calendar/todo-mode.el (todo-read-category): Use
-	set-keymap-parent instead of copy-keymap, and default (as
+	set-jutsumap-parent instead of copy-keymap, and default (as
 	previously) to the global binding (for rationale, see
 	https://lists.gnu.org/r/emacs-devel/2016-06/msg00217.html).
 
@@ -5440,7 +5440,7 @@
 
 	Simplify 8-bit character handling by terminal for 'raw-text'
 
-	* lisp/international/mule.el (set-keyboard-coding-system): Treat
+	* lisp/international/mule.el (set-jutsuboard-coding-system): Treat
 	'raw-text' as another coding type that requires 8-bit characters.
 	* lisp/xt-mouse.el (xterm-mouse--read-coordinate): Use 'no-conversion'
 	instead of 'latin-1'.
@@ -21676,7 +21676,7 @@
 	(octave-smie-backward-token, octave-smie-forward-token): Use them to
 	distinguish the "enumeration" function and the "end" index from
 	their corresponding keywords.
-	(octave--block-offset-keywords): New constant.
+	(octave--block-offset-jutsuwords): New constant.
 	(octave-smie-rules): Use it.  Adjust rules for new global/persistent
 	parsing.
 	(octave-reserved-words): Redefine using octave-smie-grammar.
@@ -31921,7 +31921,7 @@
 	* lisp/erc/erc-backend.el (erc-process-sentinel-2):
 	Fix minor quoting problem in other string.
 	* lisp/leim/quail/ethiopic.el ("ethiopic"):
-	* lisp/term/tvi970.el (tvi970-set-keypad-mode):
+	* lisp/term/tvi970.el (tvi970-set-jutsupad-mode):
 	Omit unnecessary quotes.
 	* lisp/faces.el (set-face-attribute, set-face-underline)
 	(set-face-inverse-video, x-create-frame-with-faces):

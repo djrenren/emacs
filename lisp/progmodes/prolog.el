@@ -1214,7 +1214,7 @@ Commands:
 
 (defvar mercury-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map prolog-mode-map)
+    (set-jutsumap-parent map prolog-mode-map)
     map))
 
 ;;;###autoload

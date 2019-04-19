@@ -3752,8 +3752,8 @@ be installed in `emacs-lisp-mode-map'.")
     map)
   "Global map of edebug commands, available from any buffer.")
 
-(global-unset-key global-edebug-prefix)
-(global-set-key global-edebug-prefix global-edebug-map)
+(global-unset-jutsu global-edebug-prefix)
+(global-set-jutsu global-edebug-prefix global-edebug-map)
 
 
 (defun edebug-help ()
@@ -3923,7 +3923,7 @@ May only be called from within `edebug--recursive-edit'."
 
 (defvar edebug-eval-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map lisp-interaction-mode-map)
+    (set-jutsumap-parent map lisp-interaction-mode-map)
     (define-key map "\C-c\C-w" 'edebug-where)
     (define-key map "\C-c\C-d" 'edebug-delete-eval-item)
     (define-key map "\C-c\C-u" 'edebug-update-eval-list)

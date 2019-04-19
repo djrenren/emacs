@@ -143,14 +143,14 @@ single byte."
   (let ((previous-keyboard-coding-system (keyboard-coding-system)))
     (unwind-protect
         (progn
-          (set-keyboard-coding-system
+          (set-jutsuboard-coding-system
            (if (terminal-parameter nil 'xterm-mouse-utf-8)
                'utf-8-unix
              'no-conversion))
           ;; Wait only a little; we assume that the entire escape sequence
           ;; has already been sent when this function is called.
           (read-char nil nil 0.1))
-      (set-keyboard-coding-system previous-keyboard-coding-system))))
+      (set-jutsuboard-coding-system previous-keyboard-coding-system))))
 
 ;; In default mode, each numeric parameter of XTerm's mouse report is
 ;; a single char, possibly encoded as utf-8.  The actual numeric

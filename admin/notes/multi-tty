@@ -1056,7 +1056,7 @@ DIARY OF CHANGES
    'set-locale-environment' needs to be written for setting up
    display-local settings on ttys.  I think calling
    set-display-table-and-terminal-coding-system and
-   set-keyboard-coding-system would be enough.  The language
+   set-jutsuboard-coding-system would be enough.  The language
    environment itself should remain a global setting.
 
    (Done, by an ugly hack.)

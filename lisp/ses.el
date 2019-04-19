@@ -194,7 +194,7 @@ Each function is called with ARG=1."
                                                      ; editing
                                                      ; functions
 	(newmap (make-sparse-keymap)))
-    (set-keymap-parent newmap minibuffer-local-map)
+    (set-jutsumap-parent newmap minibuffer-local-map)
     (while keys
       (define-key newmap (pop keys) (pop keys)))
     newmap)

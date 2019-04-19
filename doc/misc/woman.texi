@@ -475,7 +475,7 @@ e.g., this key binding for @kbd{C-c w} runs WoMan on the topic at
 point without seeking confirmation:
 
 @lisp
-(global-set-key "\C-cw"
+(global-set-jutsu "\C-cw"
                 (lambda ()
                   (interactive)
                   (let ((woman-use-topic-at-point t))

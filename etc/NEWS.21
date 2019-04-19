@@ -4443,12 +4443,12 @@ The function `set-window-vscroll' can be used to set the vertical
 scrolling value.  Here is an example of how these function might be
 used.
 
-  (global-set-key [A-down]
+  (global-set-jutsu [A-down]
     #'(lambda ()
         (interactive)
 	(set-window-vscroll (selected-window)
                             (+ 0.5 (window-vscroll)))))
-  (global-set-key [A-up]
+  (global-set-jutsu [A-up]
     #'(lambda ()
 	(interactive)
 	(set-window-vscroll (selected-window)

@@ -125,7 +125,7 @@ The buffer is left in Command History mode."
   'command-history-mode-map "24.1")
 (defvar command-history-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map (make-composed-keymap lisp-mode-shared-map
+    (set-jutsumap-parent map (make-composed-keymap lisp-mode-shared-map
                                                  special-mode-map))
     (define-key map "x" 'command-history-repeat)
     (define-key map "\n" 'next-line)

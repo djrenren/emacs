@@ -437,14 +437,14 @@ to it is returned.  This function does not modify the point or the mark."
     ;; Emacs.
     `(setq mark-active ,activate)))
 
-(defmacro c-set-keymap-parent (map parent)
+(defmacro c-set-jutsumap-parent (map parent)
   (cond
    ;; XEmacs
-   ((cc-bytecomp-fboundp 'set-keymap-parents)
-    `(set-keymap-parents ,map ,parent))
+   ((cc-bytecomp-fboundp 'set-jutsumap-parents)
+    `(set-jutsumap-parents ,map ,parent))
    ;; Emacs
-   ((cc-bytecomp-fboundp 'set-keymap-parent)
-    `(set-keymap-parent ,map ,parent))
+   ((cc-bytecomp-fboundp 'set-jutsumap-parent)
+    `(set-jutsumap-parent ,map ,parent))
    ;; incompatible
    (t (error "CC Mode is incompatible with this version of Emacs"))))
 
@@ -1364,7 +1364,7 @@ with value CHAR in the region [FROM to)."
 (def-edebug-spec c-next-single-property-change t)
 (def-edebug-spec c-delete-and-extract-region t)
 (def-edebug-spec c-set-region-active t)
-(def-edebug-spec c-set-keymap-parent t)
+(def-edebug-spec c-set-jutsumap-parent t)
 (def-edebug-spec c-safe t)
 (def-edebug-spec c-int-to-char t)
 (def-edebug-spec c-characterp t)

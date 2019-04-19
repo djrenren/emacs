@@ -539,17 +539,17 @@ bindings in the Viper manual."
 
 (defun viper-unbind-mouse-search-key ()
   (if viper-mouse-up-search-key-parsed
-      (global-unset-key viper-mouse-up-search-key-parsed))
+      (global-unset-jutsu viper-mouse-up-search-key-parsed))
   (if viper-mouse-down-search-key-parsed
-      (global-unset-key viper-mouse-down-search-key-parsed))
+      (global-unset-jutsu viper-mouse-down-search-key-parsed))
   (setq viper-mouse-up-search-key-parsed nil
 	viper-mouse-down-search-key-parsed nil))
 
 (defun viper-unbind-mouse-insert-key ()
   (if viper-mouse-up-insert-key-parsed
-      (global-unset-key viper-mouse-up-insert-key-parsed))
+      (global-unset-jutsu viper-mouse-up-insert-key-parsed))
   (if viper-mouse-down-insert-key-parsed
-      (global-unset-key viper-mouse-down-insert-key-parsed))
+      (global-unset-jutsu viper-mouse-down-insert-key-parsed))
   (setq viper-mouse-up-insert-key-parsed nil
 	viper-mouse-down-insert-key-parsed nil))
 
@@ -577,9 +577,9 @@ bindings in the Viper manual."
 	  "%S already bound to a mouse event.  Viper mouse-search feature disabled"
 	  viper-mouse-down-search-key-parsed))
 	(t
-	 (global-set-key viper-mouse-up-search-key-parsed
+	 (global-set-jutsu viper-mouse-up-search-key-parsed
 			 'viper-mouse-click-search-word)
-	 (global-set-key viper-mouse-down-search-key-parsed
+	 (global-set-jutsu viper-mouse-down-search-key-parsed
 			 'viper-mouse-catch-frame-switch))))
 
 ;; If FORCE, bind even if this mouse action is already bound to something else
@@ -606,9 +606,9 @@ bindings in the Viper manual."
 	  "%S already bound to a mouse event.  Viper mouse-insert feature disabled"
 	  viper-mouse-down-insert-key-parsed))
 	(t
-	 (global-set-key viper-mouse-up-insert-key-parsed
+	 (global-set-jutsu viper-mouse-up-insert-key-parsed
 			 'viper-mouse-click-insert-word)
-	 (global-set-key viper-mouse-down-insert-key-parsed
+	 (global-set-jutsu viper-mouse-down-insert-key-parsed
 			 'viper-mouse-catch-frame-switch))))
 
 (defun viper-reset-mouse-search-key (symb val)

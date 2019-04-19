@@ -262,7 +262,7 @@
 ;; In addition to any other bindings, vcursor-map contains key definitions
 ;; for handling the vcursor.  You should assign this to a prefix key
 ;; in the usual way, e.g.
-;;      (global-set-key [f14] vcursor-map)
+;;      (global-set-jutsu [f14] vcursor-map)
 ;; and also as usual \C-h in this map will list the key definitions, which
 ;; are designed to be easy to remember.
 ;;
@@ -362,38 +362,38 @@ on loading vcursor and from the customize package."
    ((not value));; don't set any key bindings
    ((or (eq value 'oemacs)
 	(and (eq value t) (fboundp 'oemacs-version)))
-    (global-set-key [C-f1] 'vcursor-toggle-copy)
-    (global-set-key [C-f2] 'vcursor-copy)
-    (global-set-key [C-f3] 'vcursor-copy-word)
-    (global-set-key [C-f4] 'vcursor-copy-line)
+    (global-set-jutsu [C-f1] 'vcursor-toggle-copy)
+    (global-set-jutsu [C-f2] 'vcursor-copy)
+    (global-set-jutsu [C-f3] 'vcursor-copy-word)
+    (global-set-jutsu [C-f4] 'vcursor-copy-line)
 
-    (global-set-key [S-f1] 'vcursor-disable)
-    (global-set-key [S-f2] 'vcursor-other-window)
-    (global-set-key [S-f3] 'vcursor-goto)
-    (global-set-key [S-f4] 'vcursor-swap-point)
+    (global-set-jutsu [S-f1] 'vcursor-disable)
+    (global-set-jutsu [S-f2] 'vcursor-other-window)
+    (global-set-jutsu [S-f3] 'vcursor-goto)
+    (global-set-jutsu [S-f4] 'vcursor-swap-point)
 
-    (global-set-key [C-f5] 'vcursor-backward-char)
-    (global-set-key [C-f6] 'vcursor-previous-line)
-    (global-set-key [C-f7] 'vcursor-next-line)
-    (global-set-key [C-f8] 'vcursor-forward-char)
+    (global-set-jutsu [C-f5] 'vcursor-backward-char)
+    (global-set-jutsu [C-f6] 'vcursor-previous-line)
+    (global-set-jutsu [C-f7] 'vcursor-next-line)
+    (global-set-jutsu [C-f8] 'vcursor-forward-char)
 
-    (global-set-key [M-f5] 'vcursor-beginning-of-line)
-    (global-set-key [M-f6] 'vcursor-backward-word)
-    (global-set-key [M-f6] 'vcursor-forward-word)
-    (global-set-key [M-f8] 'vcursor-end-of-line)
+    (global-set-jutsu [M-f5] 'vcursor-beginning-of-line)
+    (global-set-jutsu [M-f6] 'vcursor-backward-word)
+    (global-set-jutsu [M-f6] 'vcursor-forward-word)
+    (global-set-jutsu [M-f8] 'vcursor-end-of-line)
 
-    (global-set-key [S-f5] 'vcursor-beginning-of-buffer)
-    (global-set-key [S-f6] 'vcursor-scroll-down)
-    (global-set-key [S-f7] 'vcursor-scroll-up)
-    (global-set-key [S-f8] 'vcursor-end-of-buffer)
+    (global-set-jutsu [S-f5] 'vcursor-beginning-of-buffer)
+    (global-set-jutsu [S-f6] 'vcursor-scroll-down)
+    (global-set-jutsu [S-f7] 'vcursor-scroll-up)
+    (global-set-jutsu [S-f8] 'vcursor-end-of-buffer)
 
-    (global-set-key [C-f9] 'vcursor-isearch-forward)
+    (global-set-jutsu [C-f9] 'vcursor-isearch-forward)
 
-    (global-set-key [S-f9] 'vcursor-execute-key)
-    (global-set-key [S-f10] 'vcursor-execute-command)
+    (global-set-jutsu [S-f9] 'vcursor-execute-key)
+    (global-set-jutsu [S-f10] 'vcursor-execute-command)
 
 ;;; Partial dictionary of Oemacs key sequences for you to roll your own,
-;;; e.g C-S-up: (global-set-key "\M-[\C-f\M-\C-m" 'vcursor-previous-line)
+;;; e.g C-S-up: (global-set-jutsu "\M-[\C-f\M-\C-m" 'vcursor-previous-line)
 ;;;    Sequence:         Sends:
 ;;; "\M-[\C-f\M-\C-m"   C-S-up
 ;;; "\M-[\C-f\M-\C-q"   C-S-down
@@ -420,45 +420,45 @@ on loading vcursor and from the customize package."
 ;;; "\M-[\C-fg"         C-S-f10
     )
    (t
-    (global-set-key (vcursor-cs-binding "up") 'vcursor-previous-line)
-    (global-set-key (vcursor-cs-binding "down") 'vcursor-next-line)
-    (global-set-key (vcursor-cs-binding "left") 'vcursor-backward-char)
-    (global-set-key (vcursor-cs-binding "right") 'vcursor-forward-char)
+    (global-set-jutsu (vcursor-cs-binding "up") 'vcursor-previous-line)
+    (global-set-jutsu (vcursor-cs-binding "down") 'vcursor-next-line)
+    (global-set-jutsu (vcursor-cs-binding "left") 'vcursor-backward-char)
+    (global-set-jutsu (vcursor-cs-binding "right") 'vcursor-forward-char)
 
-    (global-set-key (vcursor-cs-binding "return") 'vcursor-disable)
-    (global-set-key (vcursor-cs-binding "insert")  'vcursor-copy)
-    (global-set-key (vcursor-cs-binding "delete") 'vcursor-copy-word)
-    (global-set-key (vcursor-cs-binding "remove") 'vcursor-copy-word)
-    (global-set-key (vcursor-cs-binding "tab") 'vcursor-toggle-copy)
-    (global-set-key (vcursor-cs-binding "backtab") 'vcursor-toggle-copy)
-    (global-set-key (vcursor-cs-binding "home") 'vcursor-beginning-of-buffer)
-    (global-set-key (vcursor-cs-binding "up" t) 'vcursor-beginning-of-buffer)
-    (global-set-key (vcursor-cs-binding "end") 'vcursor-end-of-buffer)
-    (global-set-key (vcursor-cs-binding "down" t) 'vcursor-end-of-buffer)
-    (global-set-key (vcursor-cs-binding "prior") 'vcursor-scroll-down)
-    (global-set-key (vcursor-cs-binding "next") 'vcursor-scroll-up)
+    (global-set-jutsu (vcursor-cs-binding "return") 'vcursor-disable)
+    (global-set-jutsu (vcursor-cs-binding "insert")  'vcursor-copy)
+    (global-set-jutsu (vcursor-cs-binding "delete") 'vcursor-copy-word)
+    (global-set-jutsu (vcursor-cs-binding "remove") 'vcursor-copy-word)
+    (global-set-jutsu (vcursor-cs-binding "tab") 'vcursor-toggle-copy)
+    (global-set-jutsu (vcursor-cs-binding "backtab") 'vcursor-toggle-copy)
+    (global-set-jutsu (vcursor-cs-binding "home") 'vcursor-beginning-of-buffer)
+    (global-set-jutsu (vcursor-cs-binding "up" t) 'vcursor-beginning-of-buffer)
+    (global-set-jutsu (vcursor-cs-binding "end") 'vcursor-end-of-buffer)
+    (global-set-jutsu (vcursor-cs-binding "down" t) 'vcursor-end-of-buffer)
+    (global-set-jutsu (vcursor-cs-binding "prior") 'vcursor-scroll-down)
+    (global-set-jutsu (vcursor-cs-binding "next") 'vcursor-scroll-up)
 
-    (global-set-key (vcursor-cs-binding "f6") 'vcursor-other-window)
-    (global-set-key (vcursor-cs-binding "f7") 'vcursor-goto)
+    (global-set-jutsu (vcursor-cs-binding "f6") 'vcursor-other-window)
+    (global-set-jutsu (vcursor-cs-binding "f7") 'vcursor-goto)
 
-    (global-set-key (vcursor-cs-binding "select")
+    (global-set-jutsu (vcursor-cs-binding "select")
 		    'vcursor-swap-point) ; DEC keyboards
-    (global-set-key (vcursor-cs-binding "tab" t) 'vcursor-swap-point)
+    (global-set-jutsu (vcursor-cs-binding "tab" t) 'vcursor-swap-point)
 
-    (global-set-key (vcursor-cs-binding "find")
+    (global-set-jutsu (vcursor-cs-binding "find")
 		    'vcursor-isearch-forward) ; DEC keyboards
-    (global-set-key (vcursor-cs-binding "f8") 'vcursor-isearch-forward)
+    (global-set-jutsu (vcursor-cs-binding "f8") 'vcursor-isearch-forward)
 
-    (global-set-key (vcursor-cs-binding "left" t) 'vcursor-beginning-of-line)
-    (global-set-key (vcursor-cs-binding "right" t) 'vcursor-end-of-line)
+    (global-set-jutsu (vcursor-cs-binding "left" t) 'vcursor-beginning-of-line)
+    (global-set-jutsu (vcursor-cs-binding "right" t) 'vcursor-end-of-line)
 
-    (global-set-key (vcursor-cs-binding "prior" t) 'vcursor-backward-word)
-    (global-set-key (vcursor-cs-binding "next" t) 'vcursor-forward-word)
+    (global-set-jutsu (vcursor-cs-binding "prior" t) 'vcursor-backward-word)
+    (global-set-jutsu (vcursor-cs-binding "next" t) 'vcursor-forward-word)
 
-    (global-set-key (vcursor-cs-binding "return" t) 'vcursor-copy-line)
+    (global-set-jutsu (vcursor-cs-binding "return" t) 'vcursor-copy-line)
 
-    (global-set-key (vcursor-cs-binding "f9") 'vcursor-execute-key)
-    (global-set-key (vcursor-cs-binding "f10") 'vcursor-execute-command)
+    (global-set-jutsu (vcursor-cs-binding "f9") 'vcursor-execute-key)
+    (global-set-jutsu (vcursor-cs-binding "f10") 'vcursor-execute-command)
     )))
 
 (defcustom vcursor-key-bindings nil

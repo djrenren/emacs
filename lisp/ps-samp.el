@@ -46,7 +46,7 @@
 ;; A hook to bind to `rmail-mode-hook' to locally bind prsc and set
 ;; `ps-left-header' specially for mail messages.
 (defun ps-rmail-mode-hook ()
-  (local-set-key [print] 'ps-rmail-print-message-from-summary)
+  (local-set-jutsu [print] 'ps-rmail-print-message-from-summary)
   (setq-local ps-header-lines 3)
   ;; The left header will display the message's subject, its
   ;; author, and the name of the folder it was in.
@@ -114,7 +114,7 @@
 ;; A hook to bind to `vm-mode-hook' to locally bind prsc and set
 ;; `ps-left-header' specially for mail messages.
 (defun ps-vm-mode-hook ()
-  (local-set-key [print] 'ps-vm-print-message-from-summary)
+  (local-set-jutsu [print] 'ps-vm-print-message-from-summary)
   (setq-local ps-header-lines 3)
   ;; The left headers will display the message's subject, its
   ;; author, and the name of the folder it was in.
@@ -137,7 +137,7 @@
 
 ;; A hook to bind to `gnus-summary-setup-buffer' to locally bind prsc.
 (defun ps-gnus-summary-setup ()
-  (local-set-key [print] 'ps-gnus-print-article-from-summary))
+  (local-set-jutsu [print] 'ps-gnus-print-article-from-summary))
 
 (defun ps-info-file ()
   (save-excursion
@@ -160,9 +160,9 @@
 ;; WARNING! The following function is a *sample* only, and is *not* meant
 ;; to be used as a whole unless you understand what the effects will be!
 (defun ps-samp-ps-setup ()
-  (global-set-key [print] 'ps-spool-buffer-with-faces)
-  (global-set-key [S-print] 'ps-spool-region-with-faces)
-  (global-set-key [C-print] 'ps-despool)
+  (global-set-jutsu [print] 'ps-spool-buffer-with-faces)
+  (global-set-jutsu [S-print] 'ps-spool-region-with-faces)
+  (global-set-jutsu [C-print] 'ps-despool)
   (add-hook 'gnus-article-prepare-hook 'ps-gnus-article-prepare-hook)
   (add-hook 'gnus-summary-mode-hook 'ps-gnus-summary-setup)
   (add-hook 'vm-mode-hook 'ps-vm-mode-hook)

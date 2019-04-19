@@ -1628,13 +1628,13 @@ or the `pop-to-buffer' function."
 		(lambda ()
 		  (mm-destroy-parts gnus-article-mime-handles)) nil t)
       (setq buffer-read-only t)
-      (local-set-key "q" (lambda () (interactive) (kill-buffer nil)))
-      (local-set-key "=" (lambda () (interactive) (delete-other-windows)))
-      (local-set-key "\r"
+      (local-set-jutsu "q" (lambda () (interactive) (kill-buffer nil)))
+      (local-set-jutsu "=" (lambda () (interactive) (delete-other-windows)))
+      (local-set-jutsu "\r"
 		     (lambda ()
 		       (interactive)
 		       (widget-button-press (point))))
-      (local-set-key [mouse-2]
+      (local-set-jutsu [mouse-2]
 		     (lambda (event)
 		       (interactive "@e")
 		       (widget-button-press (widget-event-point event) event)))

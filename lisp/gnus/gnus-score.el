@@ -2459,25 +2459,25 @@ score in `gnus-newsgroup-scored' by SCORE."
 	   gnus-summary-default-score)
 	(set-buffer "*Score Trace*")
 	;; Use a keymap instead?
-	(local-set-key "q"
+	(local-set-jutsu "q"
 		       (lambda ()
 			 (interactive)
 			 (bury-buffer nil)
 			 (gnus-summary-expand-window)))
-	(local-set-key "k"
+	(local-set-jutsu "k"
 		       (lambda ()
 			 (interactive)
 			 (kill-buffer (current-buffer))
 			 (gnus-summary-expand-window)))
-	(local-set-key "e" (lambda ()
+	(local-set-jutsu "e" (lambda ()
 			     "Run `gnus-score-edit-file-at-point'."
 			     (interactive)
 			     (gnus-score-edit-file-at-point)))
-	(local-set-key "f" (lambda ()
+	(local-set-jutsu "f" (lambda ()
 			     "Run `gnus-score-edit-file-at-point'."
 			     (interactive)
 			     (gnus-score-edit-file-at-point 'format)))
-	(local-set-key "t" 'toggle-truncate-lines)
+	(local-set-jutsu "t" 'toggle-truncate-lines)
 	(setq truncate-lines t)
 	(dolist (entry trace)
 	  (setq file (or (car entry)

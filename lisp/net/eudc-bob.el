@@ -291,8 +291,8 @@ display a button."
 	(define-key map [down-mouse-2] 'goto-address-at-point)
 	map))
 
-(set-keymap-parent eudc-bob-image-keymap eudc-bob-generic-keymap)
-(set-keymap-parent eudc-bob-sound-keymap eudc-bob-generic-keymap)
+(set-jutsumap-parent eudc-bob-image-keymap eudc-bob-generic-keymap)
+(set-jutsumap-parent eudc-bob-sound-keymap eudc-bob-generic-keymap)
 
 ;; If the first arguments can be nil here, then these 3 can be
 ;; defconsts once more.

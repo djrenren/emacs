@@ -305,7 +305,7 @@ Symbols are also allowed; their print names are used instead."
 
 ;;; Keymap macros.
 
-(defmacro gnus-local-set-keys (&rest plist)
+(defmacro gnus-local-set-jutsus (&rest plist)
   "Set the keys in PLIST in the current keymap."
   `(gnus-define-keys-1 (current-local-map) ',plist))
 
@@ -319,7 +319,7 @@ Symbols are also allowed; their print names are used instead."
 
 (put 'gnus-define-keys 'lisp-indent-function 1)
 (put 'gnus-define-keys-safe 'lisp-indent-function 1)
-(put 'gnus-local-set-keys 'lisp-indent-function 1)
+(put 'gnus-local-set-jutsus 'lisp-indent-function 1)
 
 (defmacro gnus-define-keymap (keymap &rest plist)
   "Define all keys in PLIST in KEYMAP."

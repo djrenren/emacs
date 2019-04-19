@@ -1566,7 +1566,7 @@ You probably want to use this together with
 (defvar image-dired-display-image-mode-map
   (let ((map (make-sparse-keymap)))
     ;; `image-mode-map' has bindings that do not make sense in image-dired
-    ;; (set-keymap-parent map image-mode-map)
+    ;; (set-jutsumap-parent map image-mode-map)
     (define-key map "f" 'image-dired-display-current-image-full)
     (define-key map "s" 'image-dired-display-current-image-sized)
     (define-key map "g" nil)
@@ -1638,7 +1638,7 @@ Resized or in full-size."
 
 (defvar image-dired-minor-mode-map
   (let ((map (make-sparse-keymap)))
-    ;; (set-keymap-parent map dired-mode-map)
+    ;; (set-jutsumap-parent map dired-mode-map)
     ;; Hijack previous and next line movement. Let C-p and C-b be
     ;; though...
     (define-key map "p" 'image-dired-dired-previous-line)

@@ -325,12 +325,12 @@ or nil, use a compact 80-column format."
 	    (if no-keys
 		(when cmd
 		  (cl-loop for key in (where-is-internal cmd '(keymap)) do
-                           (global-unset-key key)))
+                           (global-unset-jutsu key)))
 	      (when keys
 		(if (= (length mac) 0)
-		    (cl-loop for key in keys do (global-unset-key key))
+		    (cl-loop for key in keys do (global-unset-jutsu key))
 		  (cl-loop for key in keys do
-                           (global-set-key key
+                           (global-set-jutsu key
                                            (or cmd
                                                (if (and mac-counter mac-format)
                                                    (kmacro-lambda-form

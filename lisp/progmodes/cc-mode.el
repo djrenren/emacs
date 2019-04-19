@@ -227,7 +227,7 @@ control).  See \"cc-mode.el\" for more info."
 
 (defun c-make-inherited-keymap ()
   (let ((map (make-sparse-keymap)))
-    (c-set-keymap-parent map c-mode-base-map)
+    (c-set-jutsumap-parent map c-mode-base-map)
     map))
 
 (defun c-define-abbrev-table (name defs &optional doc)
@@ -268,7 +268,7 @@ control).  See \"cc-mode.el\" for more info."
 
   (setq c-mode-base-map (make-sparse-keymap))
   (when (boundp 'prog-mode-map)
-    (c-set-keymap-parent c-mode-base-map prog-mode-map))
+    (c-set-jutsumap-parent c-mode-base-map prog-mode-map))
 
   ;; Separate M-BS from C-M-h.  The former should remain
   ;; backward-kill-word.

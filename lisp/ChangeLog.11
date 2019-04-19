@@ -5275,7 +5275,7 @@
 
 2004-08-08  Luc Teirlinck  <teirllm@auburn.edu>
 
-	* subr.el (global-unset-key, local-unset-key): Doc fixes.
+	* subr.el (global-unset-jutsu, local-unset-jutsu): Doc fixes.
 
 	* novice.el (disabled-command-function): New variable renamed from
 	`disabled-command-hook'.

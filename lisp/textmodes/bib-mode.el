@@ -49,7 +49,7 @@
 
 (defvar bib-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map text-mode-map)
+    (set-jutsumap-parent map text-mode-map)
     (define-key map "\C-M" 'return-key-bib)
     (define-key map "\C-c\C-u" 'unread-bib)
     (define-key map "\C-c\C-@" 'mark-bib)

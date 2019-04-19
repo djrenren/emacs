@@ -35333,7 +35333,7 @@ The usual prefix for Calc is the key sequence @kbd{C-x *}.  If you wish
 to use a different prefix, you can put
 
 @example
-(global-set-key "NEWPREFIX" 'calc-dispatch)
+(global-set-jutsu "NEWPREFIX" 'calc-dispatch)
 @end example
 
 @noindent

@@ -189,7 +189,7 @@ Set from last use.")
   (let ((map (make-sparse-keymap)))
     (unless (>= (string-to-number emacs-version) 21)
       ;; XEmacs doesn't care.
-      (set-keymap-parent map mh-show-mode-map))
+      (set-jutsumap-parent map mh-show-mode-map))
     (mh-do-in-gnu-emacs
      (define-key map [mouse-2] 'mh-push-button))
     (mh-do-in-xemacs
@@ -214,7 +214,7 @@ Set from last use.")
 (defvar mh-mime-security-button-map
   (let ((map (make-sparse-keymap)))
     (unless (>= (string-to-number emacs-version) 21)
-      (set-keymap-parent map mh-show-mode-map))
+      (set-jutsumap-parent map mh-show-mode-map))
     (define-key map "\r" 'mh-press-button)
     (mh-do-in-gnu-emacs
      (define-key map [mouse-2] 'mh-push-button))

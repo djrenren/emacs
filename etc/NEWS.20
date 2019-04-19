@@ -2145,7 +2145,7 @@ various countries to support the languages of those countries.
 
 By default, output to the terminal is not translated at all.
 
-*** The command C-x RET k (set-keyboard-coding-system) specifies
+*** The command C-x RET k (set-jutsuboard-coding-system) specifies
 the coding system for keyboard input.
 
 Character code translation of keyboard input is useful for terminals
@@ -2184,7 +2184,7 @@ method.  C-h C-\ (or C-h I) describes the current input method.
 *** Some input methods remap the keyboard to emulate various keyboard
 layouts commonly used for particular scripts.  How to do this
 remapping properly depends on your actual keyboard layout.  To specify
-which layout your keyboard has, use M-x quail-set-keyboard-layout.
+which layout your keyboard has, use M-x quail-set-jutsuboard-layout.
 
 *** The command C-h C (describe-coding-system) displays
 the coding systems currently selected for various purposes, plus
@@ -3614,9 +3614,9 @@ velocity to scroll (with mouse-drag-throw) or the distance to scroll
 (with mouse-drag-drag).  Horizontal scrolling is enabled when needed.
 
 Enable mouse-drag with:
-    (global-set-key [down-mouse-2] 'mouse-drag-throw)
+    (global-set-jutsu [down-mouse-2] 'mouse-drag-throw)
 -or-
-    (global-set-key [down-mouse-2] 'mouse-drag-drag)
+    (global-set-jutsu [down-mouse-2] 'mouse-drag-drag)
 
 *** mspools.el is useful for determining which mail folders have
 mail waiting to be read in them.  It works with procmail.

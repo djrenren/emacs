@@ -336,11 +336,11 @@
 ;;
 ;; *Note*
 ;;
-;; When using `table-cell-map-hook' do not use `local-set-key'.
+;; When using `table-cell-map-hook' do not use `local-set-jutsu'.
 ;;
 ;;   (add-hook 'table-cell-map-hook
 ;;     (function (lambda ()
-;;       (local-set-key [<key sequence>] '<function>))))
+;;       (local-set-jutsu [<key sequence>] '<function>))))
 ;;
 ;; Adding the above to your init file is a common way to customize a
 ;; mode specific keymap.  However it does not work for this package.

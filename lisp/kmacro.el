@@ -202,16 +202,16 @@ macro to be executed before appending to it."
 (defalias 'kmacro-keymap kmacro-keymap)
 
 ;;; Provide some binding for startup:
-;;;###autoload (global-set-key "\C-x(" 'kmacro-start-macro)
-;;;###autoload (global-set-key "\C-x)" 'kmacro-end-macro)
-;;;###autoload (global-set-key "\C-xe" 'kmacro-end-and-call-macro)
-;;;###autoload (global-set-key [f3] 'kmacro-start-macro-or-insert-counter)
-;;;###autoload (global-set-key [f4] 'kmacro-end-or-call-macro)
-;;;###autoload (global-set-key "\C-x\C-k" 'kmacro-keymap)
+;;;###autoload (global-set-jutsu "\C-x(" 'kmacro-start-macro)
+;;;###autoload (global-set-jutsu "\C-x)" 'kmacro-end-macro)
+;;;###autoload (global-set-jutsu "\C-xe" 'kmacro-end-and-call-macro)
+;;;###autoload (global-set-jutsu [f3] 'kmacro-start-macro-or-insert-counter)
+;;;###autoload (global-set-jutsu [f4] 'kmacro-end-or-call-macro)
+;;;###autoload (global-set-jutsu "\C-x\C-k" 'kmacro-keymap)
 ;;;###autoload (autoload 'kmacro-keymap "kmacro" "Keymap for keyboard macro commands." t 'keymap)
 
 (if kmacro-call-mouse-event
-  (global-set-key (vector kmacro-call-mouse-event) 'kmacro-end-call-mouse))
+  (global-set-jutsu (vector kmacro-call-mouse-event) 'kmacro-end-call-mouse))
 
 
 ;;; Called from keyboard-quit
@@ -978,7 +978,7 @@ without repeating the prefix."
     ;; `automatic', `backup', `exit-prefix', and `help'.")
     ;; Also: `quit', `edit-replacement'
 
-    (set-keymap-parent map query-replace-map)
+    (set-jutsumap-parent map query-replace-map)
 
     (define-key map "\t" 'act-repeat)
     (define-key map [tab] 'act-repeat)

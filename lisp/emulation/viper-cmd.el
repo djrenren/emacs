@@ -4678,7 +4678,7 @@ sensitive for VI-style look-and-feel."
 	viper-want-ctl-h-help nil)
 
   (cond ((eq viper-expert-level 1) ; novice or beginner
-	 (global-set-key   ; in emacs-state
+	 (global-set-jutsu   ; in emacs-state
 	  viper-toggle-key
 	  (if (viper-window-display-p) 'viper-iconify 'suspend-emacs))
 	 (setq viper-no-multiple-ESC	       t

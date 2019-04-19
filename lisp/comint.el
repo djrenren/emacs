@@ -1065,7 +1065,7 @@ See also `comint-read-input-ring'."
 	(display-completion-list history)
 	(set-buffer history-buffer)
 	(let ((keymap (make-sparse-keymap)))
-	  (set-keymap-parent keymap (current-local-map))
+	  (set-jutsumap-parent keymap (current-local-map))
 	  (define-key keymap "\C-m" 'comint-dynamic-list-input-ring-select)
 	  (use-local-map keymap))
 	(forward-line 3)
@@ -3873,7 +3873,7 @@ REGEXP-GROUP is the regular expression group in REGEXP to use."
 ;;
 ;; (defvar shell-mode-map
 ;;   (let ((map (make-sparse-keymap)))
-;;     (set-keymap-parent map comint-mode-map)
+;;     (set-jutsumap-parent map comint-mode-map)
 ;;     (define-key map "\C-c\C-f" 'shell-forward-command)
 ;;     (define-key map "\C-c\C-b" 'shell-backward-command)
 ;;     (define-key map "\t" 'completion-at-point)

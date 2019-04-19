@@ -407,7 +407,7 @@ after a sequence of character events."
 	    (compose-region (- (point) chars) (point) (nth 2 args))
 	  (compose-chars-after (- (point) chars) (point))))))
 
-(global-set-key [compose-last-chars] 'compose-last-chars)
+(global-set-jutsu [compose-last-chars] 'compose-last-chars)
 
 
 ;;; Automatic character composition.

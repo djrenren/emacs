@@ -136,7 +136,7 @@ Special commands:
   ;; Make our own local child of asm-mode-map
   ;; so we can define our own comment character.
   (use-local-map (nconc (make-sparse-keymap) asm-mode-map))
-  (local-set-key (vector asm-comment-char) 'asm-comment)
+  (local-set-jutsu (vector asm-comment-char) 'asm-comment)
   (set-syntax-table (make-syntax-table asm-mode-syntax-table))
   (modify-syntax-entry	asm-comment-char "< b")
 

@@ -211,7 +211,7 @@ lock it at that."
   "Setup the input keymap to be used during input editing."
   (make-local-variable 'eshell-input-keymap)
   (setq eshell-input-keymap (make-sparse-keymap))
-  (set-keymap-parent eshell-input-keymap eshell-mode-map)
+  (set-jutsumap-parent eshell-input-keymap eshell-mode-map)
   (let ((bindings eshell-rebind-keys-alist))
     (while bindings
       (define-key eshell-input-keymap (caar bindings)

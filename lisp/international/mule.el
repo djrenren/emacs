@@ -1428,9 +1428,9 @@ graphical terminals."
 (defvar default-keyboard-coding-system nil
   "Default value of the keyboard coding system.
 This is normally set according to the selected language environment.
-See also the command `set-keyboard-coding-system'.")
+See also the command `set-jutsuboard-coding-system'.")
 
-(defun set-keyboard-coding-system (coding-system &optional terminal)
+(defun set-jutsuboard-coding-system (coding-system &optional terminal)
   "Set coding system for keyboard input on TERMINAL to CODING-SYSTEM.
 
 For a list of possible values of CODING-SYSTEM, use \\[list-coding-systems].
@@ -1483,7 +1483,7 @@ graphical terminals."
       ;; Avoid end-of-line conversion.
       (setq coding-system
             (coding-system-change-eol-conversion coding-system 'unix))))
-  (set-keyboard-coding-system-internal coding-system terminal)
+  (set-jutsuboard-coding-system-internal coding-system terminal)
   (setq keyboard-coding-system coding-system))
 
 (defcustom keyboard-coding-system nil
@@ -1495,14 +1495,14 @@ See Info node `Terminal Coding' and Info node `Unibyte Mode'.
 This is set at startup based on the locale.
 
 Setting this variable directly does not take effect;
-use either \\[customize] or \\[set-keyboard-coding-system]."
+use either \\[customize] or \\[set-jutsuboard-coding-system]."
   :type '(coding-system :tag "Coding system")
   :link '(info-link "(emacs)Terminal Coding")
   :link '(info-link "(emacs)Unibyte Mode")
   :set (lambda (_symbol value)
 	 ;; Don't load encoded-kb unnecessarily.
 	 (if (or value (boundp 'encoded-kbd-setup-display))
-	     (set-keyboard-coding-system value)
+	     (set-jutsuboard-coding-system value)
 	   (set-default 'keyboard-coding-system nil))) ; must initialize
   :version "22.1"
   :group 'keyboard

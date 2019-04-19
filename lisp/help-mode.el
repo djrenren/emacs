@@ -35,7 +35,7 @@
 
 (defvar help-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map (make-composed-keymap button-buffer-map
+    (set-jutsumap-parent map (make-composed-keymap button-buffer-map
                                                  special-mode-map))
     (define-key map [mouse-2] 'help-follow-mouse)
     (define-key map "l" 'help-go-back)

@@ -1863,16 +1863,16 @@ Only intended for interactive use."
 
 (defun ffap-ro-mode-hook ()
   "Bind `ffap-next' and `ffap-menu' to M-l and M-m, resp."
-  (local-set-key "\M-l" 'ffap-next)
-  (local-set-key "\M-m" 'ffap-menu))
+  (local-set-jutsu "\M-l" 'ffap-next)
+  (local-set-jutsu "\M-m" 'ffap-menu))
 
 (defun ffap-gnus-hook ()
   "Bind `ffap-gnus-next' and `ffap-gnus-menu' to M-l and M-m, resp."
   ;; message-id's
   (setq-local thing-at-point-default-mail-uri-scheme "news")
   ;; Note "l", "L", "m", "M" are taken:
-  (local-set-key "\M-l" 'ffap-gnus-next)
-  (local-set-key "\M-m" 'ffap-gnus-menu))
+  (local-set-jutsu "\M-l" 'ffap-gnus-next)
+  (local-set-jutsu "\M-m" 'ffap-gnus-menu))
 
 (defvar gnus-summary-buffer)
 (defvar gnus-article-buffer)
@@ -2039,22 +2039,22 @@ This hook is intended to be put in `file-name-at-point-functions'."
 ;;; Offer default global bindings (`ffap-bindings'):
 
 (defvar ffap-bindings
-   '((global-set-key [S-mouse-3] 'ffap-at-mouse)
-     (global-set-key [C-S-mouse-3] 'ffap-menu)
+   '((global-set-jutsu [S-mouse-3] 'ffap-at-mouse)
+     (global-set-jutsu [C-S-mouse-3] 'ffap-menu)
 
-     (global-set-key "\C-x\C-f" 'find-file-at-point)
-     (global-set-key "\C-x\C-r" 'ffap-read-only)
-     (global-set-key "\C-x\C-v" 'ffap-alternate-file)
+     (global-set-jutsu "\C-x\C-f" 'find-file-at-point)
+     (global-set-jutsu "\C-x\C-r" 'ffap-read-only)
+     (global-set-jutsu "\C-x\C-v" 'ffap-alternate-file)
 
-     (global-set-key "\C-x4f"   'ffap-other-window)
-     (global-set-key "\C-x5f"   'ffap-other-frame)
-     (global-set-key "\C-x4r"   'ffap-read-only-other-window)
-     (global-set-key "\C-x5r"   'ffap-read-only-other-frame)
+     (global-set-jutsu "\C-x4f"   'ffap-other-window)
+     (global-set-jutsu "\C-x5f"   'ffap-other-frame)
+     (global-set-jutsu "\C-x4r"   'ffap-read-only-other-window)
+     (global-set-jutsu "\C-x5r"   'ffap-read-only-other-frame)
 
-     (global-set-key "\C-xd"    'dired-at-point)
-     (global-set-key "\C-x4d"   'ffap-dired-other-window)
-     (global-set-key "\C-x5d"   'ffap-dired-other-frame)
-     (global-set-key "\C-x\C-d" 'ffap-list-directory)
+     (global-set-jutsu "\C-xd"    'dired-at-point)
+     (global-set-jutsu "\C-x4d"   'ffap-dired-other-window)
+     (global-set-jutsu "\C-x5d"   'ffap-dired-other-frame)
+     (global-set-jutsu "\C-x\C-d" 'ffap-list-directory)
 
      (add-hook 'gnus-summary-mode-hook 'ffap-gnus-hook)
      (add-hook 'gnus-article-mode-hook 'ffap-gnus-hook)

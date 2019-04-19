@@ -723,12 +723,12 @@ available..."
 		(if string (insert string))
 		(setq string nil
 		      files (cdr files)))))
-	  (local-set-key [mouse-2] 'eshell-occur-mode-mouse-goto)
-	  (local-set-key [(control ?c) (control ?c)]
+	  (local-set-jutsu [mouse-2] 'eshell-occur-mode-mouse-goto)
+	  (local-set-jutsu [(control ?c) (control ?c)]
 			 'eshell-occur-mode-goto-occurrence)
-	  (local-set-key [(control ?m)]
+	  (local-set-jutsu [(control ?m)]
 			 'eshell-occur-mode-goto-occurrence)
-	  (local-set-key [return] 'eshell-occur-mode-goto-occurrence)
+	  (local-set-jutsu [return] 'eshell-occur-mode-goto-occurrence)
 	  (pop-to-buffer (current-buffer) t)
 	  (goto-char (point-min))
 	  (resize-temp-buffer-window))))))
@@ -1034,7 +1034,7 @@ Show wall-clock time elapsed during execution of COMMAND.")
 		  (diff-mode)
 		  (set (make-local-variable 'eshell-diff-window-config)
 		       ,config)
-		  (local-set-key [?q] 'eshell-diff-quit)
+		  (local-set-jutsu [?q] 'eshell-diff-quit)
 		  (if (fboundp 'turn-on-font-lock-if-enabled)
 		      (turn-on-font-lock-if-enabled))
 		  (goto-char (point-min))))))

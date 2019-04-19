@@ -105,7 +105,7 @@ commands.")
 (defvar Buffer-menu-mode-map
   (let ((map (make-sparse-keymap))
 	(menu-map (make-sparse-keymap)))
-    (set-keymap-parent map tabulated-list-mode-map)
+    (set-jutsumap-parent map tabulated-list-mode-map)
     (define-key map "v" 'Buffer-menu-select)
     (define-key map "2" 'Buffer-menu-2-window)
     (define-key map "1" 'Buffer-menu-1-window)

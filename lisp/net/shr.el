@@ -212,7 +212,7 @@ and other things:
 (defvar shr-image-map
   (let ((map (copy-keymap shr-map)))
     (when (boundp 'image-map)
-      (set-keymap-parent map image-map))
+      (set-jutsumap-parent map image-map))
     map))
 
 ;; Public functions and commands.

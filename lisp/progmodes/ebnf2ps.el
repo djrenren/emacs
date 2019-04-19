@@ -167,9 +167,9 @@ Please send all bug fixes and enhancements to
 ;;
 ;; Any of the `ebnf-' commands can be bound to keys.  Here are some examples:
 ;;
-;;    (global-set-key 'f22 'ebnf-print-buffer) ;f22 is prsc
-;;    (global-set-key '(shift f22) 'ebnf-print-region)
-;;    (global-set-key '(control f22) 'ebnf-despool)
+;;    (global-set-jutsu 'f22 'ebnf-print-buffer) ;f22 is prsc
+;;    (global-set-jutsu '(shift f22) 'ebnf-print-region)
+;;    (global-set-jutsu '(control f22) 'ebnf-despool)
 ;;
 ;;
 ;; Invoking Ebnf2ps in Batch

@@ -966,10 +966,10 @@ global keys (i.e., anywhere in Emacs, not just in Org buffers).  Here are
 suggested bindings for these keys, please modify the keys to your own
 liking.
 @lisp
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cb" 'org-switchb)
+(global-set-jutsu "\C-cl" 'org-store-link)
+(global-set-jutsu "\C-ca" 'org-agenda)
+(global-set-jutsu "\C-cc" 'org-capture)
+(global-set-jutsu "\C-cb" 'org-switchb)
 @end lisp
 
 @cindex Org mode, turning on
@@ -3814,8 +3814,8 @@ global commands, like this (please select suitable global keys
 yourself):
 
 @lisp
-(global-set-key "\C-c L" 'org-insert-link-global)
-(global-set-key "\C-c o" 'org-open-at-point-global)
+(global-set-jutsu "\C-c L" 'org-insert-link-global)
+(global-set-jutsu "\C-c o" 'org-open-at-point-global)
 @end lisp
 
 @node Link abbreviations

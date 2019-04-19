@@ -3173,7 +3173,7 @@ following is added to a group parameter
 
 @lisp
 (gnus-summary-prepared-hook
-  (lambda nil (local-set-key "d" (local-key-binding "n"))))
+  (lambda nil (local-set-jutsu "d" (local-key-binding "n"))))
 @end lisp
 
 when the group is entered, the 'd' key will not mark the article as
@@ -6432,7 +6432,7 @@ article, you could say something like:
 @group
 (add-hook 'gnus-summary-mode-hook 'my-alter-summary-map)
 (defun my-alter-summary-map ()
-  (local-set-key "!" 'gnus-summary-put-mark-as-ticked-next))
+  (local-set-jutsu "!" 'gnus-summary-put-mark-as-ticked-next))
 @end group
 @end lisp
 
@@ -6441,7 +6441,7 @@ or
 
 @lisp
 (defun my-alter-summary-map ()
-  (local-set-key "!" "MM!n"))
+  (local-set-jutsu "!" "MM!n"))
 @end lisp
 
 

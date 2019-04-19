@@ -337,7 +337,7 @@ If nil, use `temporary-file-directory'."
 
 (defvar ps-run-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map comint-mode-map)
+    (set-jutsumap-parent map comint-mode-map)
     (define-key map "\C-c\C-q" 'ps-run-quit)
     (define-key map "\C-c\C-k" 'ps-run-kill)
     (define-key map "\C-c\C-e" 'ps-run-goto-error)

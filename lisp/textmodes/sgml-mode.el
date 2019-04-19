@@ -1732,7 +1732,7 @@ This takes effect when first loading the library.")
 (defvar html-mode-map
   (let ((map (make-sparse-keymap))
 	(menu-map (make-sparse-keymap "HTML")))
-    (set-keymap-parent map  sgml-mode-map)
+    (set-jutsumap-parent map  sgml-mode-map)
     (define-key map "\C-c6" 'html-headline-6)
     (define-key map "\C-c5" 'html-headline-5)
     (define-key map "\C-c4" 'html-headline-4)

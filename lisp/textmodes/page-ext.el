@@ -276,7 +276,7 @@ Used by `pages-directory-for-addresses' function."
 
 ;;; Key bindings for page handling functions
 
-(global-unset-key "\C-x\C-p")
+(global-unset-jutsu "\C-x\C-p")
 
 (defvar ctl-x-ctl-p-map (make-sparse-keymap)
   "Keymap for subcommands of C-x C-p, which are for page handling.")

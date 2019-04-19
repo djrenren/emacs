@@ -6388,7 +6388,7 @@ within Emacs."
 
 (defvar org-export-stack-mode-map
   (let ((km (make-sparse-keymap)))
-    (set-keymap-parent km tabulated-list-mode-map)
+    (set-jutsumap-parent km tabulated-list-mode-map)
     (define-key km " " 'next-line)
     (define-key km "\C-n" 'next-line)
     (define-key km [down] 'next-line)

@@ -155,7 +155,7 @@ If value is `verbose', the computed score is shown for each match."
 
 (defvar apropos-mode-map
   (let ((map (copy-keymap button-buffer-map)))
-    (set-keymap-parent map special-mode-map)
+    (set-jutsumap-parent map special-mode-map)
     ;; Use `apropos-follow' instead of just using the button
     ;; definition of RET, so that users can use it anywhere in an
     ;; apropos item, not just on top of a button.

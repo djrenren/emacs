@@ -181,7 +181,7 @@ and hunk-based syntax highlighting otherwise as a fallback."
                ;; We want to inherit most bindings from diff-mode-shared-map,
                ;; but not all since they may hide useful M-<foo> global
                ;; bindings when editing.
-               (set-keymap-parent map diff-mode-shared-map)
+               (set-jutsumap-parent map diff-mode-shared-map)
                (dolist (key '("A" "r" "R" "g" "q" "W" "z"))
                  (define-key map key nil))
                map))

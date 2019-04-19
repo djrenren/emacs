@@ -779,7 +779,7 @@ ITEM can also be an object path, which is used if contained in COLLECTION."
 
 (defvar secrets-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map (make-composed-keymap special-mode-map widget-keymap))
+    (set-jutsumap-parent map (make-composed-keymap special-mode-map widget-keymap))
     (define-key map "n" 'next-line)
     (define-key map "p" 'previous-line)
     (define-key map "z" 'kill-current-buffer)

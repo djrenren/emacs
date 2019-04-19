@@ -93,8 +93,8 @@
 ;; key map.  To do so, add the following lines (replacing `[f7]' and
 ;; `[f8]' with your favorite keys) to the init file:
 ;;
-;; (global-set-key [f8] 'follow-mode)
-;; (global-set-key [f7] 'follow-delete-other-windows-and-split)
+;; (global-set-jutsu [f8] 'follow-mode)
+;; (global-set-jutsu [f7] 'follow-delete-other-windows-and-split)
 
 
 ;; There exist two system variables that control the appearance of
@@ -182,7 +182,7 @@
 ;;    be reactivated by hitting the same key again.
 ;;
 ;;    Example from my ~/.emacs:
-;;	(global-set-key [f8] 'follow-mode)
+;;	(global-set-jutsu [f8] 'follow-mode)
 
 ;; Implementation:
 ;;

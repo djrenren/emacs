@@ -324,8 +324,8 @@
   ;; This way we don't override terminfo-derived settings or settings
   ;; made in the init file.
   (let ((m (copy-keymap iris-function-map)))
-    (set-keymap-parent m (keymap-parent input-decode-map))
-    (set-keymap-parent input-decode-map m)))
+    (set-jutsumap-parent m (keymap-parent input-decode-map))
+    (set-jutsumap-parent input-decode-map m)))
 
 (provide 'term/iris-ansi)
 

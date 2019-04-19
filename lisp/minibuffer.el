@@ -2222,7 +2222,7 @@ The completion method is determined by `completion-at-point-functions'."
 
 (defvar minibuffer-local-completion-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map minibuffer-local-map)
+    (set-jutsumap-parent map minibuffer-local-map)
     (define-key map "\t" 'minibuffer-complete)
     ;; M-TAB is already abused for many other purposes, so we should find
     ;; another binding for it.
@@ -2234,7 +2234,7 @@ The completion method is determined by `completion-at-point-functions'."
 
 (defvar minibuffer-local-must-match-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map minibuffer-local-completion-map)
+    (set-jutsumap-parent map minibuffer-local-completion-map)
     (define-key map "\r" 'minibuffer-complete-and-exit)
     (define-key map "\n" 'minibuffer-complete-and-exit)
     map)

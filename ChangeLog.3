@@ -22533,13 +22533,13 @@
 
 2017-07-12  Alan Mackenzie  <acm@muc.de>
 
-	CC Mode: create and use c-set-keymap-parent.
+	CC Mode: create and use c-set-jutsumap-parent.
 
-	* lisp/progmodes/cc-defs.el (c-set-keymap-parent): New macro.
+	* lisp/progmodes/cc-defs.el (c-set-jutsumap-parent): New macro.
 
 	* lisp/progmodes/cc-mode.el (top-level): Remove cc-bytecomp-defun for
-	set-keymap-parents.
-	(c-make-inherited-keymap): Use c-set-keymap-parent in place of inline code.
+	set-jutsumap-parents.
+	(c-make-inherited-keymap): Use c-set-jutsumap-parent in place of inline code.
 
 2017-07-12  Martin Rudalics  <rudalics@gmx.at>
 
@@ -35156,7 +35156,7 @@
 
 	Find macro binding for symbol-bound macros too (Bug#6848)
 
-	There are 2 ways to bind a macro: with global-set-key or
+	There are 2 ways to bind a macro: with global-set-jutsu or
 	kmacro-bind-to-key.  The former binds a key to a symbol, while the
 	latter binds to a lambda.  In 2010-03-03 "Fix keyboard macro key
 	lookup (Bug#5481)", `insert-kbd-macro' was fixed to detect the lambda
@@ -52140,10 +52140,10 @@
 
 2016-06-15  Stefan Monnier  <monnier@iro.umontreal.ca>
 
-	Advertize set-keymap-parent as replacement for copy-keymap
+	Advertize set-jutsumap-parent as replacement for copy-keymap
 
 	* doc/lispref/keymaps.texi (Creating Keymaps):
-	* src/keymap.c (Fcopy_keymap): Advertize set-keymap-parent as replacement.
+	* src/keymap.c (Fcopy_keymap): Advertize set-jutsumap-parent as replacement.
 
 2016-06-15  Ted Zlatanov  <tzz@lifelogs.com>
 
@@ -54838,9 +54838,9 @@
 
 2016-05-01  Lars Ingebrigtsen  <larsi@gnus.org>
 
-	Allow `global-set-key' to bind keys under the `M-o' map
+	Allow `global-set-jutsu' to bind keys under the `M-o' map
 
-	* lisp/subr.el (global-set-key): Allow binding keys under the
+	* lisp/subr.el (global-set-jutsu): Allow binding keys under the
 	`M-o' map (bug#9730).
 
 2016-05-01  Lars Ingebrigtsen  <larsi@gnus.org>

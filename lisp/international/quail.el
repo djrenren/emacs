@@ -687,7 +687,7 @@ We assume there are six rows and each row has 15 keys (columns),
 Nth (N is even) and (N+1)th characters in the string are non-shifted
 and shifted characters respectively at the same location.
 The location of Nth character is row (N / 30) and column ((N mod 30) / 2).
-The command `quail-set-keyboard-layout' usually sets this variable."
+The command `quail-set-jutsuboard-layout' usually sets this variable."
   :group 'quail
   :type `(choice
 	  ,@(mapcar (lambda (pair)
@@ -699,7 +699,7 @@ The command `quail-set-keyboard-layout' usually sets this variable."
 ;; standard layout while having additional key locations not in the
 ;; standard layout.  This alist maps those additional key locations to
 ;; the missing locations.  The value is updated automatically by
-;; quail-set-keyboard-layout.
+;; quail-set-jutsuboard-layout.
 (defvar quail-keyboard-layout-substitution nil)
 
 (defun quail-update-keyboard-layout (kbd-type)
@@ -741,7 +741,7 @@ Available types are listed in the variable `quail-keyboard-layout-alist'."
 	   (set symbol value)))
 
 ;;;###autoload
-(defun quail-set-keyboard-layout (kbd-type)
+(defun quail-set-jutsuboard-layout (kbd-type)
   "Set the current keyboard layout to the same as keyboard KBD-TYPE.
 
 Since some Quail packages depends on a physical layout of keys (not
@@ -3112,7 +3112,7 @@ call it with one argument STRING."
     (if (functionp func)
 	(funcall func string))))
 
-(global-set-key [quail-advice] 'quail-advice)
+(global-set-jutsu [quail-advice] 'quail-advice)
 
 ;;
 (provide 'quail)

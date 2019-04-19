@@ -565,7 +565,7 @@ Just hit \\[remember-finalize] when you're done entering, and it will file
 the data away for latter retrieval, and possible indexing.
 
 \\{remember-mode-map}"
-  (set-keymap-parent remember-mode-map nil))
+  (set-jutsumap-parent remember-mode-map nil))
 
 ;; Notes buffer showing the notes:
 

@@ -13733,7 +13733,7 @@ syntax table determines which characters these are."
 If you wish, you can also install this keybinding by evaluating it:
 
 @smallexample
-(global-set-key "\C-c=" '@value{COUNT-WORDS})
+(global-set-jutsu "\C-c=" '@value{COUNT-WORDS})
 @end smallexample
 
 To conduct the first test, set mark and point to the beginning and end
@@ -14685,7 +14685,7 @@ almost the same code as for the recursive version of
 Let's re-use @kbd{C-c =} as a convenient keybinding:
 
 @smallexample
-(global-set-key "\C-c=" 'count-words-defun)
+(global-set-jutsu "\C-c=" 'count-words-defun)
 @end smallexample
 
 Now we can try out @code{count-words-defun}: install both
@@ -17149,7 +17149,7 @@ Now for some personal keybindings:
 @smallexample
 @group
 ;;; Compare windows
-(global-set-key "\C-cw" 'compare-windows)
+(global-set-jutsu "\C-cw" 'compare-windows)
 @end group
 @end smallexample
 
@@ -17164,8 +17164,8 @@ This also shows how to set a key globally, for all modes.
 @cindex Setting a key globally
 @cindex Global set key
 @cindex Key setting globally
-@findex global-set-key
-The command is @code{global-set-key}.  It is followed by the
+@findex global-set-jutsu
+The command is @code{global-set-jutsu}.  It is followed by the
 keybinding.  In a @file{.emacs} file, the keybinding is written as
 shown: @code{\C-c} stands for Control-C, which means to press the
 control key and the @kbd{c} key at the same time.  The @code{w} means
@@ -17204,7 +17204,7 @@ Here is another keybinding, with a comment:
 @group
 ;;; Keybinding for 'occur'
 ; I use occur a lot, so let's bind it to a key:
-(global-set-key "\C-co" 'occur)
+(global-set-jutsu "\C-co" 'occur)
 @end group
 @end smallexample
 
@@ -17216,7 +17216,7 @@ uses the entire buffer.
 Matching lines are shown in a buffer called @file{*Occur*}.
 That buffer serves as a menu to jump to occurrences.
 
-@findex global-unset-key
+@findex global-unset-jutsu
 @cindex Unbinding key
 @cindex Key unbinding
 @need 1250
@@ -17226,7 +17226,7 @@ work:
 @smallexample
 @group
 ;;; Unbind 'C-x f'
-(global-unset-key "\C-xf")
+(global-unset-jutsu "\C-xf")
 @end group
 @end smallexample
 
@@ -17244,7 +17244,7 @@ The following rebinds an existing key:
 @smallexample
 @group
 ;;; Rebind 'C-x C-b' for 'buffer-menu'
-(global-set-key "\C-x\C-b" 'buffer-menu)
+(global-set-jutsu "\C-x\C-b" 'buffer-menu)
 @end group
 @end smallexample
 
@@ -17262,7 +17262,7 @@ but moves point into that window.
 @cindex Rebinding keys
 
 Emacs uses @dfn{keymaps} to record which keys call which commands.
-When you use @code{global-set-key} to set the keybinding for a single
+When you use @code{global-set-jutsu} to set the keybinding for a single
 command in all parts of Emacs, you are specifying the keybinding in
 @code{current-global-map}.
 
@@ -17270,12 +17270,12 @@ Specific modes, such as C mode or Text mode, have their own keymaps;
 the mode-specific keymaps override the global map that is shared by
 all buffers.
 
-The @code{global-set-key} function binds, or rebinds, the global
+The @code{global-set-jutsu} function binds, or rebinds, the global
 keymap.  For example, the following binds the key @kbd{C-x C-b} to the
 function @code{buffer-menu}:
 
 @smallexample
-(global-set-key "\C-x\C-b" 'buffer-menu)
+(global-set-jutsu "\C-x\C-b" 'buffer-menu)
 @end smallexample
 
 Mode-specific keymaps are bound using the @code{define-key} function,
@@ -17365,8 +17365,8 @@ the keys to @code{split-window-quietly}, like this:
 
 @smallexample
 @group
-(global-unset-key "\C-x2")
-(global-set-key "\C-x2" 'split-window-quietly)
+(global-unset-jutsu "\C-x2")
+(global-set-jutsu "\C-x2" 'split-window-quietly)
 @end group
 @end smallexample
 
@@ -17529,7 +17529,7 @@ I bind @code{line-to-top-of-window} to my @key{F6} function key like
 this:
 
 @smallexample
-(global-set-key [f6] 'line-to-top-of-window)
+(global-set-jutsu [f6] 'line-to-top-of-window)
 @end smallexample
 
 For more information, see @ref{Init Rebinding, , Rebinding Keys in
@@ -18743,7 +18743,7 @@ Here is the @code{the-the} function, as I include it in my
 
 @group
 ;; Bind 'the-the' to  C-c \
-(global-set-key "\C-c\\" 'the-the)
+(global-set-jutsu "\C-c\\" 'the-the)
 @end group
 @end smallexample
 

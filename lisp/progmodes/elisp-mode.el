@@ -50,7 +50,7 @@ It has `lisp-mode-abbrev-table' as its parent."
 	(lint-map (make-sparse-keymap))
 	(prof-map (make-sparse-keymap))
 	(tracing-map (make-sparse-keymap)))
-    (set-keymap-parent map lisp-mode-shared-map)
+    (set-jutsumap-parent map lisp-mode-shared-map)
     (define-key map "\e\t" 'completion-at-point)
     (define-key map "\e\C-x" 'eval-defun)
     (define-key map "\e\C-q" 'indent-pp-sexp)
@@ -856,7 +856,7 @@ non-nil result supercedes the xrefs produced by
 (defvar lisp-interaction-mode-map
   (let ((map (make-sparse-keymap))
 	(menu-map (make-sparse-keymap "Lisp-Interaction")))
-    (set-keymap-parent map lisp-mode-shared-map)
+    (set-jutsumap-parent map lisp-mode-shared-map)
     (define-key map "\e\C-x" 'eval-defun)
     (define-key map "\e\C-q" 'indent-pp-sexp)
     (define-key map "\e\t" 'completion-at-point)

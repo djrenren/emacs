@@ -32,7 +32,7 @@
 
 (defvar custom-new-theme-mode-map
   (let ((map (make-keymap)))
-    (set-keymap-parent map (make-composed-keymap widget-keymap
+    (set-jutsumap-parent map (make-composed-keymap widget-keymap
 						 special-mode-map))
     (suppress-keymap map)
     (define-key map "\C-x\C-s" 'custom-theme-write)
@@ -535,7 +535,7 @@ It includes all faces in list FACES."
 
 (defvar custom-theme-choose-mode-map
   (let ((map (make-keymap)))
-    (set-keymap-parent map (make-composed-keymap widget-keymap
+    (set-jutsumap-parent map (make-composed-keymap widget-keymap
 						 special-mode-map))
     (suppress-keymap map)
     (define-key map "\C-x\C-s" 'custom-theme-save)

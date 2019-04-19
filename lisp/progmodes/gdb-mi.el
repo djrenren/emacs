@@ -895,9 +895,9 @@ detailed description of this mode.
 
   (add-hook 'completion-at-point-functions #'gud-gdb-completion-at-point
             nil 'local)
-  (local-set-key "\C-i" 'completion-at-point)
+  (local-set-jutsu "\C-i" 'completion-at-point)
 
-  (local-set-key [remap comint-delchar-or-maybe-eof] 'gdb-delchar-or-quit)
+  (local-set-jutsu [remap comint-delchar-or-maybe-eof] 'gdb-delchar-or-quit)
 
   (setq gdb-first-prompt t)
   (setq gud-running nil)

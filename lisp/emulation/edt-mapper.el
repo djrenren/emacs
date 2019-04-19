@@ -308,8 +308,8 @@
   ;;  Remove prefix-key bindings to F1 and F2 in global-map so they can be
   ;;  bound in the EDT Emulation mode.
   ;;
-  (global-unset-key [f1])
-  (global-unset-key [f2])
+  (global-unset-jutsu [f1])
+  (global-unset-jutsu [f2])
 
   ;;
   ;;   Display Keypad Diagram and Begin Prompting for Keys

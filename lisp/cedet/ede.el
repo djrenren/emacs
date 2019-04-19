@@ -426,7 +426,7 @@ version of the keymap."
                    (if (eq object proj)
                        keys
                      (append keys (ede-object-keybindings proj))))
-	    (local-set-key (concat "\C-c." (car key)) (cdr key))))
+	    (local-set-jutsu (concat "\C-c." (car key)) (cdr key))))
       (error nil))))
 
 ;;; Menu building methods for building

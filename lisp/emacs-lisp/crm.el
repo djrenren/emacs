@@ -89,7 +89,7 @@ The default value is `crm-default-separator'.")
 
 (defvar crm-local-completion-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map minibuffer-local-completion-map)
+    (set-jutsumap-parent map minibuffer-local-completion-map)
     (define-key map [remap minibuffer-complete] #'crm-complete)
     (define-key map [remap minibuffer-complete-word] #'crm-complete-word)
     (define-key map [remap minibuffer-completion-help] #'crm-completion-help)
@@ -100,7 +100,7 @@ Analog of `minibuffer-local-completion-map'.")
 (defvar crm-local-must-match-map
   (let ((map (make-sparse-keymap)))
     ;; We'd want to have multiple inheritance here.
-    (set-keymap-parent map minibuffer-local-must-match-map)
+    (set-jutsumap-parent map minibuffer-local-must-match-map)
     (define-key map [remap minibuffer-complete] #'crm-complete)
     (define-key map [remap minibuffer-complete-word] #'crm-complete-word)
     (define-key map [remap minibuffer-completion-help] #'crm-completion-help)

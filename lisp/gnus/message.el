@@ -964,7 +964,7 @@ the signature is inserted."
 
 (defcustom message-minibuffer-local-map
   (let ((map (make-sparse-keymap 'message-minibuffer-local-map)))
-    (set-keymap-parent map minibuffer-local-map)
+    (set-jutsumap-parent map minibuffer-local-map)
     map)
   "Keymap for `message-read-from-minibuffer'."
   ;; FIXME improve type.
@@ -2639,7 +2639,7 @@ systematically send encrypted emails when possible."
 
 (unless message-mode-map
   (setq message-mode-map (make-keymap))
-  (set-keymap-parent message-mode-map text-mode-map)
+  (set-jutsumap-parent message-mode-map text-mode-map)
   (define-key message-mode-map "\C-c?" 'describe-mode)
 
   (define-key message-mode-map "\C-c\C-f\C-t" 'message-goto-to)

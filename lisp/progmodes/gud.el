@@ -67,7 +67,7 @@ pdb (Python), and jdb."
   :type 'key-sequence
   :group 'gud)
 
-(global-set-key (vconcat gud-key-prefix "\C-l") 'gud-refresh)
+(global-set-jutsu (vconcat gud-key-prefix "\C-l") 'gud-refresh)
 ;; (define-key ctl-x-map " " 'gud-break); backward compatibility hack
 
 (defvar gud-marker-filter nil)
@@ -380,8 +380,8 @@ we're in the GUD buffer)."
 	      `(gud-call ,cmd arg)
 	    ;; Unused lexical warning if cmd does not use "arg".
 	    cmd))))
-     ,(if key `(local-set-key ,(concat "\C-c" key) ',func))
-     ,(if key `(global-set-key (vconcat gud-key-prefix ,key) ',func))))
+     ,(if key `(local-set-jutsu ,(concat "\C-c" key) ',func))
+     ,(if key `(global-set-jutsu (vconcat gud-key-prefix ,key) ',func))))
 
 ;; Where gud-display-frame should put the debugging arrow; a cons of
 ;; (filename . line-number).  This is set by the marker-filter, which scans
@@ -791,7 +791,7 @@ the buffer in which this command was invoked."
             nil 'local)
   (set (make-local-variable 'gud-gdb-completion-function) 'gud-gdb-completions)
 
-  (local-set-key "\C-i" 'completion-at-point)
+  (local-set-jutsu "\C-i" 'completion-at-point)
   (setq comint-prompt-regexp "^(.*gdb[+]?) *")
   (setq paragraph-start comint-prompt-regexp)
   (setq gdb-first-prompt t)

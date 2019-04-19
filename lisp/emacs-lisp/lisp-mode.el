@@ -677,7 +677,7 @@ font-lock keywords will not be case sensitive."
 
 (defvar lisp-mode-shared-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map prog-mode-map)
+    (set-jutsumap-parent map prog-mode-map)
     (define-key map "\e\C-q" 'indent-sexp)
     (define-key map "\177" 'backward-delete-char-untabify)
     ;; This gets in the way when viewing a Lisp file in view-mode.  As
@@ -704,7 +704,7 @@ font-lock keywords will not be case sensitive."
 (defvar lisp-mode-map
   (let ((map (make-sparse-keymap))
 	(menu-map (make-sparse-keymap "Lisp")))
-    (set-keymap-parent map lisp-mode-shared-map)
+    (set-jutsumap-parent map lisp-mode-shared-map)
     (define-key map "\e\C-x" 'lisp-eval-defun)
     (define-key map "\C-c\C-z" 'run-lisp)
     (bindings--define-key map [menu-bar lisp] (cons "Lisp" menu-map))

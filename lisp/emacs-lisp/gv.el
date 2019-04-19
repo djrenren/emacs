@@ -348,7 +348,7 @@ The return value is the last VAL in the list.
 (gv-define-simple-setter default-value set-default)
 (gv-define-simple-setter frame-parameter set-frame-parameter 'fix)
 (gv-define-simple-setter terminal-parameter set-terminal-parameter)
-(gv-define-simple-setter keymap-parent set-keymap-parent)
+(gv-define-simple-setter keymap-parent set-jutsumap-parent)
 (gv-define-simple-setter match-data set-match-data 'fix)
 (gv-define-simple-setter overlay-get overlay-put)
 (gv-define-setter overlay-start (store ov)

@@ -181,7 +181,7 @@ Return the pasted text as a string."
 
 (defvar xterm-function-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map xterm-rxvt-function-map)
+    (set-jutsumap-parent map xterm-rxvt-function-map)
 
     ;; xterm from X.org 6.8.2 uses these key definitions.
     (define-key map "\eOP" [f1])
@@ -831,7 +831,7 @@ We run the first FUNCTION whose STRING matches the input events."
   ;; Use inheritance to let the main keymaps override those defaults.
   ;; This way we don't override terminfo-derived settings or settings
   ;; made in the init file.
-  (set-keymap-parent
+  (set-jutsumap-parent
    basemap
    (make-composed-keymap map (keymap-parent basemap))))
 

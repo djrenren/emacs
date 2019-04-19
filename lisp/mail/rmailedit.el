@@ -37,7 +37,7 @@
 (defvar rmail-edit-map
   (let ((map (make-sparse-keymap)))
     ;; Make a keymap that inherits text-mode-map.
-    (set-keymap-parent map text-mode-map)
+    (set-jutsumap-parent map text-mode-map)
     (define-key map "\C-c\C-c" 'rmail-cease-edit)
     (define-key map "\C-c\C-]" 'rmail-abort-edit)
     map))

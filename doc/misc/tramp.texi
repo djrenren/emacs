@@ -4052,7 +4052,7 @@ Redefine another key sequence in Emacs for @kbd{C-x C-f}:
 
 @lisp
 @group
-(global-set-key
+(global-set-jutsu
  [(control x) (control y)]
  (lambda ()
    (interactive)

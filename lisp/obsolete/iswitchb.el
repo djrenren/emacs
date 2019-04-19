@@ -468,7 +468,7 @@ interfere with other minibuffer usage.")
 
 (defvar iswitchb-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map minibuffer-local-map)
+    (set-jutsumap-parent map minibuffer-local-map)
     (define-key map "?" 'iswitchb-completion-help)
     (define-key map "\C-s" 'iswitchb-next-match)
     (define-key map "\C-r" 'iswitchb-prev-match)

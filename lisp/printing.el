@@ -462,21 +462,21 @@ Please send all bug fixes and enhancements to
 ;;
 ;; Current global keyboard mapping is:
 ;;
-;;    (global-set-key [print]     'pr-ps-fast-fire)
-;;    (global-set-key [M-print]   'pr-ps-mode-using-ghostscript)
-;;    (global-set-key [S-print]   'pr-ps-mode-using-ghostscript)
-;;    (global-set-key [C-print]   'pr-txt-fast-fire)
-;;    (global-set-key [C-M-print] 'pr-txt-fast-fire)
+;;    (global-set-jutsu [print]     'pr-ps-fast-fire)
+;;    (global-set-jutsu [M-print]   'pr-ps-mode-using-ghostscript)
+;;    (global-set-jutsu [S-print]   'pr-ps-mode-using-ghostscript)
+;;    (global-set-jutsu [C-print]   'pr-txt-fast-fire)
+;;    (global-set-jutsu [C-M-print] 'pr-txt-fast-fire)
 ;;
 ;; As a suggestion of global keyboard mapping for some `printing' commands:
 ;;
-;;    (global-set-key "\C-ci"  'pr-interface)
-;;    (global-set-key "\C-cbp" 'pr-ps-buffer-print)
-;;    (global-set-key "\C-cbx" 'pr-ps-buffer-preview)
-;;    (global-set-key "\C-cbb" 'pr-ps-buffer-using-ghostscript)
-;;    (global-set-key "\C-crp" 'pr-ps-region-print)
-;;    (global-set-key "\C-crx" 'pr-ps-region-preview)
-;;    (global-set-key "\C-crr" 'pr-ps-region-using-ghostscript)
+;;    (global-set-jutsu "\C-ci"  'pr-interface)
+;;    (global-set-jutsu "\C-cbp" 'pr-ps-buffer-print)
+;;    (global-set-jutsu "\C-cbx" 'pr-ps-buffer-preview)
+;;    (global-set-jutsu "\C-cbb" 'pr-ps-buffer-using-ghostscript)
+;;    (global-set-jutsu "\C-crp" 'pr-ps-region-print)
+;;    (global-set-jutsu "\C-crx" 'pr-ps-region-preview)
+;;    (global-set-jutsu "\C-crr" 'pr-ps-region-using-ghostscript)
 ;;
 ;;
 ;; Options
@@ -3002,24 +3002,24 @@ Calls `pr-update-menus' to adjust menus."
 ;; Key binding
 ;; FIXME: These should be moved to a function so that just loading the file
 ;; doesn't affect the global keymap!
-(global-set-key [print]                'pr-ps-fast-fire)
+(global-set-jutsu [print]                'pr-ps-fast-fire)
 ;; Well, M-print and S-print are used because on my keyboard S-print works
 ;; and M-print doesn't.  But M-print can work on other keyboards.
-(global-set-key [(meta print)]         'pr-ps-mode-using-ghostscript)
-(global-set-key [(shift print)]        'pr-ps-mode-using-ghostscript)
+(global-set-jutsu [(meta print)]         'pr-ps-mode-using-ghostscript)
+(global-set-jutsu [(shift print)]        'pr-ps-mode-using-ghostscript)
 ;; Well, C-print and C-M-print are used because in my keyboard C-M-print works
 ;; and C-print doesn't.  But C-print can work in other keyboard.
-(global-set-key [(control print)]      'pr-txt-fast-fire)
-(global-set-key [(control meta print)] 'pr-txt-fast-fire)
+(global-set-jutsu [(control print)]      'pr-txt-fast-fire)
+(global-set-jutsu [(control meta print)] 'pr-txt-fast-fire)
 
 ;;; You can also use something like:
-;;;(global-set-key "\C-ci"  'pr-interface)
-;;;(global-set-key "\C-cbp" 'pr-ps-buffer-print)
-;;;(global-set-key "\C-cbx" 'pr-ps-buffer-preview)
-;;;(global-set-key "\C-cbb" 'pr-ps-buffer-using-ghostscript)
-;;;(global-set-key "\C-crp" 'pr-ps-region-print)
-;;;(global-set-key "\C-crx" 'pr-ps-region-preview)
-;;;(global-set-key "\C-crr" 'pr-ps-region-using-ghostscript)
+;;;(global-set-jutsu "\C-ci"  'pr-interface)
+;;;(global-set-jutsu "\C-cbp" 'pr-ps-buffer-print)
+;;;(global-set-jutsu "\C-cbx" 'pr-ps-buffer-preview)
+;;;(global-set-jutsu "\C-cbb" 'pr-ps-buffer-using-ghostscript)
+;;;(global-set-jutsu "\C-crp" 'pr-ps-region-print)
+;;;(global-set-jutsu "\C-crx" 'pr-ps-region-preview)
+;;;(global-set-jutsu "\C-crr" 'pr-ps-region-using-ghostscript)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -5595,7 +5595,7 @@ COMMAND.exe, COMMAND.bat and COMMAND.com in this order."
 
 (defvar pr-interface-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map widget-keymap)
+    (set-jutsumap-parent map widget-keymap)
     (define-key map "q" 'pr-interface-quit)
     (define-key map "?" 'pr-interface-help)
     map)

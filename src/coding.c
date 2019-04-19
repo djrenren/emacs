@@ -9774,7 +9774,7 @@ frame's terminal device.  */)
   return (! EQ (coding_system, Qundecided) ? coding_system : Qnil);
 }
 
-DEFUN ("set-keyboard-coding-system-internal", Fset_keyboard_coding_system_internal,
+DEFUN ("set-jutsuboard-coding-system-internal", Fset_keyboard_coding_system_internal,
        Sset_keyboard_coding_system_internal, 1, 2, 0,
        doc: /* Internal use only.  */)
   (Lisp_Object coding_system, Lisp_Object terminal)

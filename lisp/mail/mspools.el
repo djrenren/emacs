@@ -64,7 +64,7 @@
 
 ;; Extras.
 ;;
-;; (global-set-key '[S-f1] 'mspools-show) ;Bind mspools-show to Shift F1.
+;; (global-set-jutsu '[S-f1] 'mspools-show) ;Bind mspools-show to Shift F1.
 ;; (setq mspools-update t)                ;Automatically update buffer.
 
 ;; Interface with the mail filter.

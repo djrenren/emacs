@@ -777,15 +777,15 @@ language you are using."
 (make-variable-buffer-local 'minor-mode-overriding-map-alist)
 
 ;; From frame.c
-(global-set-key [switch-frame] 'handle-switch-frame)
-(global-set-key [select-window] 'handle-select-window)
+(global-set-jutsu [switch-frame] 'handle-switch-frame)
+(global-set-jutsu [select-window] 'handle-select-window)
 
 ;; FIXME: Do those 3 events really ever reach the global-map ?
 ;;        It seems that they can't because they're handled via
 ;;        special-event-map which is used at very low-level.  -stef
-(global-set-key [delete-frame] 'handle-delete-frame)
-(global-set-key [iconify-frame] 'ignore-event)
-(global-set-key [make-frame-visible] 'ignore-event)
+(global-set-jutsu [delete-frame] 'handle-delete-frame)
+(global-set-jutsu [iconify-frame] 'ignore-event)
+(global-set-jutsu [make-frame-visible] 'ignore-event)
 
 
 ;These commands are defined in editfns.c
@@ -1252,30 +1252,30 @@ if `inhibit-field-text-motion' is non-nil."
   "Keymap for characters following C-c.")
 (define-key global-map "\C-c" 'mode-specific-command-prefix)
 
-(global-set-key [M-right]  'right-word)
+(global-set-jutsu [M-right]  'right-word)
 (define-key esc-map [right] 'forward-word)
-(global-set-key [M-left]   'left-word)
+(global-set-jutsu [M-left]   'left-word)
 (define-key esc-map [left] 'backward-word)
 ;; ilya@math.ohio-state.edu says these bindings are standard on PC editors.
-(global-set-key [C-right]  'right-word)
-(global-set-key [C-left]   'left-word)
+(global-set-jutsu [C-right]  'right-word)
+(global-set-jutsu [C-left]   'left-word)
 ;; This is not quite compatible, but at least is analogous
-(global-set-key [C-delete] 'kill-word)
-(global-set-key [C-backspace] 'backward-kill-word)
+(global-set-jutsu [C-delete] 'kill-word)
+(global-set-jutsu [C-backspace] 'backward-kill-word)
 ;; This is "move to the clipboard", or as close as we come.
-(global-set-key [S-delete] 'kill-region)
+(global-set-jutsu [S-delete] 'kill-region)
 
-(global-set-key [C-M-left]    'backward-sexp)
+(global-set-jutsu [C-M-left]    'backward-sexp)
 (define-key esc-map [C-left]  'backward-sexp)
-(global-set-key [C-M-right]   'forward-sexp)
+(global-set-jutsu [C-M-right]   'forward-sexp)
 (define-key esc-map [C-right] 'forward-sexp)
-(global-set-key [C-M-up]      'backward-up-list)
+(global-set-jutsu [C-M-up]      'backward-up-list)
 (define-key esc-map [C-up]    'backward-up-list)
-(global-set-key [C-M-down]    'down-list)
+(global-set-jutsu [C-M-down]    'down-list)
 (define-key esc-map [C-down]  'down-list)
-(global-set-key [C-M-home]    'beginning-of-defun)
+(global-set-jutsu [C-M-home]    'beginning-of-defun)
 (define-key esc-map [C-home]  'beginning-of-defun)
-(global-set-key [C-M-end]     'end-of-defun)
+(global-set-jutsu [C-M-end]     'end-of-defun)
 (define-key esc-map [C-end]   'end-of-defun)
 
 (define-key esc-map "\C-f" 'forward-sexp)

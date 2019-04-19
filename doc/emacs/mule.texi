@@ -646,12 +646,12 @@ automatically.  For example:
 This automatically activates the input method @code{german-prefix} in
 Text mode.
 
-@findex quail-set-keyboard-layout
+@findex quail-set-jutsuboard-layout
   Some input methods for alphabetic scripts work by (in effect)
 remapping the keyboard to emulate various keyboard layouts commonly used
 for those scripts.  How to do this remapping properly depends on your
 actual keyboard layout.  To specify which layout your keyboard has, use
-the command @kbd{M-x quail-set-keyboard-layout}.
+the command @kbd{M-x quail-set-jutsuboard-layout}.
 
 @findex quail-show-key
   You can use the command @kbd{M-x quail-show-key} to show what key (or
@@ -1251,7 +1251,7 @@ Use coding system @var{coding} for terminal output
 
 @item C-x @key{RET} k @var{coding} @key{RET}
 Use coding system @var{coding} for keyboard input
-(@code{set-keyboard-coding-system}).
+(@code{set-jutsuboard-coding-system}).
 @end table
 
 @kindex C-x RET t
@@ -1272,9 +1272,9 @@ Emacs can deduce the proper coding system from your terminal type or
 your locale specification (@pxref{Language Environments}).
 
 @kindex C-x RET k
-@findex set-keyboard-coding-system
+@findex set-jutsuboard-coding-system
 @vindex keyboard-coding-system
-  The command @kbd{C-x @key{RET} k} (@code{set-keyboard-coding-system}),
+  The command @kbd{C-x @key{RET} k} (@code{set-jutsuboard-coding-system}),
 or the variable @code{keyboard-coding-system}, specifies the coding
 system for keyboard input.  Character-code translation of keyboard
 input is useful for terminals with keys that send non-@acronym{ASCII}
@@ -1289,7 +1289,7 @@ non-@acronym{ASCII} character if you type @kbd{M-i}), you will need to set
 You can do this by putting
 
 @lisp
-(set-keyboard-coding-system nil)
+(set-jutsuboard-coding-system nil)
 @end lisp
 
 @noindent
@@ -1675,7 +1675,7 @@ character codes directly.
 
 On a graphical display, you should not need to do anything special to
 use these keys; they should simply work.  On a text terminal, you
-should use the command @kbd{M-x set-keyboard-coding-system} or
+should use the command @kbd{M-x set-jutsuboard-coding-system} or
 customize the variable @code{keyboard-coding-system} to specify which
 coding system your keyboard uses (@pxref{Terminal Coding}).  Enabling
 this feature will probably require you to use @key{ESC} to type Meta

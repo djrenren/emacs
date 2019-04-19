@@ -156,9 +156,9 @@ Please send all bug fixes and enhancements to
 ;; `ps-spool-buffer-with-faces', `ps-spool-region-with-faces', and
 ;; `ps-despool'.  Here are the bindings I use on my Sun 4 keyboard:
 ;;
-;;   (global-set-key 'f22 'ps-spool-buffer-with-faces) ;f22 is prsc
-;;   (global-set-key '(shift f22) 'ps-spool-region-with-faces)
-;;   (global-set-key '(control f22) 'ps-despool)
+;;   (global-set-jutsu 'f22 'ps-spool-buffer-with-faces) ;f22 is prsc
+;;   (global-set-jutsu '(shift f22) 'ps-spool-region-with-faces)
+;;   (global-set-jutsu '(control f22) 'ps-despool)
 ;;
 ;;
 ;; The Printer Interface

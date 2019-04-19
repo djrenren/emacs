@@ -983,7 +983,7 @@ The fallback command is passed as an argument to the functions."
 
 (defvar ido-common-completion-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map minibuffer-local-map)
+    (set-jutsumap-parent map minibuffer-local-map)
     (define-key map "\C-a" 'ido-toggle-ignore)
     (define-key map "\C-c" 'ido-toggle-case)
     (define-key map "\C-e" 'ido-edit-input)
@@ -1012,7 +1012,7 @@ The fallback command is passed as an argument to the functions."
 
 (defvar ido-file-dir-completion-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map ido-common-completion-map)
+    (set-jutsumap-parent map ido-common-completion-map)
     (define-key map "\C-x\C-b" 'ido-enter-switch-buffer)
     (define-key map "\C-x\C-f" 'ido-fallback-command)
     (define-key map "\C-x\C-d" 'ido-enter-dired)
@@ -1042,7 +1042,7 @@ The fallback command is passed as an argument to the functions."
 
 (defvar ido-file-completion-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map ido-file-dir-completion-map)
+    (set-jutsumap-parent map ido-file-dir-completion-map)
     (define-key map "\C-k" 'ido-delete-file-at-head)
     (define-key map "\C-o" 'ido-copy-current-word)
     (define-key map "\C-w" 'ido-copy-current-file-name)
@@ -1052,7 +1052,7 @@ The fallback command is passed as an argument to the functions."
 
 (defvar ido-buffer-completion-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map ido-common-completion-map)
+    (set-jutsumap-parent map ido-common-completion-map)
     (define-key map "\C-x\C-f" 'ido-enter-find-file)
     (define-key map "\C-x\C-b" 'ido-fallback-command)
     (define-key map "\C-k" 'ido-kill-buffer-at-head)
@@ -1699,16 +1699,16 @@ is enabled then some keybindings are changed in the keymap."
 	   'ido-delete-backward-updir)
 	 (define-key map [remap viper-delete-backward-word]
 	   'ido-delete-backward-word-updir))
-       (set-keymap-parent map
+       (set-jutsumap-parent map
 			  (if (eq ido-cur-item 'file)
 			      ido-file-completion-map
 			    ido-file-dir-completion-map)))
       ('buffer
        (when ido-context-switch-command
 	 (define-key map "\C-x\C-f" ido-context-switch-command))
-       (set-keymap-parent map ido-buffer-completion-map))
+       (set-jutsumap-parent map ido-buffer-completion-map))
       (_
-       (set-keymap-parent map ido-common-completion-map)))
+       (set-jutsumap-parent map ido-common-completion-map)))
     (setq ido-completion-map map)))
 
 (defun ido-final-slash (dir &optional fix-it)

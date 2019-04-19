@@ -2018,7 +2018,7 @@ see the doc of that variable if you want to add names to the list."
 
 (defvar select-tags-table-mode-map ; Doc string?
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map button-buffer-map)
+    (set-jutsumap-parent map button-buffer-map)
     (define-key map "t" 'push-button)
     (define-key map " " 'next-line)
     (define-key map "\^?" 'previous-line)

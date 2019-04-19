@@ -41,7 +41,7 @@
 ;; You may wish to add something like the following to your init file:
 ;;
 ;;   (require 'webjump)
-;;   (global-set-key "\C-cj" 'webjump)
+;;   (global-set-jutsu "\C-cj" 'webjump)
 ;;   (setq webjump-sites
 ;;         (append '(
 ;;                   ("My Home Page" . "www.someisp.net/users/joebobjr/")

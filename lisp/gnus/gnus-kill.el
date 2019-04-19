@@ -68,7 +68,7 @@ of time."
 
 (defvar gnus-kill-file-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map emacs-lisp-mode-map)
+    (set-jutsumap-parent map emacs-lisp-mode-map)
     (gnus-define-keymap map
       "\C-c\C-k\C-s" gnus-kill-file-kill-by-subject
       "\C-c\C-k\C-a" gnus-kill-file-kill-by-author

@@ -32,7 +32,7 @@
 ;; and reftex-select-bib-mode-map.
 (defvar reftex-select-shared-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map special-mode-map)
+    (set-jutsumap-parent map special-mode-map)
     (substitute-key-definition
      'next-line 'reftex-select-next                      map global-map)
     (substitute-key-definition
@@ -65,7 +65,7 @@
   'reftex-select-label-map 'reftex-select-label-mode-map "24.1")
 (defvar reftex-select-label-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map reftex-select-shared-map)
+    (set-jutsumap-parent map reftex-select-shared-map)
 
     (cl-loop for key across "aAcgFlrRstx#%" do
              (define-key map (vector (list key))
@@ -118,7 +118,7 @@ During a selection process, these are the local bindings.
   'reftex-select-bib-map 'reftex-select-bib-mode-map "24.1")
 (defvar reftex-select-bib-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map reftex-select-shared-map)
+    (set-jutsumap-parent map reftex-select-shared-map)
 
     (cl-loop for key across "grRaAeE" do
              (define-key map (vector (list key))

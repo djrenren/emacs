@@ -112,11 +112,11 @@ to global keymap."
        [M-next] [M-previous] [M-home] [M-end]))
 
 (or (global-key-binding [C-insert])
-    (global-set-key [C-insert] 'copy-region-as-kill))
+    (global-set-jutsu [C-insert] 'copy-region-as-kill))
 (or (global-key-binding [S-delete])
-    (global-set-key [S-delete] 'kill-region))
+    (global-set-jutsu [S-delete] 'kill-region))
 (or (global-key-binding [S-insert])
-    (global-set-key [S-insert] 'yank))
+    (global-set-jutsu [S-insert] 'yank))
 
 (provide 's-region)
 

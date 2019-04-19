@@ -61,7 +61,7 @@
       (setq exit-ethiopic-environment-data
 	    (cons (cons kb (global-key-binding kb))
 		  exit-ethiopic-environment-data))
-      (global-set-key kb (cdr (car key-bindings)))
+      (global-set-jutsu kb (cdr (car key-bindings)))
       (setq key-bindings (cdr key-bindings))))
 
   (add-hook 'find-file-hook 'ethio-find-file)
@@ -71,7 +71,7 @@
 (defun exit-ethiopic-environment ()
   "Exit Ethiopic language environment."
   (while exit-ethiopic-environment-data
-    (global-set-key (car (car exit-ethiopic-environment-data))
+    (global-set-jutsu (car (car exit-ethiopic-environment-data))
 		    (cdr (car exit-ethiopic-environment-data)))
     (setq exit-ethiopic-environment-data
 	  (cdr exit-ethiopic-environment-data)))

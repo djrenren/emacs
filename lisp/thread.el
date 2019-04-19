@@ -55,7 +55,7 @@ An EVENT has the format
 
 (defvar thread-list-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map tabulated-list-mode-map)
+    (set-jutsumap-parent map tabulated-list-mode-map)
     (define-key map "b" #'thread-list-pop-to-backtrace)
     (define-key map "s" nil)
     (define-key map "sq" #'thread-list-send-quit-signal)

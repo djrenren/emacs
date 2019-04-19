@@ -63,7 +63,7 @@
 	(setq oem-cs-p (coding-system-p oem-code-page-coding))
 	(setq oem-o-cs-p (coding-system-p oem-code-page-output-coding))
 	(when oem-cs-p
-	  (set-keyboard-coding-system oem-code-page-coding)
+	  (set-jutsuboard-coding-system oem-code-page-coding)
 	  (set-terminal-coding-system
 	   (if oem-o-cs-p oem-code-page-output-coding oem-code-page-coding))
           ;; Since we changed the terminal encoding, we need to repeat

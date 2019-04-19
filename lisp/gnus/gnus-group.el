@@ -2944,7 +2944,7 @@ and NEW-NAME will be prompted for."
       (gnus-group-decoded-name group))
      `(lambda (form)
 	(gnus-group-edit-group-done ',part ,group form)))
-    (local-set-key
+    (local-set-jutsu
      "\C-c\C-i"
      (gnus-create-info-command
       (cond

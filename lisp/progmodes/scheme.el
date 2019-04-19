@@ -164,7 +164,7 @@
 (defvar scheme-mode-map
   (let ((smap (make-sparse-keymap))
         (map (make-sparse-keymap "Scheme")))
-    (set-keymap-parent smap lisp-mode-shared-map)
+    (set-jutsumap-parent smap lisp-mode-shared-map)
     (define-key smap [menu-bar scheme] (cons "Scheme" map))
     (define-key map [run-scheme] '("Run Inferior Scheme" . run-scheme))
     (define-key map [uncomment-region]

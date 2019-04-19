@@ -124,7 +124,7 @@
 
 (defvar erc-list-menu-mode-map
   (let ((map (make-keymap)))
-    (set-keymap-parent map special-mode-map)
+    (set-jutsumap-parent map special-mode-map)
     (define-key map "k" 'erc-list-kill)
     (define-key map "j" 'erc-list-join)
     (define-key map "g" 'erc-list-revert)

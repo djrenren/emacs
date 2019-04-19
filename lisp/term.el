@@ -914,7 +914,7 @@ is buffer-local."
 
 (defvar term-raw-escape-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map 'Control-X-prefix)
+    (set-jutsumap-parent map 'Control-X-prefix)
     ;; Define standard bindings in term-raw-escape-map.
     (define-key map "\C-v" (lookup-key (current-global-map) "\C-v"))
     (define-key map "\C-u" (lookup-key (current-global-map) "\C-u"))

@@ -128,7 +128,7 @@
 ;; The variable `woman-use-topic-at-point' can be rebound locally,
 ;; which may be useful to provide special private key bindings, e.g.
 
-;;  (global-set-key "\C-cw"
+;;  (global-set-jutsu "\C-cw"
 ;;  		  (lambda ()
 ;;  		    (interactive)
 ;;  		    (let ((woman-use-topic-at-point t))
@@ -1768,7 +1768,7 @@ Leave point at end of new text.  Return length of inserted text."
 
 (defvar woman-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map Man-mode-map)
+    (set-jutsumap-parent map Man-mode-map)
 
     (define-key map "R" 'woman-reformat-last-file)
     (define-key map "w" 'woman)

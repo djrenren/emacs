@@ -14366,7 +14366,7 @@ and the case items."
 
 (defvar verilog-mode-mouse-map
   (let ((map (make-sparse-keymap))) ; as described in info pages, make a map
-    (set-keymap-parent map verilog-mode-map)
+    (set-jutsumap-parent map verilog-mode-map)
     ;; mouse button bindings
     (define-key map "\r"            'verilog-load-file-at-point)
     (if (featurep 'xemacs)

@@ -446,7 +446,7 @@ reads and discards the following up-event.  You can get access to that
 up-event with the @samp{U} code character.
 
 This kind of input is used by commands such as @code{describe-key} and
-@code{global-set-key}.
+@code{global-set-jutsu}.
 
 @item K
 A key sequence, whose definition you intend to change.  This works like
@@ -1886,7 +1886,7 @@ bind it to the @code{signal usr1} event sequence:
 (defun usr1-handler ()
   (interactive)
   (message "Got USR1 signal"))
-(global-set-key [signal usr1] 'usr1-handler)
+(global-set-jutsu [signal usr1] 'usr1-handler)
 @end smallexample
 
 @node Classifying Events
@@ -2738,9 +2738,9 @@ operations:
 (keyboard-translate ?\C-x 'control-x)
 (keyboard-translate ?\C-c 'control-c)
 (keyboard-translate ?\C-v 'control-v)
-(global-set-key [control-x] 'kill-region)
-(global-set-key [control-c] 'kill-ring-save)
-(global-set-key [control-v] 'yank)
+(global-set-jutsu [control-x] 'kill-region)
+(global-set-jutsu [control-c] 'kill-ring-save)
+(global-set-jutsu [control-v] 'yank)
 @end example
 
 @noindent

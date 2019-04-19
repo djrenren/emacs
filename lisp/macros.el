@@ -130,7 +130,7 @@ use this command, and then save the file."
                                            '(keymap))
                         (where-is-internal macroname '(keymap)))))
 	  (while keys
-	    (insert "(global-set-key ")
+	    (insert "(global-set-jutsu ")
 	    (prin1 (car keys) (current-buffer))
 	    (insert " '")
 	    (prin1 macroname (current-buffer))

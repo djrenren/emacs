@@ -262,7 +262,7 @@ No problems result if this variable is not bound.
                   ;; - the parent (and its keymap) may not yet be loaded.
                   ;; - the parent's keymap name may be called something else
                   ;;   than <parent>-mode-map.
-		  (set-keymap-parent ,map (current-local-map)))
+		  (set-jutsumap-parent ,map (current-local-map)))
 		,(when declare-syntax
 		   `(let ((parent (char-table-parent ,syntax)))
 		      (unless (and parent
@@ -397,7 +397,7 @@ the first time the mode is used."
 
 ;; Utility functions for running a derived mode.
 
-(defun derived-mode-set-keymap (mode)
+(defun derived-mode-set-jutsumap (mode)
   "Set the keymap of the new MODE, maybe merging with the parent."
   (let* ((map-name (derived-mode-map-name mode))
 	 (new-map (eval map-name))
@@ -439,7 +439,7 @@ Always merge its parent into it, since the merge is non-destructive."
   "Merge an OLD keymap into a NEW one.
 The old keymap is set to be the last cdr of the new one, so that there will
 be automatic inheritance."
-  ;; ?? Can this just use `set-keymap-parent'?
+  ;; ?? Can this just use `set-jutsumap-parent'?
   (let ((tail new))
     ;; Scan the NEW map for prefix keys.
     (while (consp tail)

@@ -46,8 +46,8 @@
     ;; Map certain keypad keys into ASCII characters that people usually expect.
     (with-selected-frame frame
       (let ((map (copy-keymap msdos-key-remapping-map)))
-        (set-keymap-parent map (keymap-parent local-function-key-map))
-        (set-keymap-parent local-function-key-map map)))
+        (set-jutsumap-parent map (keymap-parent local-function-key-map))
+        (set-jutsumap-parent local-function-key-map map)))
     (set-terminal-parameter frame 'msdos-setup-keyboard t))
   (set-input-mode nil nil 0))
 

@@ -1056,7 +1056,7 @@ Go to the beginning of buffer if not found."
 
 (defvar recentf-dialog-mode-map
   (let ((km (copy-keymap recentf--shortcuts-keymap)))
-    (set-keymap-parent km widget-keymap)
+    (set-jutsumap-parent km widget-keymap)
     (define-key km "q" 'recentf-cancel-dialog)
     (define-key km "n" 'next-line)
     (define-key km "p" 'previous-line)

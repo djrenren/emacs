@@ -31,7 +31,7 @@
 ;; `calculator' to a key and make it an autoloaded function, e.g.:
 ;;   (autoload 'calculator "calculator"
 ;;     "Run the Emacs calculator." t)
-;;   (global-set-key [(control return)] 'calculator)
+;;   (global-set-jutsu [(control return)] 'calculator)
 ;;
 ;; Written by Eli Barzilay, eli@barzilay.org
 ;;
@@ -392,7 +392,7 @@ Used for repeating operations in calculator-repR/L.")
     (unless omap
       (setq omap (make-sparse-keymap))
       (suppress-keymap omap t)
-      (set-keymap-parent map omap))
+      (set-jutsumap-parent map omap))
     (let ((m omap))
       ;; Bind all case-flipped versions.
       (dotimes (i (length key))

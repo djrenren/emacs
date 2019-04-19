@@ -43,7 +43,7 @@
     (define-key map "r" 'revert-buffer-with-coding-system)
     (define-key map "F" 'set-file-name-coding-system)
     (define-key map "t" 'set-terminal-coding-system)
-    (define-key map "k" 'set-keyboard-coding-system)
+    (define-key map "k" 'set-jutsuboard-coding-system)
     (define-key map "p" 'set-buffer-process-coding-system)
     (define-key map "x" 'set-selection-coding-system)
     (define-key map "X" 'set-next-selection-coding-system)
@@ -89,8 +89,8 @@
       '(menu-item "For Terminal" set-terminal-coding-system
         :enable (null (memq initial-window-system '(x w32 ns)))
         :help "How to encode terminal output"))
-    (bindings--define-key map [set-keyboard-coding-system]
-      '(menu-item "For Keyboard" set-keyboard-coding-system
+    (bindings--define-key map [set-jutsuboard-coding-system]
+      '(menu-item "For Keyboard" set-jutsuboard-coding-system
         :help "How to decode keyboard input"))
 
     (bindings--define-key map [separator-2] menu-bar-separator)
@@ -343,7 +343,7 @@ This also sets the following values:
   o default value used as `file-name-coding-system' for converting file names
       if CODING-SYSTEM is ASCII-compatible
   o default value for the command `set-terminal-coding-system'
-  o default value for the command `set-keyboard-coding-system'
+  o default value for the command `set-jutsuboard-coding-system'
       if CODING-SYSTEM is ASCII-compatible"
   (check-coding-system coding-system)
   (setq-default buffer-file-coding-system coding-system)
@@ -381,7 +381,7 @@ This also sets the following coding systems:
 This also sets the following values:
   o default value used as `file-name-coding-system' for converting file names
   o default value for the command `set-terminal-coding-system'
-  o default value for the command `set-keyboard-coding-system'
+  o default value for the command `set-jutsuboard-coding-system'
 
 If CODING-SYSTEM specifies a certain type of EOL conversion, the coding
 systems set by this function will use that type of EOL conversion.
@@ -1765,7 +1765,7 @@ The default status is as follows:
   The default value of `buffer-file-coding-system' is nil.
   The default coding system for process I/O is nil.
   The default value for the command `set-terminal-coding-system' is nil.
-  The default value for the command `set-keyboard-coding-system' is nil.
+  The default value for the command `set-jutsuboard-coding-system' is nil.
 
   The order of priorities of coding systems are as follows:
 	utf-8
@@ -1826,7 +1826,7 @@ The default status is as follows:
   ;; The terminal still supports the same coding system
   ;; that it supported a minute ago.
   ;; (set-terminal-coding-system-internal nil)
-  ;; (set-keyboard-coding-system-internal nil)
+  ;; (set-jutsuboard-coding-system-internal nil)
 
   ;; Back in Emacs-20, it was necessary to provide some fallback implicit
   ;; conversion, because almost no packages handled coding-system issues.
@@ -2709,7 +2709,7 @@ See also `locale-charset-language-names', `locale-language-names',
 	  (let ((kcs (or coding-system
 			 (car (get-language-info language-name
 						 'coding-system)))))
-	    (if kcs (set-keyboard-coding-system kcs frame)))
+	    (if kcs (set-jutsuboard-coding-system kcs frame)))
 
 	  (unless frame
 	    (setq locale-coding-system
@@ -2753,7 +2753,7 @@ See also `locale-charset-language-names', `locale-language-names',
                    (coding-system-p locale-coding))
           (or output-coding (setq output-coding code-page-coding))
 	  (unless frame (setq locale-coding-system locale-coding))
-	  (set-keyboard-coding-system code-page-coding frame)
+	  (set-jutsuboard-coding-system code-page-coding frame)
 	  (set-terminal-coding-system output-coding frame)
 	  (setq default-file-name-coding-system ansi-code-page-coding))))
 
@@ -2766,7 +2766,7 @@ See also `locale-charset-language-names', `locale-language-names',
       (when (and (null window-system)
 		 (equal (getenv "TERM_PROGRAM" frame) "Apple_Terminal"))
 	(set-terminal-coding-system 'utf-8)
-	(set-keyboard-coding-system 'utf-8)))
+	(set-jutsuboard-coding-system 'utf-8)))
 
     ;; Default to A4 paper if we're not in a C, POSIX or US locale.
     ;; (See comments in Flocale_info.)

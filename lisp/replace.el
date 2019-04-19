@@ -1150,7 +1150,7 @@ Alternatively, click \\[occur-mode-mouse-goto] on an item to go to it.
 
 (defvar occur-edit-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map text-mode-map)
+    (set-jutsumap-parent map text-mode-map)
     (define-key map [mouse-2] 'occur-mode-mouse-goto)
     (define-key map "\C-c\C-c" 'occur-cease-edit)
     (define-key map "\C-o" 'occur-mode-display-occurrence)
@@ -2110,7 +2110,7 @@ This keymap is used by `y-or-n-p' as well as `query-replace'.")
 
 (defvar multi-query-replace-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map query-replace-map)
+    (set-jutsumap-parent map query-replace-map)
     (define-key map "Y" 'automatic-all)
     (define-key map "N" 'exit-current)
     map)

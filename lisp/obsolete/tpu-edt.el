@@ -199,8 +199,8 @@
 ;;    ; Emacs uses Control-s and Control-q.  Problems can occur when using
 ;;    ; Emacs on terminals that use these codes for flow control (Xon/Xoff
 ;;    ; flow control).  These lines disable Emacs's use of these characters.
-;;    (global-unset-key "\C-s")
-;;    (global-unset-key "\C-q")
+;;    (global-unset-jutsu "\C-s")
+;;    (global-unset-jutsu "\C-q")
 
 ;;    ; The Emacs universal-argument function is very useful.
 ;;    ; This line maps universal-argument to Gold-PF1.
@@ -776,7 +776,7 @@ Like Emacs `y-or-n-p', but also accepts space as y and DEL as n."
 			prompt (if not-yes "n" "y")))))))
   tpu-last-answer)
 
-(defun tpu-local-set-key (key func)
+(defun tpu-local-set-jutsu (key func)
   "Replace a key in the TPU-edt local key map.
 Create the key map if necessary."
   (cond ((not (keymapp tpu-buffer-local-map))
@@ -784,7 +784,7 @@ Create the key map if necessary."
 					(copy-keymap (current-local-map))
 				      (make-sparse-keymap)))
 	 (use-local-map tpu-buffer-local-map)))
-  (local-set-key key func))
+  (local-set-jutsu key func))
 
 (defun tpu-current-line ()
   "Return the vertical position of point in the selected window.
@@ -878,11 +878,11 @@ With argument, fill and justify."
   (cond (tpu-newline-and-indent-p
          (setq tpu-newline-and-indent-string "")
          (setq tpu-newline-and-indent-p nil)
-         (tpu-local-set-key "\C-m" 'newline))
+         (tpu-local-set-jutsu "\C-m" 'newline))
         (t
          (setq tpu-newline-and-indent-string " AutoIndent")
          (setq tpu-newline-and-indent-p t)
-         (tpu-local-set-key "\C-m" 'newline-and-indent)))
+         (tpu-local-set-jutsu "\C-m" 'newline-and-indent)))
   (tpu-update-mode-line)
   (and (called-interactively-p 'interactive)
        (message "Carriage return inserts a newline%s"
@@ -905,11 +905,11 @@ if no region is selected."
   "Switch in and out of overwrite mode."
   (interactive)
   (cond (overwrite-mode
-	 (tpu-local-set-key "\177" tpu-saved-delete-func)
+	 (tpu-local-set-jutsu "\177" tpu-saved-delete-func)
 	 (overwrite-mode 0))
 	(t
 	 (setq tpu-saved-delete-func (local-key-binding "\177"))
-	 (tpu-local-set-key "\177" 'picture-backward-clear-column)
+	 (tpu-local-set-jutsu "\177" 'picture-backward-clear-column)
 	 (overwrite-mode 1))))
 
 (defun tpu-special-insert (num)
@@ -1231,14 +1231,14 @@ and the total number of lines in the buffer."
   "End the current macro definition."
   (interactive "kPress the key you want to use to do what was just learned: ")
   (end-kbd-macro nil)
-  (global-set-key key last-kbd-macro)
-  (global-set-key "\C-r" tpu-saved-control-r))
+  (global-set-jutsu key last-kbd-macro)
+  (global-set-jutsu "\C-r" tpu-saved-control-r))
 
 (defun tpu-define-macro-key nil
   "Bind a set of keystrokes to a single key, or key combination."
   (interactive)
   (setq tpu-saved-control-r (global-key-binding "\C-r"))
-  (global-set-key "\C-r" 'tpu-end-define-macro-key)
+  (global-set-jutsu "\C-r" 'tpu-end-define-macro-key)
   (start-kbd-macro nil))
 
 
@@ -2260,13 +2260,13 @@ Accepts a prefix argument for the number of tpu-pan-columns to scroll."
         (if (eq parent tpu-control-keys-map)
             nil                         ;All done already.
           ;; Insert tpu-control-keys-map in the global map.
-          (set-keymap-parent tpu-control-keys-map parent)
-          (set-keymap-parent tpu-global-map tpu-control-keys-map))
+          (set-jutsumap-parent tpu-control-keys-map parent)
+          (set-jutsumap-parent tpu-global-map tpu-control-keys-map))
       (if (not (eq parent tpu-control-keys-map))
           nil                         ;All done already.
         ;; Remove tpu-control-keys-map from the global map.
-        (set-keymap-parent tpu-global-map (keymap-parent parent))
-        (set-keymap-parent tpu-control-keys-map nil)))
+        (set-jutsumap-parent tpu-global-map (keymap-parent parent))
+        (set-jutsumap-parent tpu-control-keys-map nil)))
     (setq tpu-control-keys tpu-style)))
 
 (defun tpu-toggle-control-keys nil
@@ -2388,7 +2388,7 @@ If FILE is nil, try to load a default file.  The default file names are
   ;; To clean things up (and avoid cycles in the global map).
   (tpu-edt-off)
   ;; First, activate tpu-global-map, while protecting the original keymap.
-  (set-keymap-parent tpu-global-map global-map)
+  (set-jutsumap-parent tpu-global-map global-map)
   (setq global-map tpu-global-map)
   (use-global-map global-map)
   ;; Then do the normal TPU setup.
@@ -2408,7 +2408,7 @@ If FILE is nil, try to load a default file.  The default file names are
   (tpu-arrow-history)
   ;; Then protect tpu-global-map from user modifications.
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map global-map)
+    (set-jutsumap-parent map global-map)
     (setq global-map map)
     (use-global-map map))
   (setq tpu-edt-mode t))
@@ -2427,7 +2427,7 @@ If FILE is nil, try to load a default file.  The default file names are
     (while map
       (let ((parent (keymap-parent map)))
         (if (eq tpu-global-map parent)
-            (set-keymap-parent map (keymap-parent parent))
+            (set-jutsumap-parent map (keymap-parent parent))
           (setq map parent)))))
   ;; Only has an effect if the advice in tpu-extras has been activated.
   (condition-case nil

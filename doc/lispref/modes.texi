@@ -1354,7 +1354,7 @@ common.  The following code sets up the common commands:
 @group
 (defvar lisp-mode-shared-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map prog-mode-map)
+    (set-jutsumap-parent map prog-mode-map)
     (define-key map "\e\C-q" 'indent-sexp)
     (define-key map "\177" 'backward-delete-char-untabify)
     map)
@@ -1370,7 +1370,7 @@ And here is the code to set up the keymap for Lisp mode:
 (defvar lisp-mode-map
   (let ((map (make-sparse-keymap))
         (menu-map (make-sparse-keymap "Lisp")))
-    (set-keymap-parent map lisp-mode-shared-map)
+    (set-jutsumap-parent map lisp-mode-shared-map)
     (define-key map "\e\C-x" 'lisp-eval-defun)
     (define-key map "\C-c\C-z" 'run-lisp)
     @dots{}

@@ -693,7 +693,7 @@ stuff, to the current ERC buffer."
 
 ;; This causes ERC to connect to the Freenode network upon hitting
 ;; C-c e f.  Replace MYNICK with your IRC nick.
-(global-set-key "\C-cef" (lambda () (interactive)
+(global-set-jutsu "\C-cef" (lambda () (interactive)
                            (erc :server "irc.freenode.net" :port "6667"
                                 :nick "MYNICK")))
 
@@ -702,7 +702,7 @@ stuff, to the current ERC buffer."
 ;; nick.  Often, people like to run bitlbee (http://bitlbee.org/) as an
 ;; AIM/Jabber/MSN to IRC gateway, so that they can use ERC to chat with
 ;; people on those networks.
-(global-set-key "\C-ceb" (lambda () (interactive)
+(global-set-jutsu "\C-ceb" (lambda () (interactive)
                            (erc :server "localhost" :port "6667"
                                 :nick "MYNICK")))
 

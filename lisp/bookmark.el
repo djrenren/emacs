@@ -221,7 +221,7 @@ A non-nil value may result in truncated bookmark names."
     map)
   "Keymap containing bindings to bookmark functions.
 It is not bound to any key by default: to bind it
-so that you have a bookmark prefix, just use `global-set-key' and bind a
+so that you have a bookmark prefix, just use `global-set-jutsu' and bind a
 key of your choice to `bookmark-map'.  All interactive bookmark
 functions have a binding in this keymap.")
 
@@ -758,7 +758,7 @@ CODING is the symbol of the coding-system in which the file is encoded."
 
 (defvar bookmark-minibuffer-read-name-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map minibuffer-local-map)
+    (set-jutsumap-parent map minibuffer-local-map)
     (define-key map "\C-w" 'bookmark-yank-word)
     map))
 
@@ -931,7 +931,7 @@ It takes one argument, the name of the bookmark, as a string.")
 
 (defvar bookmark-edit-annotation-mode-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map text-mode-map)
+    (set-jutsumap-parent map text-mode-map)
     (define-key map "\C-c\C-c" 'bookmark-send-edited-annotation)
     map)
   "Keymap for editing an annotation of a bookmark.")
@@ -1567,7 +1567,7 @@ unique numeric suffixes \"<2>\", \"<3>\", etc."
 
 (defvar bookmark-bmenu-mode-map
   (let ((map (make-keymap)))
-    (set-keymap-parent map special-mode-map)
+    (set-jutsumap-parent map special-mode-map)
     (define-key map "v" 'bookmark-bmenu-select)
     (define-key map "w" 'bookmark-bmenu-locate)
     (define-key map "5" 'bookmark-bmenu-other-frame)

@@ -1300,7 +1300,7 @@ This returns an error if any Emacs frames are X frames."
   ;; and turned the Emacs f10 back on.
   ;; ;; Motif normally handles f10 itself, so don't try to handle it a second time.
   ;; (if (featurep 'motif)
-  ;;     (global-set-key [f10] 'ignore))
+  ;;     (global-set-jutsu [f10] 'ignore))
 
   ;; Enable CLIPBOARD copy/paste through menu bar commands.
   (menu-bar-enable-clipboard)
@@ -1484,7 +1484,7 @@ This uses `icon-map-list' to map icon file names to stock icon names."
 	     (and value (cdr value))))
 	 x-gtk-stock-cache))))
 
-(global-set-key [XF86WakeUp] 'ignore)
+(global-set-jutsu [XF86WakeUp] 'ignore)
 
 (provide 'x-win)
 (provide 'term/x-win)

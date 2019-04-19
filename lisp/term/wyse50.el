@@ -111,8 +111,8 @@
   ;; This way we don't override terminfo-derived settings or settings
   ;; made in the init file.
   (let ((m (copy-keymap wyse50-terminal-map)))
-    (set-keymap-parent m (keymap-parent input-decode-map))
-    (set-keymap-parent input-decode-map m))
+    (set-jutsumap-parent m (keymap-parent input-decode-map))
+    (set-jutsumap-parent input-decode-map m))
 
   ;; Miscellaneous hacks
 
@@ -151,7 +151,7 @@ M-r	M-x move-to-window-line, Funct up-arrow or down-arrow are similar"
   ;;           ("\C-l"	nil)
   ;;           ("\C-h"	nil)
   ;;           ("\er"	nil)))
-  ;;   (global-set-key (car key-definition)
+  ;;   (global-set-jutsu (car key-definition)
   ;;                   (nth 1 key-definition)))
   (fset 'enable-arrow-keys nil))
 

@@ -491,20 +491,20 @@ EVENT should be a scroll bar click."
 
 ;; For now, we'll set things up to work like xterm.
 (cond ((and (boundp 'x-toolkit-scroll-bars) x-toolkit-scroll-bars)
-       (global-set-key [vertical-scroll-bar mouse-1]
+       (global-set-jutsu [vertical-scroll-bar mouse-1]
 		       'scroll-bar-toolkit-scroll)
-       (global-set-key [horizontal-scroll-bar mouse-1]
+       (global-set-jutsu [horizontal-scroll-bar mouse-1]
 		       'scroll-bar-toolkit-horizontal-scroll))
       (t
-       (global-set-key [vertical-scroll-bar mouse-1]
+       (global-set-jutsu [vertical-scroll-bar mouse-1]
 		       'scroll-bar-scroll-up)
-       (global-set-key [vertical-scroll-bar drag-mouse-1]
+       (global-set-jutsu [vertical-scroll-bar drag-mouse-1]
 		       'scroll-bar-scroll-up)
-       (global-set-key [vertical-scroll-bar down-mouse-2]
+       (global-set-jutsu [vertical-scroll-bar down-mouse-2]
 		       'scroll-bar-drag)
-       (global-set-key [vertical-scroll-bar mouse-3]
+       (global-set-jutsu [vertical-scroll-bar mouse-3]
 		       'scroll-bar-scroll-down)
-       (global-set-key [vertical-scroll-bar drag-mouse-3]
+       (global-set-jutsu [vertical-scroll-bar drag-mouse-3]
 		       'scroll-bar-scroll-down)))
 
 

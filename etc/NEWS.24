@@ -3784,7 +3784,7 @@ functions `display-delayed-warnings' and `collapse-delayed-warnings'.
 ** New function `make-composed-keymap' that constructs a new keymap
 from multiple input maps.  You can use this to make a keymap that
 inherits from multiple maps, eg:
- (set-keymap-parent newmap (make-composed-keymap othermap parent))
+ (set-jutsumap-parent newmap (make-composed-keymap othermap parent))
 
 ** New function `string-prefix-p'.
 (This was actually added in Emacs 23.2 but was not advertised at the time.)

@@ -28,7 +28,7 @@
 
 (defvar rxvt-function-map
   (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map xterm-rxvt-function-map)
+    (set-jutsumap-parent map xterm-rxvt-function-map)
 
     ;; Set up input-decode-map entries that termcap and terminfo don't know.
     (define-key map "\e[7~" [home])

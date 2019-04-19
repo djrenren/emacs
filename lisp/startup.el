@@ -1648,7 +1648,7 @@ Each element in the list should be a list of strings or pairs
 (defvar splash-screen-keymap
   (let ((map (make-sparse-keymap)))
     (suppress-keymap map)
-    (set-keymap-parent map button-buffer-map)
+    (set-jutsumap-parent map button-buffer-map)
     (define-key map "\C-?" 'scroll-down-command)
     (define-key map [?\S-\ ] 'scroll-down-command)
     (define-key map " " 'scroll-up-command)

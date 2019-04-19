@@ -322,13 +322,13 @@ non-Windows systems."
   (while mwheel-installed-bindings
     (let ((key (pop mwheel-installed-bindings)))
       (when (eq (lookup-key (current-global-map) key) 'mwheel-scroll)
-        (global-unset-key key))))
+        (global-unset-jutsu key))))
   ;; Setup bindings as needed.
   (when mouse-wheel-mode
     (dolist (event (list mouse-wheel-down-event mouse-wheel-up-event mouse-wheel-right-event mouse-wheel-left-event))
       (dolist (key (mapcar (lambda (amt) `[(,@(if (consp amt) (car amt)) ,event)])
                            mouse-wheel-scroll-amount))
-        (global-set-key key 'mwheel-scroll)
+        (global-set-jutsu key 'mwheel-scroll)
         (push key mwheel-installed-bindings)))))
 
 ;;; Compatibility entry point
