@@ -1,3 +1,30 @@
+<p align="center">
+   <img width="200" align="center" src="https://raw.githubusercontent.com/djrenren/emacs/master/etc/images/GNUruto.png" />
+</p>
+<h1 align="center"><img height="64" src="https://raw.githubusercontent.com/djrenren/emacs/master/etc/images/gnuruto-text.png">Emacs</h1>
+<p align="center">
+    <strong>An emacs distribution for coding ninjas</strong>
+</p>
+
+GNUruto emacs pays homage to the intricate, arcane, and frankly magical nature
+of emacs keybindings by changing the language and functions we use to talk about them.
+
+## From `*-set-key` to `*-set-jutsu`
+GNUruto emacs ships with a different set of keybinding functions (you may need to adjust your init scripts).
+Keybindings are now called jutsus, and this a good thing.
+To create a new jutsu just run:
+
+`M-x global-set-jutsu` and you'll be well on your way.
+
+
+## Does it work?
+Believe it! GNUruto emacs is tested to build and run on macOS Mojave (10.14.2).
+
+
+## How do I exit?
+<img src="https://raw.githubusercontent.com/djrenren/emacs/master/etc/images/how-to-exit.gif">
+
+```
 Copyright (C) 2001-2019 Free Software Foundation, Inc.
 See the end of the file for license conditions.
 
@@ -123,3 +150,4 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.
+```
